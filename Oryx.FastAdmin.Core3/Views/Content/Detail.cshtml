@@ -1,0 +1,74 @@
+﻿@using Oryx.FastAdmin.Model.Contents
+@{
+    var contentEntry = ViewData["ContentEntry"] as ContentEntry;
+
+    ViewData["Title"] = contentEntry.Name;
+    ViewData["Key"] = contentEntry.Keywords;
+    ViewData["Desc"] = contentEntry.Descrtion;
+}
+
+@section Styles{
+    <style>
+        .mainContainer img {
+            width: 100%;
+        }
+    </style>
+    <link href="https://cdn.bootcss.com/video.js/7.6.5/video-js.min.css" rel="stylesheet">
+
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="//vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+}
+
+<h2>@contentEntry.Name</h2>
+
+<div>
+    <span>
+        <i class="mdi mdi-timer"></i>
+        @contentEntry.CreateTime
+    </span>
+    <span>
+        <i class="mdi mdi-account"></i>
+        @contentEntry.Author
+    </span>
+    <span>
+        <i class="mdi mdi-eye"></i>
+        @contentEntry.Views
+    </span>
+</div>
+
+<hr />
+
+<div class="mainContainer">
+    @Html.Raw(contentEntry.Content)
+</div>
+
+@section Scripts{
+    <script src="https://cdn.bootcss.com/video.js/7.6.5/video.js"></script>
+    <script src="https://cdn.bootcss.com/video.js/7.6.5/lang/zh-CN.js"></script>
+    <script>
+        layui.$('video').each(function (index, $element) {
+            layui.$('video').eq(index)
+                .addClass('video-js')
+                .addClass('vjs-default-skin')
+                .addClass('vjs-16-9')
+                .addClass('vjs-big-play-centered')
+                .attr('id', 'video' + index)
+            videojs('video' + index, {}, function () {
+                console.log('Good to go!');
+                //this.play(); // if you don't trust autoplay for some reason
+            });
+        })
+                    //var player =
+                    //    player.on('play', function () {
+                    //        console.log('开始/恢复播放');
+                    //    });
+                    //player.on('pause', function () {
+                    //    console.log('暂停播放');
+                    //});
+                    //player.on('ended', function () {
+                    //    console.log('结束播放');
+                    //});
+
+
+    </script>
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{bfcdc9b0-5be2-491a-9e25-7d7d7649881f}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aliyun.Acs</RootNamespace>
+    <AssemblyName>aliyun-net-sdk-sas</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+	<Compile Include="Sas\Transform\V20181203\ModifyEmgVulSubmitResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeRiskCheckResultResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeStrategyExecDetailResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyRiskCheckStatusResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeCheckWarningsResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeAlarmEventDetailResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeSuspEventsResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\StartBaselineSecurityCheckResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyAutoDelConfigResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeConcernNecessityResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeSecurityCheckScheduleConfigResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyConcernNecessityResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyDeleteVulWhitelistResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifySecurityCheckScheduleConfigResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeRiskItemTypeResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeStratetyResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeVulWhitelistResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeAutoDelConfigResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeEmgVulGroupResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeWarningMachinesResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyRiskSingleResultStatusResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeCheckWarningDetailResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeAlarmEventListResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyOperateVulResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyCreateVulWhitelistResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeVulListResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeCheckWarningSummaryResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeGroupedVulResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeSuspEventDetailResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeRiskCheckSummaryResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeVulDetailsResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\DescribeUserBaselineAuthorizationResponseUnmarshaller.cs" />
+	<Compile Include="Sas\Transform\V20181203\ModifyPushAllTaskResponseUnmarshaller.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\aliyun-net-sdk-core\aliyun-net-sdk-core.vs2010.csproj">
+      <Project>{bb84cecb-295d-4772-a669-3726e511ccfa}</Project>
+      <Name>aliyun-net-sdk-core.vs2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

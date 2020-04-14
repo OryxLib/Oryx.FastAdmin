@@ -1,0 +1,6 @@
+﻿install-package Microsoft.Extensions.DependencyInjection.Abstractions -Version 2.2.0 
+install-pcakage NewtonSoft.Json -Version 12.0.1
+
+install-package FluentMigrator -Version 3.1.3
+install-package FluentMigrator.Runner -Version  3.1.3
+install-package FluentMigrator.Runner.MySql -Version  3.1.3

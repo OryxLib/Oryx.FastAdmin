@@ -1,0 +1,323 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>GrapesJS</title>
+  <link rel="stylesheet" href="/dist/css/grapes.min.css">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="/dist/grapes.min.js"></script>
+  <script src="/libs/grapesjs-blocks-basic/dist/grapesjs-blocks-basic.min.js"></script>
+  <script src="/libs/grapesjs-blocks-flexbox/dist/grapesjs-blocks-flexbox.min.js"></script>
+  <script src="/libs/grapesjs-plugin-forms/dist/grapesjs-plugin-forms.min.js"></script>
+  <script src="/libs/uikit/index.js"></script>
+  <script src="/libs/uikit/js/uikit.js"></script>
+  <script src="/libs/uikit/js/uikit-icons.js"></script>
+  <link rel="stylesheet" href="/libs/uikit/css/uikit.min.css" />
+
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="gjs" style="height:0px; overflow:hidden;">
+    <div class="panel">
+      <h1 class="welcome">Welcome to</h1>
+      <div class="big-title">
+        <svg class="logo" viewBox="0 0 100 100">
+          <path
+            d="M40 5l-12.9 7.4 -12.9 7.4c-1.4 0.8-2.7 2.3-3.7 3.9 -0.9 1.6-1.5 3.5-1.5 5.1v14.9 14.9c0 1.7 0.6 3.5 1.5 5.1 0.9 1.6 2.2 3.1 3.7 3.9l12.9 7.4 12.9 7.4c1.4 0.8 3.3 1.2 5.2 1.2 1.9 0 3.8-0.4 5.2-1.2l12.9-7.4 12.9-7.4c1.4-0.8 2.7-2.2 3.7-3.9 0.9-1.6 1.5-3.5 1.5-5.1v-14.9 -12.7c0-4.6-3.8-6-6.8-4.2l-28 16.2" />
+        </svg>
+        <span>GrapesJS</span>
+      </div>
+      <div class="description">
+        This is a demo content from index.html. For the development, you shouldn't edit this file, instead you can
+        copy and rename it to _index.html, on next server start the new file will be served, and it will be ignored by
+        git.
+      </div>
+    </div>
+    <style>
+      .panel {
+        width: 90%;
+        max-width: 700px;
+        border-radius: 3px;
+        padding: 30px 20px;
+        margin: 150px auto 0px;
+        background-color: #d983a6;
+        box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
+        color: rgba(255, 255, 255, 0.75);
+        font: caption;
+        font-weight: 100;
+      }
+
+      .welcome {
+        text-align: center;
+        font-weight: 100;
+        margin: 0px;
+      }
+
+      .logo {
+        width: 70px;
+        height: 70px;
+        vertical-align: middle;
+      }
+
+      .logo path {
+        pointer-events: none;
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: 7;
+        stroke: #fff
+      }
+
+      .big-title {
+        text-align: center;
+        font-size: 3.5rem;
+        margin: 15px 0;
+      }
+
+      .description {
+        text-align: justify;
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+
+    </style>
+  </div>
+  <script type="text/javascript">
+    var editor = grapesjs.init({
+      commands: {
+        defaults: [
+          //window['@truenorthtechnology/grapesjs-code-editor'].codeCommandFactory(),
+        ],
+      },
+      canvas: {
+        scripts: ['https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js',
+          '/libs/uikit/js/uikit-icons.min.js', '/libs/uikit/js/uikit.min.js'
+        ]
+      },
+      showOffsets: 1,
+      noticeOnUnload: 0,
+      container: '#gjs',
+      height: '100%',
+      fromElement: true,
+      plugins: ['gjs-blocks-flexbox', 'gjs-blocks-basic', 'grapesjs-plugin-forms'],
+      pluginsOpts: {
+        'gjs-blocks-flexbox': {
+          // options
+        },
+        'gjs-blocks-basic': {
+          /* ...options */
+        },
+        'grapesjs-plugin-forms': {
+          /* ...options */
+        }
+      },
+      assetManager: {
+        storageType: '',
+        storeOnChange: true,
+        storeAfterUpload: true,
+        upload: 'http://up-z1.qiniu.com', //for temporary storage
+        assets: [],
+        upload: true,
+        uploadName: 'files',
+        multiUpload: false,
+        uploadFile: (e) => {
+          var files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
+          var token = '';
+          $.ajax({
+            url: 'https://localhost:44391/Image/Token',
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            success: function (res) {
+              token = res.token;
+            }
+          })
+
+          var formData = new FormData();
+          formData.append('token', token);
+          formData.append('key', new Date() - 0 + '.jpg')
+          formData.append('file', files[0])
+          $.ajax({
+            url: 'https://upload-z1.qiniup.com',
+            type: 'post',
+            dataType: 'json',
+            data: formData,
+            async: false,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+              console.log(res)
+              editor.AssetManager.add("https://mioto.milbit.com/" + res.key);
+            }
+          })
+        }
+      },
+      storageManager: {
+        type: 'remote',
+        autoload: true,
+        // stepsBeforeSave: 10,
+        contentTypeJson: true,
+        urlStore: 'https://localhost:44391/page/store/{{id}}',
+        urlLoad: 'https://localhost:44391/page/load/{{id}}',
+        params: {},
+      },
+      styleManager: {
+        sectors: [{
+          name: 'General',
+          open: false,
+          buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
+        }, {
+          name: 'Flex',
+          open: false,
+          buildProps: ['flex-direction', 'flex-wrap', 'justify-content', 'align-items', 'align-content',
+            'order', 'flex-basis', 'flex-grow', 'flex-shrink', 'align-self'
+          ]
+        }, {
+          name: 'Dimension',
+          open: false,
+          buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
+        }, {
+          name: 'Typography',
+          open: false,
+          buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height',
+            'text-shadow'
+          ],
+        }, {
+          name: 'Decorations',
+          open: false,
+          buildProps: ['border-radius-c', 'background-color', 'border-radius', 'border', 'box-shadow',
+            'background'
+          ],
+        }, {
+          name: 'Extra',
+          open: false,
+          buildProps: ['transition', 'perspective', 'transform'],
+        }],
+      },
+    });
+
+    editor.BlockManager.add('navigation', {
+      label: 'Navigation',
+      attributes: {
+        class: 'gjs-fonts gjs-f-b1'
+      },
+      category: 'System',
+      content: `
+          <div class="cell" style="padding-top:50px; padding-bottom:50px; text-align:center">
+            <div class="cell" style="width:50%"></div>
+            <div class="cell" style="width:50%"></div> 
+          </div>
+      `
+    })
+
+    editor.BlockManager.add('my-map-block', {
+      label: 'Simple map block',
+      category: 'System',
+      content: {
+        type: 'map', // Built-in 'map' component
+        style: {
+          height: '350px'
+        },
+        removable: false, // Once inserted it can't be removed
+      }
+    })
+    addUIKitBlock(editor.BlockManager)
+    editor.getComponents().add('<link rel="stylesheet" href="/libs/uikit/css/uikit.min.css"/>');
+
+    const storageManager = editor.StorageManager;
+    storageManager.add('local2', {
+      load: function (keys, clb, clbErr) {
+        var res = {};
+        for (var i = 0, len = keys.length; i < len; i++) {
+          var v = localStorage.getItem(keys[i]);
+          if (v) res[keys[i]] = v;
+        }
+        clb(res); // might be called inside some async method
+        // In case of errors...
+        // clbErr('Went something wrong');
+      },
+      store: function (data, clb, clbErr) {
+        console.log(data)
+        // for (var key in data){
+        //   console.log(key)
+        //   localStorage.setItem(key, data[key]);
+        // } 
+        clb(); // might be called inside some async method
+      }
+    });
+
+    var pfx = editor.getConfig().stylePrefix;
+    var modal = editor.Modal;
+    var cmdm = editor.Commands;
+    var codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
+    var pnm = editor.Panels;
+    var container = document.createElement('div');
+    var btnEdit = document.createElement('button');
+
+    codeViewer.set({
+      codeName: 'htmlmixed',
+      readOnly: 0,
+      theme: 'hopscotch',
+      autoBeautify: true,
+      autoCloseTags: true,
+      autoCloseBrackets: true,
+      lineWrapping: true,
+      styleActiveLine: true,
+      smartIndent: true,
+      indentWithTabs: true
+    });
+
+    btnEdit.innerHTML = 'Edit';
+    btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import';
+    btnEdit.onclick = function () {
+      var code = codeViewer.editor.getValue();
+      editor.DomComponents.getWrapper().set('content', '');
+      editor.setComponents(code.trim());
+      modal.close();
+    };
+
+    cmdm.add('html-edit', {
+      run: function (editor, sender) {
+        sender && sender.set('active', 0);
+        var viewer = codeViewer.editor;
+        modal.setTitle('Edit code');
+        if (!viewer) {
+          var txtarea = document.createElement('textarea');
+          container.appendChild(txtarea);
+          container.appendChild(btnEdit);
+          codeViewer.init(txtarea);
+          viewer = codeViewer.editor;
+        }
+        var InnerHtml = editor.getHtml();
+        var Css = editor.getCss();
+        modal.setContent('');
+        modal.setContent(container);
+        codeViewer.setContent(InnerHtml + "<style>" + Css + '</style>');
+        modal.open();
+        viewer.refresh();
+      }
+    });
+
+    pnm.addButton('options',
+      [{
+        id: 'edit',
+        className: 'fa fa-edit',
+        command: 'html-edit',
+        attributes: {
+          title: 'Edit'
+        }
+      }]
+    );
+
+  </script>
+</body>
+
+</html>

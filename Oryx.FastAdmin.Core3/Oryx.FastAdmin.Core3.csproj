@@ -1,0 +1,153 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <EnableDefaultContentItems>true</EnableDefaultContentItems>
+  </PropertyGroup>
+  <!-- <ItemGroup>
+    <Content Include="PythonScript\**" Exclude="**\node_modules\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory> 
+    </Content>
+  </ItemGroup>
+   -->
+    <ItemGroup>
+    <Compile Remove="wwwroot\scratch-gui\src\**" />
+    <Compile Remove="wwwroot\scratch-gui\translations\**" />
+    <Compile Remove="wwwroot\scratch\static\**" />
+    <Compile Remove="wwwroot\third-party\material-pro\**" />
+    <Compile Remove="wwwroot\third-party\meterial-pro\dark\**" />
+    <Compile Remove="wwwroot\third-party\meterial-pro\horizontal\**" />
+    <Compile Remove="wwwroot\third-party\meterial-pro\landingpage\**" />
+    <Compile Remove="wwwroot\third-party\meterial-pro\material-angularcli\**" />
+    <Compile Remove="wwwroot\third-party\meterial-pro\material-rtl\**" />
+    <Compile Remove="wwwroot\third-party\meterial-pro\minisidebar\**" />
+    <Content Remove="wwwroot\scratch-gui\src\**" />
+    <Content Remove="wwwroot\scratch-gui\translations\**" />
+    <Content Remove="wwwroot\scratch\static\**" />
+    <Content Remove="wwwroot\third-party\material-pro\**" />
+    <EmbeddedResource Remove="wwwroot\scratch-gui\src\**" />
+    <EmbeddedResource Remove="wwwroot\scratch-gui\translations\**" />
+    <EmbeddedResource Remove="wwwroot\scratch\static\**" />
+    <EmbeddedResource Remove="wwwroot\third-party\material-pro\**" />
+    <EmbeddedResource Remove="wwwroot\third-party\meterial-pro\dark\**" />
+    <EmbeddedResource Remove="wwwroot\third-party\meterial-pro\horizontal\**" />
+    <EmbeddedResource Remove="wwwroot\third-party\meterial-pro\landingpage\**" />
+    <EmbeddedResource Remove="wwwroot\third-party\meterial-pro\material-angularcli\**" />
+    <EmbeddedResource Remove="wwwroot\third-party\meterial-pro\material-rtl\**" />
+    <EmbeddedResource Remove="wwwroot\third-party\meterial-pro\minisidebar\**" />
+    <None Remove="wwwroot\scratch-gui\src\**" />
+    <None Remove="wwwroot\scratch-gui\translations\**" />
+    <None Remove="wwwroot\scratch\static\**" />
+    <None Remove="wwwroot\third-party\material-pro\**" />
+    <None Remove="wwwroot\third-party\meterial-pro\dark\**" />
+    <None Remove="wwwroot\third-party\meterial-pro\horizontal\**" />
+    <None Remove="wwwroot\third-party\meterial-pro\landingpage\**" />
+    <None Remove="wwwroot\third-party\meterial-pro\material-angularcli\**" />
+    <None Remove="wwwroot\third-party\meterial-pro\material-rtl\**" />
+    <None Remove="wwwroot\third-party\meterial-pro\minisidebar\**" />
+  </ItemGroup>
+    <ItemGroup>
+      <Content Remove="wwwroot\editor.py" />
+    </ItemGroup> 
+   
+  
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.9" />
+    <PackageReference Include="HangFire.Core" Version="1.7.9" />
+    <PackageReference Include="Hangfire.MySql.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0-preview1.19506.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0-preview1.19506.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0-preview1.19506.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Scratch\Data\" />
+    <Folder Include="Areas\Scratch\Models\" />
+    <Folder Include="wwwroot\js\oryx.Editor\" />
+    <Folder Include="wwwroot\layui\layim\demo\" />
+    <Folder Include="wwwroot\layui\layui_steps\" />
+    <Folder Include="wwwroot\scratch-gui\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\layui\layui.all.js" />
+    <None Include="wwwroot\layui\layui.js" />
+    <None Include="wwwroot\qiniu\plupload.full.min.js" />
+    <None Include="wwwroot\qiniu\qiniu.js" />
+    <None Include="wwwroot\qiniu\qiniu.min.js" />
+    <None Include="wwwroot\qiniu\zh_CN.js" />
+    <None Include="wwwroot\scratch-gui\.tx\config" />
+    <None Include="wwwroot\third-party\meterial-pro\assets\plugins\jquery-wizard-master\.github\ISSUE_TEMPLATE.md" />
+    <None Include="wwwroot\third-party\meterial-pro\assets\plugins\jquery-wizard-master\.github\PULL_REQUEST_TEMPLATE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Libs\Oryx.DynamicConfiguration\Oryx.DynamicConfiguration.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.Web.Core.DataModel\Oryx.Web.Core.DataModel.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.Web.Core.WebInstance\Oryx.Web.Core.WebInstance.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.Web.Core\Oryx.Web.Core.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.WebInstallation\Oryx.WebInstallation.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.WebSocket\Oryx.WebSocket.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.Wx\Oryx.Wx.Core\Oryx.Wx.Core.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.Wx\Oryx.Wx.JsSdk\Oryx.Wx.JsSdk.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.Wx\Oryx.Wx.Pay\Oryx.Wx.Pay.csproj" />
+    <ProjectReference Include="..\Libs\Oryx.Wx\Oryx.Wx.WebApp\Oryx.Wx.WebApp.csproj" />
+    <ProjectReference Include="..\Oryx.Authentication\Oryx.Authentication.csproj" />
+    <ProjectReference Include="..\Oryx.FastAdmin.Core\Oryx.FastAdmin.Core.csproj" />
+    <ProjectReference Include="..\Oryx.FastAdmin.Model\Oryx.FastAdmin.Model.csproj" />
+    <ProjectReference Include="..\Oryx.Utilities\Oryx.Utilities.csproj" />
+    <ProjectReference Include="..\OryxApps\OryxSNS\Oryx.SNS.WebModule\Oryx.SNS.WebModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Home\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Privacy.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Error.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_CookieConsentPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_ValidationScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\projectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+
+</Project>

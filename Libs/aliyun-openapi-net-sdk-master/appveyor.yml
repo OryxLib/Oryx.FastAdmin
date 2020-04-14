@@ -1,0 +1,29 @@
+version: "1.0.{build}"
+image:
+  - Visual Studio 2015
+  - Visual Studio 2017
+  - Visual Studio 2019
+branches:
+  only:
+    - master
+init:
+  - cmd: git config --global core.autocrlf true
+install:
+  # Install Proxy
+  - npm install o_o -g
+  - cmd: dotnet --version
+  - cmd: dotnet tool install --global altcover.visualizer
+  - cmd: cd aliyun-net-sdk-core.Tests/ && dotnet add package AltCover && cd ../
+build_script:
+  - cmd: dotnet restore aliyun-net-sdk-core.netstandard20.sln
+  - cmd: dotnet build aliyun-net-sdk-core.netstandard20.sln
+test_script:
+  # Start Proxy
+  - ps: Start-Process -FilePath o_o -NoNewWindow
+  # Dotnet Test
+  - dotnet build aliyun-net-sdk-core.netstandard20.sln
+  - IF NOT DEFINED ACCESS_KEY_ID (dotnet test aliyun-net-sdk-core.Tests /p:AltCover=true) ELSE (dotnet test aliyun-net-sdk-core.netstandard20.sln /p:AltCover=true)
+on_finish:
+  - cmd: cd aliyun-net-sdk-core.Tests
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH

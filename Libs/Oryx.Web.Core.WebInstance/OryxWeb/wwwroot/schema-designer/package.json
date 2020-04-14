@@ -1,0 +1,67 @@
+{
+  "name": "schema-designer",
+  "version": "2.0.0",
+  "description": "Database schema designer for laravel & lumen",
+  "keywords": [
+    "database",
+    "schema",
+    "design",
+    "laravel",
+    "lumen"
+  ],
+  "author": {
+    "name": "Iftekhar Rifat",
+    "email": "rifat662@gmail.com",
+    "url": "https://github.com/Agontuk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Agontuk/schema-designer.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "cross-env CI=true yarn test --bail --findRelatedTests",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "classnames": "^2.2.5",
+    "immutability-helper": "^2.7.0",
+    "jsplumb": "2.2.10",
+    "lodash": "^4.17.10",
+    "react": "^16.4.0",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.4.0",
+    "react-hot-loader": "^4.2.0",
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^20.0.3",
+    "cross-env": "^5.1.6",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "flow-bin": "^0.73.0",
+    "husky": "^0.14.3",
+    "jest": "^20.0.3",
+    "lint-staged": "^7.1.3"
+  }
+}

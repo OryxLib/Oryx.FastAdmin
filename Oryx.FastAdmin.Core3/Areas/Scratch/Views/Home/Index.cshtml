@@ -1,0 +1,390 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using Oryx.Authentication.Business
+@using Microsoft.AspNetCore.Http;
+@using Oryx.FastAdmin.Model.Scratch
+@using Oryx.FastAdmin.Core3.Components
+@{
+
+    var userId = ViewContext.HttpContext.Session.GetString(UserAuthBusiness.UserAuthFrontendKey);
+
+    ViewData["Title"] = "Scratch 项目集合";
+    ViewData["Key"] = "Scratch,案例,知页少儿编程,Scratch在线,免费少儿让编程,少儿编程加盟";
+    ViewData["Desc"] = "Scratch 知页少儿编程";
+
+}
+
+@section Styles{
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/third-party/bootstrap-switch-master/dist/css/bootstrap4/bootstrap-switch.min.css" rel="stylesheet" />
+    <style>
+        .card-wrap {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .card-container {
+            margin: 14px;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: row;
+            width: 332px;
+        }
+
+            .card-body .text {
+                padding: 7px;
+            }
+
+        .card img {
+            border: 2px rgba(66,66,66,.2) solid;
+            margin: 5px;
+            box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+            width: 100px;
+            height: 74px;
+            align-self: center;
+        }
+
+        .bootstrap-switch-container {
+            /*width: 100px;*/
+        }
+
+            .bootstrap-switch-container span {
+                width: 34px;
+                line-height: 0;
+                padding: 0 !important;
+            }
+    </style>
+}
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#projectList">
+            <h6>项目列表</h6>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#myproject" role="tab" aria-controls="profile"
+           aria-selected="false">
+            <h6>我的项目</h6>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" target="_blank" href="/Scratch/Editor">
+            <h6>创建项目</h6>
+        </a>
+    </li>
+</ul>
+<div class="tab-content border border-top-0" id="myTabContent">
+    <div class="tab-pane fade show active" id="projectList" role="tabpanel" aria-labelledby="home-tab">
+        <div class="card-wrap">
+            @foreach (var projectItem in ViewData["ProjectModelPublic"] as List<Project>)
+            {
+                @(await Html.RenderComponentAsync<ProjectInfoCard>
+                        (RenderMode.ServerPrerendered, new { ProjectItem = projectItem }))
+            }
+        </div>
+    </div>
+    <div class="tab-pane fade" id="myproject" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="card-wrap">
+            @if (!string.IsNullOrEmpty(userId))
+            {
+                if (ViewData["ProjectModel"] == null)
+                {
+                    <span>暂无项目</span>
+                }
+                else
+                {
+                    @foreach (var projectItem in ViewData["ProjectModel"] as List<Project>)
+                    {
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="@projectItem.Thumbnail" width="100" />
+                                    <div class="card-wrap">
+                                        <span class="text">@projectItem.Name</span>
+                                        <span><a class="btn btn-link" href="/scratch/editor/@projectItem.Id">进入</a></span>
+                                        <span><a class="btn btn-link" href="/scratch/preview/@projectItem.Id">预览</a></span>
+                                        <span>
+                                            <a class="btn btn-info" href="/scratch/project/info/@projectItem.Id">修改信息</a>
+                                            <button type="button" class="btn btn-danger" onclick="delPro('@projectItem.Id')">删除</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="button"><i class="layui-icon layui-icon-praise"></i></button>
+                                    <button type="button"><i class="layui-icon layui-icon-share" onclick="generateSharePic('@projectItem.Id','@projectItem.Name','@projectItem.Owner')"></i></button>
+                                    @*<div class="switch">
+                                            <label>
+                                                OFF
+                                                <input type="checkbox" data-id="@projectItem.Id" @(projectItem.Shared ? "checked" : "")><span class="lever"></span>ON
+                                            </label>
+                                        </div>*@
+                                    <input type="checkbox" name="close" class="switcher switch" data-id="@projectItem.Id" @(projectItem.Shared ? "checked" : "")>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+            else
+            {
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-wrap">
+                                <a class="btn btn-danger" href="/userauth/login">登录</a>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span>需要登录后查看个人项目</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="tab-pane fade" id="newProject" role="tabpanel" aria-labelledby="contact-tab">
+
+    </div>
+</div>
+
+<div class="modal" id="shareImgModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">分享</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><img id="shareImg" /></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <a href="#" class="btn btn-primary" id="btn-download">下载</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="canvas" style="display:none;" width="480" height="560"></canvas>
+@section Scripts{
+    <script src="~/third-party/meterial-pro/assets/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
+    <script src="~/third-party/meterial-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+        var $ = layui.$;
+        $("input[type='checkbox']").bootstrapSwitch();
+        $("input[type='checkbox']").on("switchChange.bootstrapSwitch", function (index, state) {
+            console.log(state)
+            var pid = $(this).data('id')
+            layui.$.ajax({
+                url: '/scratch/project/changeshare',
+                data: {
+                    id: pid,
+                    isTrue: state
+                }
+            })
+        });
+    </script>
+    <script>
+        layui.use(['form', 'layedit', 'laydate', 'jquery'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , upload = layui.upload
+                , laydate = layui.laydate;
+            var $ = layui.$;
+            $('#btnDel').click(function () {
+                var proId = $(this).data('id');
+                //eg1
+                layer.confirm('是否删除？', {
+                    btn: ['确定', '取消'] //可以无限个按钮
+                }, function (index, layero) {
+                    $.ajax({
+                        url: '/scratch/project/delete?id=' + proId,
+                        type: 'post',
+                        dataType: "json",
+                        success: function (res) {
+                            if (res.success) {
+                                layer.msg('删除成功');
+                                window.location.reload();
+                            } else {
+                                layer.msg('删除失败')
+                            }
+                        },
+                        error: function (err) {
+                            layer.msg('删除失败 服务器错误')
+                            console.log(err)
+                        }
+                    })
+                    console.log('确定')
+                    //按钮【按钮一】的回调
+                }, function (index) {
+                    //按钮【按钮二】的回调
+                    console.log('取消')
+                });
+            })
+        })
+        function delPro(proId) {
+            layui.use(['form', 'layedit', 'laydate', 'jquery'], function () {
+                var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , upload = layui.upload
+                    , laydate = layui.laydate;
+                var $ = layui.$;
+
+                //eg1
+                layer.confirm('是否删除？', {
+                    btn: ['确定', '取消'] //可以无限个按钮
+                }, function (index, layero) {
+                    $.ajax({
+                        url: '/scratch/project/delete?id=' + proId,
+                        type: 'post',
+                        dataType: "json",
+                        success: function (res) {
+                            if (res.success) {
+                                layer.msg('删除成功');
+                                window.location.reload();
+                            } else {
+                                layer.msg('删除失败')
+                            }
+                        },
+                        error: function (err) {
+                            layer.msg('删除失败 服务器错误')
+                            console.log(err)
+                        }
+                    })
+                    console.log('确定')
+                    //按钮【按钮一】的回调
+                }, function (index) {
+                    //按钮【按钮二】的回调
+                    console.log('取消')
+                });
+            })
+        }
+        function generateSharePic(pid, name, owner) {
+            var $ = layui.$;
+            var qrcodeBase64;
+            $.ajax({
+                url: '/QRcode?path=http://pagetechs.com/scratch/preview/' + pid,
+                type: 'get',
+                async: false,
+                success: function (res) {
+                    qrcodeBase64 = res
+                },
+                error: function (err) {
+                },
+                complete: function (res) {
+                    qrcodeBase64 = res.responseText
+                }
+            })
+            var loadStep = 2;
+            if (qrcodeBase64) {
+                qrcodeBase64 = "data:image/png;base64, " + qrcodeBase64;
+                var imageQRcode = new Image();
+                imageQRcode.src = qrcodeBase64;
+                imageQRcode.onload = function () {
+                    var thumbUrl = "https://scratchasset.pagetechs.com/thumb/" + pid + ".jpg";
+                    getBase64(thumbUrl, function (base64) {
+                        var imageThumb = new Image();
+                        imageThumb.src = base64;
+                        imageThumb.onload = function () {
+                            var canvas = document.getElementById("canvas");
+                            var ctx = canvas.getContext("2d");
+                            ctx.fillStyle = "#eee";
+                            ctx.fillRect(0, 0, 480, 560);
+
+                            ctx.drawImage(imageThumb, 0, 0, 480, 360);
+                            ctx.drawImage(imageQRcode, 340, 380, 120, 120);
+
+                            $('#shareImgModal').modal('show')
+
+                            ctx.font = "28px YouYuan";
+                            ctx.fillStyle = "#aaa";
+                            ctx.fillText("项目名： " + name, 40, 420);
+                            ctx.fillText("作　者： " + owner, 40, 460);
+
+                            ctx.font = "18px YouYuan";
+                            ctx.fillStyle = "#666";
+                            ctx.fillText("知页少儿编程", 160, 540);
+
+                            ctx.strokeStyle = "#eee";
+                            ctx.lineWidth = 7
+                            ctx.strokeRect(0, 0, 480, 560);
+                            var shareImg = document.getElementById('shareImg');
+                            shareImg.src = canvas.toDataURL('image/jpeg');
+
+                        }
+                    })
+                }
+            }
+        }
+        function getBase64(imgUrl, success) {
+            var xhr = new XMLHttpRequest();
+
+            // 至关重要
+            xhr.responseType = "blob";
+            xhr.onloadend = function () {
+                if (this.status == 200) {
+                    //得到一个blob对象
+                    var blob = this.response;
+                    //console.log("blob", blob)
+                    //  至关重要
+                    let oFileReader = new FileReader();
+                    oFileReader.onloadend = function (e) {
+                        let base64 = e.target.result;
+                        //console.log(base64)
+                        success(base64)
+                    };
+                    oFileReader.readAsDataURL(blob);
+                }
+            }
+            xhr.open("get", imgUrl, true);
+            xhr.send();
+        }
+
+        function base64Img2Blob(code) {
+            var parts = code.split(';base64,');
+            var contentType = parts[0].split(':')[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+
+            var uInt8Array = new Uint8Array(rawLength);
+
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            return new Blob([uInt8Array], { type: contentType });
+        }
+        function downloadFile(fileName, content) {
+
+            var aLink = document.createElement('a');
+            var blob = base64Img2Blob(content); //new Blob([content]);
+
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错
+            aLink.download = fileName;
+            aLink.href = URL.createObjectURL(blob);
+
+            aLink.dispatchEvent(evt);
+        }
+
+        var button = document.getElementById('btn-download');
+        button.addEventListener('click', function (e) {
+            var canvas = document.getElementById("canvas");
+            downloadFile('shared.png', canvas.toDataURL("image/png"));
+        });
+
+
+    </script>
+}

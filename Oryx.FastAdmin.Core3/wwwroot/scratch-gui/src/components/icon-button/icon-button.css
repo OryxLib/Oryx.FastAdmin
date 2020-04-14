@@ -1,0 +1,19 @@
+@import "../../css/colors.css";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: $motion-primary;
+}
+
+.container + .container {
+    margin-top: 1.25rem;
+}
+
+.title {
+    margin-top: 0.5rem;
+}

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentMigrator" Version="3.2.1" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Oryx.FastAdmin.Core\Oryx.FastAdmin.Core.csproj" />
+  </ItemGroup>
+
+</Project>

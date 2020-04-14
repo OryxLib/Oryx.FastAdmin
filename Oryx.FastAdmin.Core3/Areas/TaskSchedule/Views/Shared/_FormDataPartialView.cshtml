@@ -1,0 +1,168 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Oryx.FastAdmin.Core.Model
+@using Oryx.Utilities.ObjectTool
+@{
+    var modelType = ViewData["ModelType"] as List<ModelInfo>;
+    var modelData = ViewData["ModelData"] as ModelData;
+}
+<form class="layui-form" lay-filter="mainForm">
+    @foreach (var prop in modelType)
+    {
+        switch (prop.ControlType)
+        {
+            case "filelist":
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">@(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn layui-btn-normal" id="fileList">选择多文件</button>
+                            <div class="layui-upload-list">
+                                <table class="layui-table">
+                                    <thead>
+                                        <tr>
+                                            <th>文件名</th>
+                                            <th>大小</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="fileTable"></tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="layui-btn" id="fileListAction">开始上传</button>
+                        </div>
+                    </div>
+                </div>
+
+                break;
+            case "file":
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">@(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn" id="btnFileUpload">上传文件</button>
+                            <div class="layui-upload-list">
+                                @*<img class="layui-upload-img" id="imgUploader">*@
+                                <input type="hidden" id="fileInput" name="@prop.PropName" value="" />
+                                <p id="demoText2"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "img":
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">@(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn" id="btnImgUpload">上传图片</button>
+                            <div class="layui-upload-list">
+                                <img class="layui-upload-img" id="imgUploader" style="width:200px;">
+                                <input type="hidden" name="@prop.PropName" value="" />
+                                <p id="demoText"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "hide":
+                <input type="hidden" name="@prop.PropName" value="" />
+                break;
+            case "textarea":
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">@(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        <script id="container" name="content" type="text/plain">
+                        </script>
+                        <script>
+
+                            window.textArea = '@modelData.IsNotNull(()=> { return modelData[prop.PropName]; })';
+                        </script>
+                        <input type="hidden" name="@prop.PropName" value="" />
+                    </div>
+                </div>
+                break;
+            case "radio":
+                <div class="layui-form-item">
+                    <label class="layui-form-label"> @(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        @foreach (var item in prop.DataSource)
+                        {
+                            <input type="radio" name="@prop.PropName" value="@item.Value" @(modelData.IsNotNull(() => { return modelData[prop.PropName] == item.Value ? "checked" : ""; })) title="@item.Key">
+                        }
+                    </div>
+                </div>
+                break;
+            case "list":
+                <div class="layui-form-item">
+                    <label class="layui-form-label"> @(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        <select name="@prop.PropName" lay-filter="@prop.PropName" value="00a68089-846a-425f-89c1-35e427896121">
+                            <option value=""></option>
+                            @foreach (var item in prop.DataSource)
+                            {
+                                //因为Key 是Id, Value是显示的字段
+                                <option value="@item.Key" @modelData.IsNotNull(() => { return modelData[prop.PropName] == item.Key ? "checked" : ""; })>@item.Value</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                break;
+            case "date":
+                <div class="layui-inline">
+                    <label class="layui-form-label">@(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="@prop.PropName" @(prop.Required ? "required" : "")  lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="true" class="layui-input" value="@modelData.IsNotNull(() => { return modelData[prop.PropName]; })">
+                    </div>
+                </div>
+                break;
+            case "phone":
+                <div class="layui-inline">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">验证手机</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="phone" lay-verify="required|phone" @(prop.Required ? "required" : "")  autocomplete="true" class="layui-input" value="@modelData.IsNotNull(() => { return modelData[prop.PropName]; })">
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "email":
+                <div class="layui-inline">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">验证邮箱</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="email" lay-verify="email" @(prop.Required ? "required" : "")  autocomplete="true" class="layui-input" value="@modelData.IsNotNull(() => { return modelData[prop.PropName]; })">
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "number":
+                <div class="layui-form-item">
+                    <label class="layui-form-label">@(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="@prop.PropName" lay-verify="@prop.PropName" @(prop.Required ? "required" : "")  autocomplete="true" placeholder="" class="layui-input" value="@modelData.IsNotNull(() => { return modelData[prop.PropName]; })">
+                    </div>
+                </div>
+                break;
+            case "input":
+            default:
+                <div class="layui-form-item">
+                    <label class="layui-form-label"> @(prop.Name == null ? prop.PropName : prop.Name)</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="@prop.PropName" lay-verify="@prop.PropName" @(prop.Required ? "required" : "") autocomplete="true" placeholder="" class="layui-input" value="@modelData.IsNotNull(() => { return modelData[prop.PropName]; })">
+                    </div>
+                </div>
+                break;
+        }
+    }
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="mainForm">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
+</form>
+

@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+ 
+    <link href="~/third-party/brython.info/console.css" rel="stylesheet" />
+
+    <script src="~/third-party/Brython-3.8.6/brython.js"></script>
+    <script src="~/third-party/Brython-3.8.6/brython_stdlib.js"></script>
+    <script src="~/third-party/Brython-3.8.6/async.js"></script>
+    <script src="~/third-party/Brython-3.8.6/brython_builtins.js"></script>
+    <script src="~/third-party/Brython-3.8.6/brython_dist.js"></script>
+    <script src="~/third-party/Brython-3.8.6/brython_loader.js"></script>
+    <script src="~/third-party/Brython-3.8.6/brython_no_static.js"></script>
+    <script src="~/third-party/Brython-3.8.6/builtin_modules.js"></script>
+    <script src="~/third-party/Brython-3.8.6/builtins_docstrings.js"></script>
+    <script src="~/third-party/Brython-3.8.6/js_objects.js"></script>
+    <script src="~/third-party/Brython-3.8.6/loaders.js"></script>
+    <script src="~/third-party/Brython-3.8.6/local_storage_fs.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_builtin_functions.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_bytes.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_complex.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_dict.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_dom.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_exceptions.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_float.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_generator.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_import.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_import_hooks.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_int.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_list.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_long_int.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_object.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_range_slice.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_set.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_sort.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_string.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_type.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_utils.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py_VFS.js"></script>
+    <script src="~/third-party/Brython-3.8.6/py2js.js"></script>
+    <script src="~/third-party/Brython-3.8.6/stdlib_paths.js"></script>
+    <script src="~/third-party/Brython-3.8.6/unicode.min.js"></script>
+    <script src="~/third-party/Brython-3.8.6/unicode_data.js"></script>
+    <script src="~/third-party/Brython-3.8.6/version_info.js"></script>
+    <script src="~/third-party/ace/ace.js"></script>
+    <script src="~/third-party/ace/ext-language_tools.js"></script>
+ 
+    <script type="text/python3" id="tests_editor">
+from browser import document as doc, window
+from browser import html
+import header
+
+import editor
+
+qs_lang,language = header.show()
+
+# other translations
+
+trans = {
+    'report_bugs':{'en':'Please report bugs in the ',
+                   'es':'Poner los bugs en el ',
+                   'fr':"Signalez les bugs dans l'"},
+    'test_page':{'en':'Tests page','es':'P&aacute;gina de pruebas','fr':'Page de tests'},
+    'run':{'en':'run','es':'ejecutar','fr':'Exécuter'},
+    'clear':{'en':'clear','es':'borrar','fr':'Effacer'}
+}
+
+for key in trans:
+    if key in doc:
+        doc[key].html = trans[key].get(language,trans[key]['en'])
+
+def set_debug(ev):
+    if ev.target.checked:
+        __BRYTHON__.debug = 1
+    else:
+        __BRYTHON__.debug = 0
+
+__BRYTHON__.debug = int(doc['set_debug'].checked)
+
+# bindings
+doc['set_debug'].bind('change',set_debug)
+
+# next functions are defined in editor.py
+doc['show_js'].bind('click',editor.show_js)
+# Create a lambda around editor.run() so that the event object is not passed to it
+doc['run'].bind('click',lambda *args: editor.run())
+doc['show_console'].bind('click',editor.show_console)
+
+
+
+
+</script>
+
+<script>
+function run_js(){
+    var cons = document.getElementById("console")
+    var jscode = cons.value
+    var t0 = (new Date()).getTime()
+    eval(jscode)
+    var t1 = (new Date()).getTime()
+    console.log("Javascript code run in "+(t1-t0)+" ms")
+}
+</script>
+  <style>
+      #container{
+          background-color:black;
+      }
+      #console{
+           background-color:black;
+      }
+  </style>
+</head>
+<body onload="brython({debug:1})">
+
+<table id=banner cellpadding=0 cellspacing=0>
+<tr id=banner_row >
+<td class="logo"><a href="../index.html" class="logo">Brython</a></td>
+</tr>
+</table>
+     
+
+<table id="container">
+  <tr>
+    <td>Brython version: <span id="version"></span></td>
+    <td></td>
+    <td>
+        <button id="run"> ▶ Run</button>
+        Debug<input type="checkbox" id="set_debug" checked>
+        <button id="show_console">Python</button>
+        <button id="show_js">Javascript</button>
+    </td>
+  </tr>
+
+  <tr>
+    <td id="left">
+      <div id="editor" style="width:100%;"></div>
+    </td>
+    <td id="separator"></td>
+    <td id="right">
+      <textarea id="console" autocomplete="off"></textarea>
+    </td>
+  </tr>
+  
+</table>
+</body>
+</html>

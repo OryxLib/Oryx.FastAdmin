@@ -1,0 +1,13 @@
+﻿@page
+@model Oryx.FastAdmin.Core3.Pages.WxLoginModel
+@{
+    ViewData["Title"] = "WxLogin";
+}
+
+<h2>登录中...</h2>
+<script>
+    setTimeout(function(){
+        window.location = '@Html.Raw(Model.GotoUrl)'
+    },500)
+</script>
+

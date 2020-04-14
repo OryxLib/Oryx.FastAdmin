@@ -1,0 +1,29 @@
+﻿
+@foreach (var item in ContenModels)
+{
+    <div class="card" style="margin:20px 0;">
+        <img src="@item.Image" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5> 
+            <div class="card-text"> @((MarkupString)item.Description)
+            </div>
+            @if (item.IsGroup)
+            {
+                <a href="/Content/GroupDetail?Id=@item.Id" class="btn btn-primary">查看</a>
+            }
+            else
+            {
+                <a href="/Content/Detail?Id=@item.Id" class="btn btn-primary">查看</a>
+            }
+        </div>
+    </div>
+
+}
+
+@using Oryx.FastAdmin.Model.Contents
+@using Oryx.FastAdmin.Core3.Models
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@code {
+    [Parameter]
+    public List<ContentViewModel> ContenModels { get; set; }
+}

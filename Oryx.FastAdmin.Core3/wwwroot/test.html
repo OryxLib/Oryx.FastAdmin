@@ -1,0 +1,18 @@
+
+<html>
+    <head> 
+            <script src="https://cdn.bootcss.com/brython/3.7.5/brython.js"></script>
+    <script src="https://cdn.bootcss.com/brython/3.7.5/brython_stdlib.js"></script>
+    </head>
+    <body onLoad="brython()">
+        <script type="text/python">
+            from browser import document, alert
+            import math 
+            alert( "Hello World" )
+            def func( ev ):
+                alert( document["in"].value )
+            document["click"].bind( "click", func )        
+        </script>
+        <input id="in"><button id="click">click</button>
+    </body>
+</html> 

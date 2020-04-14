@@ -1,0 +1,128 @@
+0.6.1
+~~~~~
+
+- Added documentation source files to distribution.
+
+0.6
+~~~
+
+- Extended and rewrote sections of the Talk() class of the 'presentation'
+  library (note that this is different to the 'present' library).  Also more
+  completely documented the class in the user manual
+- Implemented the use of user-defined styles for talks
+- Complete rewrite of the Poster() class of the 'presentation' library; now
+  has a more similar interface to that of the Talk() class of the same
+  library.  Also documented the class in the user manual
+- Implemented the use of user-defined styles for posters
+- More completely implemented the 'electronics' object library; documented
+  the objects in the user manual
+- Extended the 'optics' object library and documented its usage in the
+  manual
+- Added some examples of usage of the 'optics' library
+- Many changes in 'qi' (quantum information) library.  No longer causes
+  error at installation :-)
+- Added Arrow() convenince class ... a Path with a predefined arrowhead
+- integrated Path and Arrowhead ... path now has a heads attribute which
+  is a list of arrowheads to draw on path
+- added a tangent() method to Path that returns a unit vector tangent to
+  the path at a particular point
+- code clean ups ... and documentation
+- added an Arrowhead class
+- added an iscale attribute to TeX to set initial scale (only time it's used)
+  makes it easy to subclass at a given scale.
+- Added HAlign and VAlign convenience functions
+- Align is now a class that inherits from Group
+  - no longer supports anchor attribute (not sure how useful this was esp as
+    objects can now be appended) first alignable object added forms anchor.  
+  - the change seems mostly transparent but may break some things
+- Added a Dash() object to describe postscript dashes
+- fixed up examples and added a few others
+- Dot() now returns a bounding box
+- objects that return null BBox()'s are ignored in Alignment operations
+  This was chiefly to accomodate a Pause() object in talks
+- Fixed bug with move and rotations commuting (thanks Adrian)
+- curves can now be given just a direction at the end points (eg C(45,90)), 
+  a "natural" curve will be chosen automatically. This is the first half 
+  of the algorithm that Metapost uses which is really nice. 
+  (next part is to choose curvature automatically in unspecified curves)
+- last point of a closed path can be skipped (added automatically)
+- P now has 'arg' attribute (in degrees), return angle of P relative to origin
+- there is now a --version argument when running PyScript
+
+0.5
+~~~
+
+- rewrote Path object: the internals have completely changed. 
+  There have been some incompatible changes with previous versions
+  but its now much closer to what I envisaged for the object
+  Changes:
+    - C() no longer takes numerical arguments
+    - Path() no longer sublasses Area (this doesn't make sense really)
+      so the points n,ne,e ... etc are not available for this object
+      use either bbox() method or group and Area object with the path
+  Additions:
+    - Path takes 'relative' points R(), these are the same as P() but
+      will be intepreted as relative to last point.
+    - C() takes relative control points with R(). The first is relative
+      the start the second to the end of the curve
+    - path.length returns the length of the path (local co-ord system)
+    - path.P(f) returns the point on the curve at fraction f of it's 
+      length
+- Finally added some docs for the Path object
+- fixed bug with defaults for linewidth etc not being taken up
+  (thanks Marcus)
+- Color() can now take a Hex string, eg "#FF00FF", must start with a '#'
+- object reference returned from group's append, insert and reverse
+  This makes for convenient one liners
+- Group() now has a reverse() function
+- Pages now produces global BoundinBox and Orientation comments
+- Fixed minor bug in Align, when passed single object
+
+0.4
+~~~
+
+- Rectangle now can have rounded corners (r=...)
+- Rectangle can have an Area or Bbox in its contruction
+  to set size and position eg r=Rectangle(g.bbox())
+- Added a reflect() method to AffineObj
+- Added a shear() method tho AffineObj
+- Added an Eps object ... produces a self-contained eps, and this
+  object is used to generate the actual eps. You can also nest them
+  if you wanted to.
+- Eps output now conforms to DSC 3.0!
+- rewrote render to use Eps.
+- Added Page() and Pages() objects .. pyscript can now do multi-page
+  postscript (or A0 posters etc), which also conforms to DSC 3.0.
+- Fixed some bugs with Text() handling of fonts and attributes changes
+- Dot can now take x,y argument instead of point
+- scale() can take a single number for both axes
+
+0.3
+~~~
+
+- Start of a Page() object for ps (as opposed to eps)
+- Pyscript now redirects stderr to pyscript.log.  and gives info about
+  what's going on etc etc, some basic command line switches for debugging
+- Lots of changes to TeX's internals
+- default units now cm
+- group has insert function
+- Paper now takes an orientation flag (portrait or landscape)
+- showpage always written to EPS file ... should be able to send file straight
+  to printer
+- more of the docs written
+- E() has been renamed U() (unit vector)
+- Epsf() now complies with spec, takes an initial width/height
+  argument for scaling
+- added Align() and Distribute() functions
+- added a presentation library for posters and talks
+- munched some bugs
+
+0.2
+~~~
+
+- First public release
+
+0.1
+~~~
+
+- Hazy past with lots of experimentation ... never released

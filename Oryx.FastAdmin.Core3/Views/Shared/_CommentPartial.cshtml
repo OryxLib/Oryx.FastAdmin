@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+@using  Oryx.FastAdmin.Core3.ApplicationService
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+    var authStateService = Context.RequestServices.GetService<AuthStateProcessor>();
+    var commentService = Context.RequestServices.GetService<CommentApplicationService>();
+    var userInfoService = Context.RequestServices.GetService<UserApplicationService>();
+
+    var targetTable = ViewData["targetTable"].ToString();
+    var targetId = ViewData["targetId"].ToString();
+    var commentList = commentService.Query(x => x.TargetTable == targetTable && x.TargetId == targetId);
+    var userIdList = commentList.Select(x => x.AuthorId).Distinct().ToList();
+    var userInfo = userInfoService.GetUserInfo(userIdList);
+}
+
+<h3>评论</h3>
+<ul class="list-unstyled">
+    @foreach (var item in commentList)
+    {
+        var userInfoItem = userInfo.First(x => x.ArthorId == item.AuthorId);
+        <li class="media">
+            <img class="d-flex mr-3" src="@userInfoItem.Avarta" width="60" alt="@userInfoItem.NicName">
+            <div class="media-body">
+                @Html.Raw(item.Content)
+            </div>
+        </li>
+    }
+</ul>
+@if (authStateService.IsLogin().Result)
+{<textarea id="demo" style="display: none;"></textarea>
+
+    <script>
+        layui.use('layedit', function () {
+            var layedit = layui.layedit;
+            layedit.build('demo'); //建立编辑器
+        });
+    </script>
+}
+else
+{
+    <textarea id="demo" style="display: none;"></textarea> 
+    <script>
+        layui.use('layedit', function () {
+            var layedit = layui.layedit;
+            layedit.build('demo'); //建立编辑器
+        });
+    </script>
+}
+

@@ -1,0 +1,380 @@
+﻿@using Oryx.FastAdmin.Core3.ApplicationService;
+@{
+    var authStateService = Context.RequestServices.GetService<AuthStateProcessor>();
+
+    var userInfoService = Context.RequestServices.GetService<UserApplicationService>();
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - 知页科技</title>
+    <meta name="keywords" content="@ViewData["Key"]" />
+    <meta name="description" content="@ViewData["Desc"]" />
+    <meta name="author" content="知页科技">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
+    </environment>
+
+    <link href="~/third-party/meterial-pro/material/css/animate.css" rel="stylesheet" />
+    <link href="~/third-party/meterial-pro/material/css/style.css" rel="stylesheet" />
+    <link href="~/third-party/meterial-pro/material/css/colors/green.css" rel="stylesheet" />
+
+    <link href="~/third-party/meterial-pro/assets/plugins/c3-master/c3.min.css" rel="stylesheet" />
+
+    <link href="~/third-party/meterial-pro/material/css/colors/green.css" rel="stylesheet" />
+    <link href="~/third-party/meterial-pro/assets/plugins/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet" />
+
+    <link href="~/css/site.css" rel="stylesheet" />
+    <style>
+        #main-wrapper {
+            margin-bottom: 110px;
+        }
+
+        .my_footer {
+        }
+    </style>
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+
+        <header class="topbar ">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light container">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header ">
+                    <a class="navbar-brand nav-link" href="/">
+                        <!-- Logo icon -->
+                        <b>
+                            <span style="color:white;">知页科技</span>
+                        </b>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <li class="nav-item" style="width:85px;">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Scratch">Scratch</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/PythonEditor">Python</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Home/About">关于</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        @*<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-message"></i>
+                                    <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
+                                    <ul>
+                                        <li>
+                                            <div class="drop-title">Notifications</div>
+                                        </li>
+                                        <li>
+                                            <div class="message-center">
+                                                <a href="#">
+                                                    <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#">
+                                                    <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-email"></i>
+                                    <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                                </a>
+                                <div class="dropdown-menu mailbox dropdown-menu-right scale-up" aria-labelledby="2">
+                                    <ul>
+                                        <li>
+                                            <div class="drop-title">You have 4 new messages</div>
+                                        </li>
+                                        <li>
+                                            <div class="message-center">
+                                                <a href="#">
+                                                    <div class="user-img"> <img src="../assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#">
+                                                    <div class="user-img"> <img src="../assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>*@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-account"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right scale-up">
+                                @if (authStateService.IsLogin().Result)
+                                {
+                                    var userAccount = await authStateService.GetUser();
+                                    var userInfo = userInfoService.GetUserInfo(userAccount.Id.ToString());
+                                    <ul class="dropdown-user">
+                                        <li>
+                                            <div class="dw-user-box" onclick="window.location='/useradmin'">
+                                                <div class="u-img">
+                                                    <img src="@userInfo.Avarta" />
+                                                </div>
+                                                <div class="u-text">
+                                                    <h4>@userAccount.UserName</h4>
+                                                    @*<p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>*@
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        @*<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                                            <li role="separator" class="divider"></li>*@
+                                        <li><a href="javascript:logout();"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    @*<form method="post">
+                                            <div class="layui-form-item">
+                                                <label for="L_email" class="layui-form-label">用户名</label>
+                                                <div class="layui-input-inline">
+                                                    <input type="text" id="L_email" name="UserName" required lay-verify="required" autocomplete="off" class="layui-input">
+                                                </div>
+                                            </div>
+                                            <div class="layui-form-item">
+                                                <label for="L_pass" class="layui-form-label">密码</label>
+                                                <div class="layui-input-inline">
+                                                    <input type="password" id="L_pass" name="Password" required lay-verify="required" autocomplete="off" class="layui-input">
+                                                </div>
+                                            </div>
+                                            <div class="layui-form-item">
+                                                <button class="layui-btn" lay-filter="mainLogin" lay-submit>提交</button>
+                                            </div>
+                                        </form>*@
+
+                                    <form class="form-horizontal form-material layui-form" style="width: 270px;padding:10px;" method="post">
+                                        <h3 class="box-title m-b-20">登录</h3>
+                                        <div class="form-group ">
+                                            <div class="col-xs-12">
+                                                <input class="form-control" type="text" name="UserName" required="" placeholder="用户名">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12">
+                                                <input class="form-control" type="password" name="Password" required="" placeholder="密码">
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="checkbox checkbox-primary pull-left p-t-0">
+                                                        <input id="checkbox-signup" type="checkbox">
+                                                        <label for="checkbox-signup">记住登录</label>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        <div class="form-group text-center m-t-20">
+                                            <div class="col-xs-12">
+                                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" lay-filter="mainLogin" lay-submit>登录</button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-b-0">
+                                            <div class="col-sm-12 text-center">
+                                                <p>
+                                                    <a href="/UserAuth/Register" class="text-info m-l-5"><b>注册</b></a>
+                                                </p>
+                                                <p>
+                                                    <a href="/UserAuth/ForgotPassword" id="to-recover" class="text-dark pull-right">
+                                                        <i class="fa fa-lock m-r-5"></i>
+                                                        <b>忘记密码？</b>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                }
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        @*<hr />*@
+        <div class="">
+            <div class="container" style="padding-top:108px">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-top my_footer text-muted">
+        <div class="container">
+            &copy; 2017 - 知页科技(北京)有限公司 - <a asp-area="" asp-controller="Home" asp-action="Privacy">隐私策略</a><br />
+            京ICP备18035128号-1
+            <div style="display:none;">
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1278566086'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1278566086%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
+        </script>
+    </environment>
+
+    <script src="~/third-party/meterial-pro/material/js/jquery.slimscroll.js"></script>
+    <script src="~/third-party/meterial-pro/material/js/waves.js"></script>
+    <script src="~/third-party/meterial-pro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="~/third-party/meterial-pro/assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/third-party/meterial-pro/assets/plugins/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    <script src="~/layui/layui.js"></script>
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+            var $ = layui.$;
+
+            //监听提交
+            form.on('submit(mainLogin)', function (data) {
+                //layer.alert(JSON.stringify(data.field), {
+                //    title: '最终的提交信息'
+                //})
+                $.ajax({
+                    url: "/UserAuth/Login",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.success) {
+                            layer.msg('登录成功');
+                            window.location.reload()
+                        } else {
+                            layer.msg('登录失败');
+                        }
+                    },
+                    error: function (res) {
+                        layer.msg('登录失败');
+                    }
+                })
+                return false;
+            });
+        })
+
+        function logout() {
+            layui.$.ajax({
+                url: "/UserAuth/Logout",
+                type: "post",
+                dataType: "json",
+                success: function (res) {
+                    if (res.success) {
+                        window.location.reload();
+                    }
+                    else {
+                        layui.layer.msg("操作失败")
+                    }
+                }, error: function () {
+                    layui.layer.msg("网络异常")
+                }
+            })
+        }
+    </script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script>
+        var jspkg = {};
+        layui.$.ajax({
+            url: '/wx/JsApiPackage',
+            type:'get',
+            data:{
+                url: window.location.href
+            },
+            dataType: 'json',
+            async:false,
+            success: function (res) {
+                jspkg = res;
+            }
+        })
+        wx.config(jspkg);
+        var isLogin = '@authStateService.IsLogin().Result';
+
+        wx.ready(function () {
+            // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+            if (isLogin == "True") {
+                window.location = '/WxLogin/?url=/'
+            }
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+    <script data-ad-client="ca-pub-7247503854219209" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</body>
+</html>

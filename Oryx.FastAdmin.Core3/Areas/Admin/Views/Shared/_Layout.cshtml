@@ -1,0 +1,112 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title> 知页管理系统后台</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+    <link href="~/css/layui_custom.css" rel="stylesheet" />
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">知页管理系统后台</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="/Admin">控制台</a></li>
+                @*<li class="layui-nav-item"><a href="">商品管理</a></li>
+                    <li class="layui-nav-item"><a href="">用户</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">其它系统</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="">邮件管理</a></dd>
+                            <dd><a href="">消息管理</a></dd>
+                            <dd><a href="">授权管理</a></dd>
+                        </dl>
+                    </li>*@
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">退了</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">设置</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Admin/Banners">系统设置</a></dd>
+                            <dd><a href="/Admin/GroupContent">支付设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="#">用户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Admin/Banners">用户账户</a></dd>
+                            <dd><a href="/Admin/GroupContent">用户角色</a></dd>
+                            <dd><a href="#">用户权限</a></dd>
+                        </dl>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">自媒体</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Admin/Banners">公众号</a></dd>
+                            <dd><a href="/Admin/GroupContent">腾讯云服务</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">云服务</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Admin/Banners">阿里云服务</a></dd>
+                            <dd><a href="/Admin/GroupContent">腾讯云服务</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">内容管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Admin/Banners">轮播图</a></dd>
+                            <dd><a href="/Admin/GroupContent">系列</a></dd>
+                            <dd><a href="/Admin/Category">分类</a></dd>
+                            <dd><a href="/Admin/Content">内容</a></dd>
+                            <dd><a href="/Admin/Comment">评论</a></dd>
+                            <dd><a href="/Admin/SpiderTask">配置爬虫</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            @RenderBody()
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © Pagetechs.com - 知页科技
+        </div>
+    </div>
+    <script src="~/layui/layui.all.js"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

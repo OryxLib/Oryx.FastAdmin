@@ -1,0 +1,9 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@*<a href="/Admin/UserInfo/AddOrUpdate" class="layui-btn">新增用户</a>*@
+
+@(await Html.PartialAsync("_IndexListPartialView"))
+@section Scripts{
+    @(await Html.PartialAsync("_IndexListPartialView_Scripts"))
+}

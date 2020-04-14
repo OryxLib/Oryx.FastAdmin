@@ -1,0 +1,79 @@
+﻿@using Oryx.FastAdmin.Core.Model
+@{
+
+    var modelTable = ViewData["ModelTable"] as ModelTable;
+
+    var dataFiled = "";
+    foreach (var tableInfo in modelTable.TableInfoList)
+    {
+        var propName = char.ToLower(tableInfo.PropName[0]) + tableInfo.PropName.Substring(1);
+        dataFiled += "{ field: '" + propName + "', title: '" + tableInfo.Name + "', sort: true },";
+    }
+    var url = ViewContext.HttpContext.Request.Path.Add("/AddOrUpdate");
+    var delurl = ViewContext.HttpContext.Request.Path.Add("/Delete");
+}
+<script type="text/template" id="toolbar">
+    <div class="layui-btn-container">
+        <a href="@url" class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-1"></i>添加</a>
+    </div>
+</script>
+<script>
+
+    layui.use('table', function () {
+             var table = layui.table;
+
+             table.render({
+                 elem: '#mainTable',
+                 toolbar: '#toolbar',
+                 //defaultToolbar: ['filter', 'print', 'exports', {
+                 //   title: '提示' //标题
+                 //   ,layEvent: 'LAYTABLE_TIPS' //事件名，用于 toolbar 事件中使用
+                 //   ,icon: 'layui-icon-tips' //图标类名
+                 // }] ,
+                 url: window.location.href + '/List',
+                 cols: [[
+                         @Html.Raw(dataFiled )
+                     {
+                         filed: 'options', title: '操作', templet:
+                             '<div><a href="@url?Id={{d.id}}" class="layui-table-link">编辑</a>\
+                              <a href="javascript:del(\'{{d.id}}\')" class="layui-table-link">删除</a></div>'
+
+                     }
+                     ]]
+                , page: true
+             });
+             table.on('edit(mainTable)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+              console.log(obj.value); //得到修改后的值
+              console.log(obj.field); //当前编辑的字段名
+              console.log(obj.data); //所在行的所有相关数据
+            });
+         });
+    function del(id) {
+        layui.layer.confirm('是否删除？', {
+                    btn: ['确定', '取消'] //可以无限个按钮
+                }, function (index, layero) {
+                    layui.$.ajax({
+                        url: '@delurl?Id=' + id,
+                        type: 'post',
+                        dataType: "json",
+                        success: function (res) {
+                            if (res.success) {
+                                layer.msg('删除成功');
+                                window.location.reload();
+                            } else {
+                                layer.msg('删除失败')
+                            }
+                        },
+                        error: function (err) {
+                            layer.msg('删除失败 服务器错误')
+                            console.log(err)
+                        }
+                    })
+                    console.log('确定')
+                }, function (index) {
+                    console.log('取消')
+                });
+            }
+</script>
+
+

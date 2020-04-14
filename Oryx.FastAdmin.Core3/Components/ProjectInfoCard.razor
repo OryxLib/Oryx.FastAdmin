@@ -1,0 +1,24 @@
+﻿<div class="card-container">
+    <div class="card">
+        <div class="card-body">
+            <img src="@ProjectItem.Thumbnail" width="100" />
+            <div class="card-wrap">
+                <span class="text">@ProjectItem.Name</span>
+                <span><a class="btn btn-link" href="/scratch/preview/@ProjectItem.Id">预览</a></span>
+                <span><a class="btn btn-link" href="/scratch/editor/@ProjectItem.Id">进入</a></span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="button"><i class="layui-icon layui-icon-praise"></i></button>
+            <button type="button"><i class="layui-icon layui-icon-share" onclick="generateSharePic('@ProjectItem.Id','@ProjectItem.Name','@ProjectItem.Owner')"></i></button>
+        </div>
+    </div>
+</div>
+
+@using Oryx.FastAdmin.Model.Scratch
+@using Oryx.FastAdmin.Core3.Models
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@code {
+    [Parameter]
+    public Project ProjectItem { get; set; }
+}

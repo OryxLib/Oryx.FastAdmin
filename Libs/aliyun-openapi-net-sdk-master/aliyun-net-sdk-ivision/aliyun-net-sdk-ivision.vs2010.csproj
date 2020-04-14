@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5b941557-7af1-4149-952b-b5716020f109}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aliyun.Acs</RootNamespace>
+    <AssemblyName>aliyun-net-sdk-ivision</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+	<Compile Include="Ivision\Model\V20190308\CreateFaceGroupRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\CreateFaceGroupResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\CreateStreamPredictRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\CreateStreamPredictResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\DeleteFaceGroupRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\DeleteFaceGroupResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\DeleteStreamPredictRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\DeleteStreamPredictResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\DescribeFaceGroupsRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\DescribeFaceGroupsResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\DescribeStreamPredictResultRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\DescribeStreamPredictResultResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\DescribeStreamPredictsRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\DescribeStreamPredictsResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\ImagePredictRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\ImagePredictResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\RegisterFaceRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\RegisterFaceResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\SearchFaceRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\SearchFaceResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\StartStreamPredictRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\StartStreamPredictResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\StopStreamPredictRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\StopStreamPredictResponse.cs" />
+	<Compile Include="Ivision\Model\V20190308\UnregisterFaceRequest.cs" />
+	<Compile Include="Ivision\Model\V20190308\UnregisterFaceResponse.cs" />
+	<Compile Include="Ivision\Transform\V20190308\CreateFaceGroupResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\CreateStreamPredictResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\DeleteFaceGroupResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\DeleteStreamPredictResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\DescribeFaceGroupsResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\DescribeStreamPredictResultResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\DescribeStreamPredictsResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\ImagePredictResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\RegisterFaceResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\SearchFaceResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\StartStreamPredictResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\StopStreamPredictResponseUnmarshaller.cs" />
+	<Compile Include="Ivision\Transform\V20190308\UnregisterFaceResponseUnmarshaller.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\aliyun-net-sdk-core\aliyun-net-sdk-core.vs2010.csproj">
+      <Project>{bb84cecb-295d-4772-a669-3726e511ccfa}</Project>
+      <Name>aliyun-net-sdk-core.vs2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

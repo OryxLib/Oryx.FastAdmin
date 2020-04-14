@@ -1,0 +1,494 @@
+% Copyright (C) 2002-2006  Alexei Gilchrist and Paul Cochrane
+% 
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+% $Id: libpresentation.tex,v 1.6 2006/06/06 11:33:11 paultcochrane Exp $
+
+\chapter{The Old Presentation Library}
+
+\begin{python}
+pyscript.lib.presentation
+\end{python}
+
+In addition to the newer \vrb{pyscript.lib.present} library, there also
+exists the old \vrb{pyscript.lib.presentation} library.  This is not quite
+so object-oriented in usage, but it works nevertheless, and hasn't been
+completely deprecated.  The \vrb{presentation} library can be used to create
+posters and talks, which can then be used to ``wow'' your colleauges at your
+next conference.
+
+\section{Common Objects}
+
+These are useful objects for both posters and talks.
+
+\subsection{TeXBox()}
+
+Typeset some \LaTeX{} within a fixed width box.
+
+\subsection{Box\_1()}
+
+A box of fixed width.  Items added to it are aligned vertically and
+separated by a specified padding.
+
+\section{Creating a talk or seminar}
+
+\subsection{The Talk() object}
+
+The first thing you will need to do when you start writing a seminar
+presentation is to instantiate the \vrb{Talk()} object.  This object defines
+some overall parameters, attributes and styles for the talk as a whole.
+After you set these parameters for your particular talk, then you only need
+to worry about adding \vrb{Slide()} objects.  To set up the \vrb{Talk()}
+object for your talk you merely need to do this:
+\begin{python}
+talk = Talk()
+\end{python}
+More interesting things happen when we add styles to the talk, but more on
+that later.  If you want to know about that now, go to \Sec{sec:styles}.
+
+The next thing you probably want to do is to give your talk a title.  There
+are two ways to do this: with the \vrb{set\_title()} method, or by merely
+setting the \vrb{title} attribute of the instantiated \vrb{Talk()} object.
+In other words you can either do this:
+\begin{python}
+talk.set_title(r"This is my talk")
+\end{python}
+or this:
+\begin{python}
+talk.title = r"This is my talk"
+\end{python}
+
+It is common that there are many people who have contributed to a particular
+piece of work being discussed in the seminar or talk, and consequently there
+will be more than one ``author'' of the talk.  However, there is usually
+only one person presenting the talk, and so we have two separate attributes
+for these situations, namely the \vrb{authors} and \vrb{speaker} attributes.
+To set the name of the authors contributing to the talk, either use the
+\vrb{set\_authors()} method, or set the attribute directly, like so:
+\begin{python}
+talk.set_authors(r"Tom, Dick, and Harry")
+\end{python}
+or:
+\begin{python}
+talk.authors = r"Tom, Dick and Harry"
+\end{python}
+For the speaker, this is almost an identical procedure, just use either the
+\vrb{set\_speaker()} method, or set the \vrb{speaker} attribute directly.
+
+You are likely to be representing a business or institute of some form, so
+it is best to give their address.  To do provide this information to the
+\vrb{presentation} library so that it can place the text appropriately, just
+use the \vrb{set\_address()} method or set the \vrb{address} attribute of
+the instantiated \vrb{Talk()} object.
+
+It is possible that your business or institute has a logo that you'd like to
+use.  If so, convert it to an EPS file, and you can add it to the talk using
+the \vrb{add\_logo()} method like so:
+\begin{python}
+talk.add_logo("myepslogo.eps", height=2)
+\end{python}
+You can set the height of the logo using the \vrb{height} attribute as shown
+in the example above.
+
+That's basically it as far as the \obj{Talk()} object itself goes.  The main
+amount of work is in producing the individual slides of the presentation,
+which is what we discuss next.
+
+\subsection{The Slide() object}
+
+The \vrb{Slide()} object defines a particular slide; one creates a new
+\vrb{Slide()} object for each slide in the presentation, calling them all at
+the end in the \vrb{render()} function to generate the entire talk.  
+
+The first slide in your talk will be the titlepage.  However, since getting
+you to make a new \vrb{Slide()} object just to generate the title page is
+silly (well, you've just given the title page all it needs to know eh?) the
+library automatically generates the title page slide for you.
+
+Slides usually have a title, some sequence of headings, possibly a figure
+(defined in \pyscript for example), or an imported EPS image, and possibly
+some equations.  The \vrb{presentation} library provides methods for doing
+all these things.  To add a slide to the presentation, one must instatiate a
+new \vrb{Slide} object, passing to it the current \vrb{Talk} object, like
+so:
+\begin{python}
+intro = Slide(talk)
+\end{python}
+
+To add a title to the slide~\footnote{Note that this is
+\textbf{not} the title of the talk!}, one can use the \vrb{set\_title()}
+method (this time of the \vrb{Slide} class), or set the \vrb{title}
+attribute directly:
+\begin{python}
+intro.set_title(r"Introduction")
+\end{python}
+or:
+\begin{python}
+intro.title = r"Introduction"
+\end{python}
+There isn't much of a difference between the two I know, but some people
+like to call a \vrb{set\_} function and others like to set the attribute
+directly, so we're catering to both kinds of people.
+
+To add other things like headings, figures and epsf images to your slide,
+you just need to use one of the relevant \vrb{add\_*()} functions.  In other
+words, to add a heading use the \vrb{add\_heading()} method.  This method
+takes two arguments, the first argument is the level of the heading (there
+are currently three separately defined levels of headings in the library)
+and the second argument is the heading to add.  For instance:
+\begin{python}
+intro.add_heading(1, r"What are we talking about?")
+intro.add_heading(2, r"Some stuff")
+intro.add_heading(2, r"Some other stuff")
+intro.add_heading(3, r"Something more specific to some other stuff")
+\end{python}
+Adding a heading puts one of the predefined bullets in front of the heading,
+typesets the text at a predefined size and indentation dependent upon the
+heading level.  You can change these settings by defining your own style, or
+by setting one of the myriad attributes of the talk object itself, for more
+information see \Sec{sec:styles}.
+
+If you want to place a diagram generated from \pyscript code to your slide,
+and have it automatically positioned by the library, then use the
+\vrb{add\_fig()} method.  For instance, if you've produced earlier in your
+\pyscript script a diagram called \vrb{mydiag} then to add it to the slide,
+merely use:
+\begin{python}
+intro.add_fig(mydiag)
+\end{python}
+You can set the location of the figure by passing one of the \pyscript anchor
+locations as an optional argument.  For example,
+\begin{python}
+intro.add_fig(mydiag, ne=intro.area.ne - P(1,1))
+\end{python}
+will locate the diagram in the ``north-east'' corner of the page one
+centimetre from the right-hand edge, and one centimetre from the top edge.
+You can set the width of the diagram as well by specifying the \vrb{width}
+option:
+\begin{python}
+intro.add_fig(mydiag, width=12, c=intro.area.c)
+\end{python}
+which will make the diagram 12cm wide, and centre it on the current page.
+
+Similarly, one can add diagrams or images that already exist in EPS files.
+To do this use the \vrb{add\_epsf()} method like so:
+\begin{python}
+intro.add_epsf(file="myEpsFile.eps", c=intro.area.c, width=14)
+\end{python}
+The \vrb{add\_epsf()} method processes the anchor location, width and height
+options in the same way the \vrb{add\_fig()} method does.
+
+You might like to add some text to your slide and position it arbitrarily on
+the page, as opposed to have \vrb{presentation.py} work out where to put it
+for you (as is done with the \vrb{add\_heading()} method).  Therefore, there
+is the convenience function \vrb{add\_text()}.  Here is an example:
+\begin{python}
+intro.add_text("Hello there!", e=intro.area.e-P(-2,-2), scale=2)
+\end{python}
+Just to be different, the \vrb{add\_text()} method has a scale attribute as
+opposed to a height or width attribute.  This is really silly, and should
+probably be changed.  If you read this sentence, please put a feature
+request to change this on the \href{http://pyscript.sf.net}{pyscript} web
+page :-).
+
+At the end of your script you'll want to make the talk in its entirety, to
+do this use the \vrb{make()} method of the \vrb{Talk()} class like so:
+\begin{python}
+# make it!
+talk.make(
+    intro,
+    another_slide,
+    file="mytalk.ps")
+\end{python}
+This will generate a Postscript document called \vrb{mytalk.ps} in the same
+directory as that in which the \pyscript script was run.  Note that this is
+a Postscript file and not an EPS file; this means that the output has
+multiple pages as one would hope for a seminar!
+
+To actually give your seminar there are several tools you can use.  One of
+the most common is to turn the Postscript into PDF via \ttt{ps2pdf} or some
+similar tool, and then use the full screen mode of Adobe Acrobat
+Reader~\cite{acroread} to display the talk.  Alternatively, you might like
+to use a program like \ttt{pspresent}~\cite{pspresent}.  Please note that
+due to a bug in Ghostscript version 7 (and possibly below) if there is
+insufficient text on a page, the postscript will be converted by
+\ttt{ps2pdf} incorrectly to give a portait-orientated page, as opposed to a
+landscape page.  The postscript will view correctly in Ghostview (and so
+will the pdf incidentally), however, the pdf will view incorrectly in
+\ttt{xpdf} and \ttt{acroread}.  This bug seems to have been fixed in
+Ghostscript version 8.
+
+\subsection{Styles for talks and seminars}
+\label{sec:styles}
+
+To change your talk style from the default you can specify one of the
+predefined styles by passing the \vrb{style} option to the \vrb{Talk()}
+class on instantiation.  For instance:
+\begin{python}
+talk = Talk(style="prosper-darkblue")
+\end{python}
+which will load the style that looks a lot like the ``darkblue'' style of
+the \href{prosper}{prosper} \LaTeX{} package.  To load the style, \pyscript
+will look in either the \ttt{~/.pyscript/styles/} directory or the current
+directory for a python file whose file name will be the name of the style
+with `\ttt{.py}' appended.
+
+If you are feeling really keen, you can write your own style.  One of the
+best ways to do this is to copy and then modify one of the ones provided
+with the \pyscript distribution.  Let's go through the details of the
+``prosper-darkblue'' style now.
+
+\begin{python}
+# talk style for PyScript, following the Darkblue design of prosper
+
+HOME = os.path.expandvars("$HOME")
+stylesDir = HOME + "/.pyscript/styles/"
+
+# set the foreground and background colour of the title text of the talk
+self.title_fg = Color('white')
+self.title_bg = Color('white')
+
+# set the talk title's text style
+self.title_textstyle = r"\bf\sf"
+
+# set the text style for the text of who is giving the talk
+self.speaker_textstyle = r"\sf"
+
+# set the colour and text style of the address of the speaker of the talk
+self.address_fg = Color('white')
+self.address_textstyle = r"\sf"
+
+# set the colour and text style of the authors of the talk (not necessarily
+# the speaker of the talk)
+self.authors_fg = Color('white')
+self.authors_textstyle = r"\sf"
+
+# set the colour and text style of the title of the *slide*
+self.slide_title_fg = Color('lightgray')
+self.slide_title_textstyle = r"\bf"
+
+# set the colour, scale, textstyle, bullet and indent type for a level 1 heading
+self.headings_fgs[1] = Color('white')
+self.headings_scales[1] = 3
+self.headings_textstyle[1] = r"\sf"
+self.headings_bullets[1] = Epsf(file=stylesDir+"redbullet.eps").scale(0.2,0.2)
+self.headings_indent[1] = 0
+
+# set the colour, scale, textstyle, bullet and indent type for a level 2 heading
+self.headings_fgs[2] = Color('white')
+self.headings_scales[1] = 2.5
+self.headings_textstyle[2] = r"\sf"
+self.headings_bullets[2] = Epsf(file=stylesDir+"greenbullet.eps").scale(0.15,0.15)
+self.headings_indent[2] = 0.5
+
+# set the colour, scale, textstyle, bullet and indent type for a level 3 heading
+self.headings_fgs[3] = Color('white')
+self.headings_scales[1] = 2.2
+self.headings_textstyle[3] = r"\sf"
+self.headings_bullets[3] = Epsf(file=stylesDir+"yellowbullet.eps").scale(0.1,0.1)
+self.headings_indent[3] = 1
+
+# set the colour, textstyle and scale for placed text
+self.text_scale = 3.0
+self.text_fg = Color('white')
+self.text_textstyle = r"\sf"
+\end{python}
+%stopzone  % help for vim
+
+First off we work out where the styles directory is, and since it should be
+in \ttt{~/.pyscript/styles} we define this with the \ttt{stylesDir}
+variable.  Note that this is a python file like any other, all it's doing is
+expecting you to add a certain set of values that \pyscript's
+\vrb{presentation.py} library knows about.  
+
+Next we set the title foreground and background colour by setting the
+\vrb{title\_fg} and \vrb{title\_bg} variables.  The text style is bold
+(\ttt{\\bf}) and a sans serif (\ttt{\\sf}) font.  Note that this uses
+\LaTeX{} to specify these styles as internally \pyscript \vrb{TeX} objects
+are used.  If this is a problem for you, just send us a bug report or
+feature request on the \href{http://pyscript.sf.net}{pyscript} web page and
+we'll try and fix it for you as soon as we can.
+
+Next the text style for the speaker element of the title page is set, and
+the colour and text style for the authors and address elements.
+
+Now we process the elements for the slides themselves.  We need to set a
+foreground colour and text style for the title of the slide.  We also need
+to specify the scale, foreground colour, text style bullet and indentation
+amount to use for the three levels of headings defined in the
+\vrb{presentation.py} library.  Note that one has to specify for which level
+the style is being set by the square brackets: e.g.~\vrb{headings\_fg[1]}.  
+
+One doesn't have to set the bullets to a text or \LaTeX kind of string, but
+also to EPS files, which is what we have done in the above example where
+red, green and yellow circles are used for the various heading levels.
+We've scaled them here (using the \pyscript \vrb{scale} method) so that they
+have different sizes and one can more easily tell when viewing the talk that
+one level has precedence over the other.
+
+If one wishes to place arbitrary text on the page, one can specify the
+default scale, colour and text style here too.
+
+Styles can be found in the \vrb{contrib/} directory of the \pyscript
+distribution.
+
+\section{Creating a poster}
+
+\subsection{The Poster() object}
+
+The very first thing to do when making a new poster is to instantiate the
+\vrb{Poster()} object.  You do this like so:
+\begin{python}
+poster = Poster(size="a4")
+\end{python}
+Note that the size of the poster has been set here explicitly.  A handy
+thing about using postscript is that if you want an a0 poster, you just need
+to change the size paramter to ``a0'' and the size of the poster will
+change, but not the actual amount of postcript.  The reason we add this size
+declaration to the poster class is because it is often handy to have a4 size
+versions of your poster when you are at a poster session at a conference to
+give to people who have viewed your a0 size poster.
+
+Your poster will then require a title, a list of authors, an address of the
+insititution you are representing and the abstract that you submitted (or
+are using) for the poster.  You set these properties using the relevant
+\vrb{set\_()} methods of the \vrb{Poster()} class.  For instance:
+\begin{python}
+poster.set_title("My poster")
+
+poster.set_authors("Me, him, and her")
+
+poster.set_address("Over the hills, and far away")
+
+poster.set_abstract("""
+I should have written something better when I applied for the conference: I
+might have got a talk instead...
+""")
+\end{python}
+
+One often wants to put logos onto a poster.  The \vrb{Poster()} class lets
+you do this easily by using the \vrb{add\_logo()} method.  Just supply the
+name of an EPS file and the height you want to use for the logo, and the
+class will place it at the top of your poster for you.  E.g.:
+\begin{python}
+poster.add_logo("my_first_logo.eps", height=1.2)
+poster.add_logo("my_second_logo.eps", height=1.2)
+\end{python}
+The first logo is placed at the top left-hand corner.  The next logo will be
+placed in the top right-hand corner.  If you specify more logos then they
+will be distributed evenly across the top of the poster.  If you want, you
+can also specify a list of logo names all at the one time, instead of having
+to call \vrb{add\_logo()} several times.  You do this with the
+\vrb{add\_logos()} method:
+\begin{python}
+poster.add_logos("my_first_logo.eps", "my_second_logo.eps", height=1.2)
+\end{python}
+Obviously, when you use this method, all logos are given the same height.
+
+A poster is usually split up into columns.  For a portrait-orientated
+poster, one usually has two columns; for a landscape-orientated poster three
+columns.  A column is made up of one or more ``column boxes'' which define
+the actual content in the poster.  So, to make your first column, you need
+to make a new \vrb{Column()} object:
+\begin{python}
+col1 = Column(poster)
+\end{python}
+Note that we have passed the current \vrb{poster} object through as an
+argument.  This is so that any styles defined in the poster can flow through
+to the subobjects.  We will eventually add this column to the poster as a
+whole, but not yet, as we need to fill the column with some content first.
+To do this instantiate a \vrb{ColumnBox()} object like so:
+\begin{python}
+intro = ColumnBox(poster)
+intro.set_title("Introduction")
+intro.add_TeXBox(r"""
+Here is some \LaTeX{}
+""")
+\end{python}
+Again, the \vrb{poster} object is passed in as an argument so we can make
+use of previously defined styles.  We then set the title of the column box
+with the \vrb{set\_title()} method, and then added a \vrb{TeXBox()} object,
+which can contain arbitrary \LaTeX{} expressions, with the
+\vrb{add\_TeXBox()} method.
+
+There are more things than just \vrb{TeXBox}es that you can add to a column
+box; you can add an already-defined \pyscript object, or an EPS file.  Say
+you want to align two images up together, and display them side by side
+within the column box.  To do this you would set up an \vrb{Align()} object,
+append the EPS files as \vrb{Epsf()} objects and then add the \vrb{Align()}
+object to the column box with the \vrb{add\_object()} method.  E.g.:
+\begin{python}
+# the figures
+fig1 = Epsf("fig1.eps")
+fig2 = Epsf("fig2.eps")
+
+# make the Align object
+figs = Align(a1="ne", a2="nw", angle=90, space=0.2)
+figs.append(fig1, fig2)
+
+# add the Align object to the column box
+intro.add_object(figs)
+\end{python}
+
+The \vrb{add\_epsf()} method is merely a convenience function so that you
+don't have to define an \vrb{Epsf()} object first and then add it with the
+\vrb{add\_object()} method.  You can do all that work if you want to though!
+
+We are now ready to add the column box to the column.  We do this with the
+\vrb{add\_box()} method of the \vrb{Column()} object:
+\begin{python}
+col1.add_box(intro)
+\end{python}
+
+We can now add the column to the poster itself, and yes, you guessed it, to
+do this we use the \vrb{add\_column()} method of the \vrb{Poster()} object:
+\begin{python}
+poster.add_column(col1)
+\end{python}
+Since this is the first column, it will automatically be the left-most
+column.  Any other columns that you add will be added to the right of it.
+So, for instance, if one were making a poster in portrait mode then one
+would simply add two columns; the \vrb{Poster()} class should handle
+aligning most of the bits and pieces for you.
+
+For more complex examples, have a look in the \vrb{examples/} directory of
+the \pyscript distribution.  The \vrb{Poster()} class is a complete rewrite
+and extension of the older \vrb{Poster\_1()} class, so it is likely that
+there will be problems with the way that it has been designed and so the
+interface might change slightly in the future.  If you are having problems,
+feel free to email the developers!  If you read this sentence, you might
+want to email the developers anyway!  :-)
+
+\subsection{Styles for posters}
+\label{sec:poster-styles}
+
+To change your poster style from the default you can specify one of the
+predefined styles by passing the \vrb{style} option to the \vrb{Poster()}
+class on instantiation.  For instance:
+\begin{python}
+poster = Poster(size="a4", style="ccp2004-poster")
+\end{python}
+which will load the style that PTC used at the Conference on Computational
+Physics in 2004 (hence ccp2004).  Just like with styles for talks, to load
+the style, \pyscript will look in either the \ttt{~/.pyscript/styles/}
+directory or the current directory for a python file whose file name will be
+the name of the style with `\ttt{.py}' appended.
+
+If you are feeling really keen, you can write your own style.  One of the
+best ways to do this is to copy and then modify one of the ones provided
+with the \pyscript distribution.
+
+Styles can be found in the \vrb{contrib/} directory of the \pyscript
+distribution.

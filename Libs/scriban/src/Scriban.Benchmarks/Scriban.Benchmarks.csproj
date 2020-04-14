@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Scriban\Scriban.csproj">
+      <Project>{8a58a7e2-627c-4f41-933f-5ac92adfab48}</Project>
+      <Name>Scriban</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.4" />
+    <PackageReference Include="Cottle" Version="1.5.4" />
+    <PackageReference Include="DotLiquid" Version="2.0.298" />
+    <PackageReference Include="Fluid.Core" Version="1.0.0-beta-9545" />
+    <PackageReference Include="Handlebars.Net" Version="1.9.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="2.2.0" />
+    <PackageReference Include="Nustache" Version="1.16.0.8" />
+    <PackageReference Include="Stubble.Core" Version="1.2.7" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,46 @@
+﻿@using Oryx.FastAdmin.Model.Scratch
+@{
+    var projectModel = ViewData["ProjectData"] as Project;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = projectModel.Name + " - Scratch 项目";
+    ViewData["Key"] = "Scratch,案例,知页少儿编程,Scratch在线,免费少儿让编程,少儿编程加盟";
+    ViewData["Desc"] = projectModel.Description;
+}
+@section Styles{
+    <style>
+        iframe {
+            max-width: 100%;
+            overflow: hidden;
+        }
+    </style>
+}
+<div class="">
+    <iframe id="previewContainer" frameborder="0" scrolling="no" src="/scratch/project/preview/@ViewData["Id"]"></iframe>
+</div>
+<div>
+    @projectModel.Name
+    <hr />
+    @projectModel.CreateTime.ToString("yyyy-MM-dd")
+    <hr />
+    @projectModel.Views
+    <hr />
+    <a href="/Scratch/Editor/With/@projectModel.Id" class="btn btn-link"> 使用此项目素材创建</a>
+</div>
+@section Scripts{
+    <script>
+        function setSize() {
+            var previewContainer = document.getElementById('previewContainer')
+            var windowWidth = window.innerWidth - 30 + 5;
+            var windowHeight = windowWidth * .75 + 50;
+            if (windowHeight > 420) {
+                windowHeight = 420;
+            }
+            previewContainer.setAttribute('width', windowWidth + 'px')
+            previewContainer.setAttribute('height', windowHeight + 'px')
+        }
+        setSize()
+        window.onresize = function () {
+            setSize();
+        }
+    </script>
+}

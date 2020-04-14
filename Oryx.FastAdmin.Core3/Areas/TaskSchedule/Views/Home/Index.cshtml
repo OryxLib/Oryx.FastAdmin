@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@section Styles{
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/layui/extend/steps/style.css" rel="stylesheet" />
+    <style>
+        .step-body {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .step-list {
+            margin: 20px auto;
+            padding: 25px 12px;
+        }
+
+        .layui-layout-admin .layui-logo {
+            margin-left: 146px;
+        }
+    </style>
+}
+<div id="step_demo" class="step-body">
+    <form class="layui-form" action="">
+        <div class="step-header">
+            <ul>
+                <li>
+                    <span class="step-name">数据库</span>
+                </li>
+                <li>
+                    <span class="step-name">上传资料</span>
+                </li>
+                <li>
+                    <span class="step-name">签证单已发放</span>
+                </li>
+            </ul>
+        </div>
+        <div class="step-content">
+            <div class="step-list">
+                <span>数据库</span>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">数据库名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">数据库用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">数据库密码</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="step-list">
+                <span>设置管理员</span>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="step-list">完成</div>
+        </div>
+        <button type="button" class="layui-btn layui-btn-primary" id="preBtn">上一步</button>
+        <button type="button" class="layui-btn layui-btn-normal" id="nextBtn">下一步</button>
+    </form>
+</div>
+
+
+<button id="goBtn">@*跳转的指定的步骤*@</button>
+
+@section Scripts{
+
+    <script>
+        layui.config({
+            version: 222222
+            , debug: true
+            , base: 'layui/extend/'
+        }).extend({
+            steps: "steps/steps"
+        });
+
+        /*
+     steps组件
+     */
+        layui.use(['jquery', 'steps'], function () {
+
+            var $ = layui.$;
+
+            var $step = $("#step_demo").step();
+
+            var stepIndex = 0;
+            $("#preBtn").click(function (event) {
+                $step.preStep();//上一步
+                if (stepIndex > 1) {
+                    stepIndex -= 1;
+                }
+                changeStep()
+            });
+            $("#nextBtn").click(function (event) {
+                $step.nextStep();//下一步
+                if (stepIndex < 3) {
+                    stepIndex += 1;
+                }
+                changeStep()
+            });
+            $("#goBtn").click(function (event) {
+                $step.goStep(3);//到指定步
+            });
+
+            function changeStep() {
+                switch (stepIndex) {
+                    case 0:
+                    default:
+                }
+            }
+        });
+    </script>
+}

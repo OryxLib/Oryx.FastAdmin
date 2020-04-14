@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>知页少儿编程 - 用户登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="知页,知页科技">
+    <meta name="description" content="知页,知页科技">
+    @*<link rel="stylesheet" href="../../res/css/global.css">*@
+    @*<link href="~/layui/css/layui.css" rel="stylesheet" />*@
+    <link href="~/third-party/meterial-pro/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/third-party/meterial-pro/material/css/style.css" rel="stylesheet" />
+    <link href="~/third-party/meterial-pro/material/css/animate.css" rel="stylesheet" />
+    <link href="~/third-party/meterial-pro/material/css/colors/green-dark.css" rel="stylesheet" />
+</head>
+<body>
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url(/images/registerBG.jpg);">
+            <div class="login-box card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material layui-form" method="post">
+                        <h3 class="box-title m-b-20">用户登录</h3>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" name="UserName" required="" placeholder="用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="password" name="Password" required="" placeholder="密码">
+                            </div>
+                        </div>
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" lay-filter="mainLogin" lay-submit>提交</button>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0">
+                            <div class="col-sm-12 text-center">
+                                <p>还没有账户? <a href="/UserAuth/Register" class="text-info m-l-5"><b>注册</b></a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/layui/layui.js"></script>
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+            var $ = layui.$;
+
+            //监听提交
+            form.on('submit(mainLogin)', function (data) {
+                //layer.alert(JSON.stringify(data.field), {
+                //    title: '最终的提交信息'
+                //})
+                $.ajax({
+                    url: "/UserAuth/Login",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.success) {
+                            layer.msg('登录成功');
+                            @{
+                                var returnUrl = ViewContext.HttpContext.Request.Query["return_url"].ToString();
+                            }
+                            window.location = '@(string.IsNullOrEmpty(returnUrl)? "/Scratch":returnUrl)';
+                        } else {
+                            layer.msg('登录失败');
+                        }
+                    },
+                    error: function (res) {
+                        layer.msg('登录失败');
+                    }
+                })
+                return false;
+            });
+        })
+    </script>
+</body>
+</html>

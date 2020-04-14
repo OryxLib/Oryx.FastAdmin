@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{19337c9c-a969-4d41-815e-f2631462c4f6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aliyun.Acs</RootNamespace>
+    <AssemblyName>aliyun-net-sdk-ehpc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+	<Compile Include="EHPC\Transform\V20180412\DeleteUsersResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribePriceResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListFileSystemWithMountTargetsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListNodesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DeleteJobTemplatesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\AddLocalNodesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DeleteNodesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribeImagePriceResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\AddUsersResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\SetQueueResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListClustersMetaResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListInvocationResultsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListCurrentClientVersionResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\InstallSoftwareResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\GetHybridClusterConfigResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListClusterLogsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DeleteQueueResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribeAutoScaleConfigResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListInvocationStatusResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribeClusterResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListJobTemplatesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\InvokeShellCommandResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ModifyContainerAppAttributesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListSoftwaresResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\CreateJobTemplateResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DeleteContainerAppsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\UpgradeClientResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\EditJobTemplateResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\UninstallSoftwareResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\CreateClusterResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListPreferredEcsTypesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListCommandsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListAvailableEcsTypesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\StartClusterResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListQueuesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribeImageGatewayConfigResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListContainerImagesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribeImageResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ResetNodesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListClustersResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListNodesByQueueResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\GetAutoScaleConfigResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ModifyVisualServicePasswdResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ModifyUserGroupsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\SubmitJobResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\AddNodesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\StopVisualServiceResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListAvailableFileSystemTypesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\CreateHybridClusterResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListNodesNoPagingResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DeleteClusterResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ModifyImageGatewayConfigResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListContainerAppsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListCpfsFileSystemsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DeleteImageResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ModifyUserPasswordsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribeContainerAppResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\RecoverClusterResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\GetVisualServiceStatusResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\CreateJobFileResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\StartVisualServiceResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\StopJobsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\SetAutoScaleConfigResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListVolumesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\StopClusterResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\PullImageResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\GetAccountingReportResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\UpdateClusterVolumesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\AddContainerAppResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DeleteJobsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\GetCloudMetricProfilingResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ModifyClusterAttributesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\RunCloudMetricProfilingResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\SetJobUserResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListJobsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListCustomImagesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListInstalledSoftwareResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\RerunJobsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\StartNodesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\DescribeJobResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\GetClusterVolumesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\StopNodesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\GetCloudMetricLogsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\AddQueueResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListCloudMetricProfilingsResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListUsersResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListImagesResponseUnmarshaller.cs" />
+	<Compile Include="EHPC\Transform\V20180412\ListRegionsResponseUnmarshaller.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\aliyun-net-sdk-core\aliyun-net-sdk-core.vs2010.csproj">
+      <Project>{bb84cecb-295d-4772-a669-3726e511ccfa}</Project>
+      <Name>aliyun-net-sdk-core.vs2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

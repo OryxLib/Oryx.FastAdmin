@@ -1,0 +1,338 @@
+﻿
+@using Newtonsoft.Json;
+<script>
+
+     //https://developer.qiniu.com/kodo/manual/1671/region-endpoint
+    window.qiniutoken = '@Oryx.Utilities.QiniuTool.GenerateToken(null,"cneast", Qiniu.Common.ZoneID.CN_East)';
+    window.qiniuorigin = 'z1'
+
+    window.modelData =@Html.Raw( JsonConvert.SerializeObject(ViewData["ModelData"]));
+    layui.use(['form', 'layedit', 'laydate', 'jquery'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , upload = layui.upload
+            , laydate = layui.laydate ;
+        var $ = layui.$;
+
+        //普通多文件上传
+        //多文件列表示例
+        var demoListView = $('#fileTable')
+            , uploadListIns = upload.render({
+                elem: '#fileList'
+                , url: 'https://upload-z1.qiniup.com'
+                , accept: 'file'
+                , multiple: true
+                , auto: false
+                , bindAction: '#fileListAction'
+                , data: {
+                    token: function () {
+                        var token;
+                        $.ajax({
+                            async: false,//ajax 非异步获取taken
+                            type: 'post',
+                            url: '/QiniuFile/TokenByParam',
+                            data: {
+                                fileName: "",
+                                bucket: "cneast",
+                                zoneId: 1
+                            },
+                            success: function (res) {
+                                token = res;
+                            }
+                        });
+                        return token;
+                    }
+                }
+                , choose: function (obj) {
+                    var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                    //读取本地文件
+                    obj.preview(function (index, file, result) {
+                        var tr = $(['<tr id="upload-' + index + '">'
+                            , '<td>' + file.name + '</td>'
+                            , '<td>' + (file.size / 1014).toFixed(1) + 'kb</td>'
+                            , '<td>等待上传</td>'
+                            , '<td>'
+                            , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                            , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                            , '</td>'
+                            , '</tr>'].join(''));
+
+                        //单个重传
+                        tr.find('.demo-reload').on('click', function () {
+                            obj.upload(index, file);
+                        });
+
+                        //删除
+                        tr.find('.demo-delete').on('click', function () {
+                            delete files[index]; //删除对应的文件
+                            tr.remove();
+                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                        });
+
+                        demoListView.append(tr);
+                    });
+                }
+                , done: function (res, index, upload) {
+                    console.log("res", res)
+                    console.log("this.files[index]", this.files[index])
+                    console.log("index", index)
+                    console.log("upload", upload)
+
+                    //$.ajax({
+                    //    async: false,//ajax 非异步获取taken
+                    //    type: 'post',
+                    //    url: '/QiniuFile/Token',
+                    //    success: function (res) {
+                    //        token = res;
+                    //    }
+                    //});
+
+                    if (res.hash) { //上传成功
+                        var tr = demoListView.find('tr#upload-' + index)
+                            , tds = tr.children();
+                        tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                        tds.eq(3).html(''); //清空操作
+                        //return delete this.files[index]; //删除文件队列已经上传成功的文件
+                    }
+                    this.error(index, upload);
+                }
+                , error: function (index, upload) {
+                    var tr = demoListView.find('tr#upload-' + index)
+                        , tds = tr.children();
+                    tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                    tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+                }
+            });
+
+        //普通文件上传
+        var uploadInst = upload.render({
+            elem: '#btnFileUpload'
+            , url: 'https://upload-z1.qiniup.com'
+            , data: {
+                token: function () {
+                    var token;
+                    $.ajax({
+                        async: false,//ajax 非异步获取taken
+                        type: 'get',
+                        url: '/QiniuFile/TokenByParam',
+                        data: {
+                            fileName: "",
+                            bucket: "cneast",
+                            zoneId: 1
+                        },
+                        success: function (res) {
+                            token = res;
+                        }
+                    });
+                    return token;
+                }
+            }
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    //$('#imgUploader').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+
+                //$('#imgUploader').attr('src', "https://mioto.milbit.com/" + res.key); //图片链接（base64）
+                $('#fileInput').val("https://mioto.milbit.com/" + res.key)
+                ////上传成功
+                //obj.preview(function (index, file, result) {
+                //    $('#imgUploader').attr('src', "https://mioto.milbit.com/" + res.key); //图片链接（base64）
+                //});
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#btnImgUpload'
+            , url: 'https://upload-z1.qiniup.com'
+            , data: {
+                token: function () {
+                    var token;
+                    $.ajax({
+                        async: false,//ajax 非异步获取taken
+                        type: 'post',
+                        url: '/QiniuFile/TokenByParam',
+                        data: {
+                            fileName: "",
+                            bucket: "cneast",
+                            zoneId: 1
+                        },
+                        success: function (res) {
+                            token = res;
+                        }
+                    });
+                    return token;
+                }
+            }
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#imgUploader').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+
+                $('#imgUploader').attr('src', "https://mioto.milbit.com/" + res.key); //图片链接（base64）
+                $('#imgUploader').siblings("input").val("https://mioto.milbit.com/" + res.key)
+                ////上传成功
+                //obj.preview(function (index, file, result) {
+                //    $('#imgUploader').attr('src', "https://mioto.milbit.com/" + res.key); //图片链接（base64）
+                //});
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        ////创建一个编辑器
+        //var editIndex = layedit.build('LAY_demo_editor');
+
+        ////自定义验证规则
+        //form.verify({
+        //    title: function (value) {
+        //        if (value.length < 5) {
+        //            return '标题至少得5个字符啊';
+        //        }
+        //    }
+        //    , pass: [
+        //        /^[\S]{6,12}$/
+        //        , '密码必须6到12位，且不能出现空格'
+        //    ]
+        //    , content: function (value) {
+        //        layedit.sync(editIndex);
+        //    }
+        //});
+
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(mainForm)', function (data) {
+            $.ajax({
+                url: window.location,
+                type: 'POST',
+                dataType: 'json',
+                data: data.field,
+                success: function (res) {
+                    if (res.success) {
+                        layer.msg('提交成功');
+                        window.location.reload()
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                },
+                error: function (res) {
+                    layer.msg('提交失败');
+                }
+            })
+
+            return false;
+        });
+
+        //表单赋值
+        form.val('mainForm', window.modelData);
+
+
+        //表单取值
+        layui.$('#LAY-component-form-getval').on('click', function () {
+            var data = form.val('example');
+            alert(JSON.stringify(data));
+        });
+
+    });
+</script>
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script src="~/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script>
+    //https://developer.qiniu.com/kodo/manual/1671/region-endpoint
+    window.qiniutoken = '@Oryx.Utilities.QiniuTool.GenerateToken(string.Empty,"cneast", Qiniu.Common.ZoneID.CN_East)';
+    window.qiniuorigin ='z2'
+    var ue = UE.getEditor('container', {
+
+    });
+    ue.addListener("contentChange", function () {
+        console.log('内容改变:' + ue.getContent());
+        layui.$('#container').siblings('input').val(ue.getContent())
+    });
+    ue.ready(function () {
+        ue.setContent(htmlDecode(window.textArea))
+    });
+
+    function htmlEncode(value){
+        //create a in-memory div, set it's inner text(which jQuery automatically encodes)
+        //then grab the encoded contents back out.  The div never exists on the page.
+        return layui.$('<div/>').text(value).html();
+    }
+
+    function htmlDecode(value){
+        return layui.$('<div/>').html(value).text();
+    }
+
+     function openSubPage(url){
+      var that = this;
+      //多窗口模式，层叠置顶
+      layer.open({
+        type: 2 //此处以iframe举例
+        ,title: '当你选择该窗体时，即会在最顶端'
+        ,area: ['390px', '260px']
+        ,shade: 0
+        ,maxmin: true
+        ,offset: [ //为了演示，随机坐标
+          Math.random()*($(window).height()-300)
+          ,Math.random()*($(window).width()-390)
+        ]
+        ,content: url
+        ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+        ,yes: function(){
+          $(that).click();
+        }
+        ,btn2: function(){
+          $(that).close();
+        }
+
+        ,zIndex: layer.zIndex //重点1
+        ,success: function(layero){
+          layer.setTop(layero); //重点2
+        }
+      });
+    }
+</script>

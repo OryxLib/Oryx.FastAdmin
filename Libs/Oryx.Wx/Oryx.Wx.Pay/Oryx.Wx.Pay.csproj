@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LitJsonCore" Version="1.0.1" />
+    <PackageReference Include="QRCoder" Version="1.3.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Oryx.Utilities\Oryx.Utilities.csproj" /> 
+    <ProjectReference Include="..\Oryx.Wx.Core\Oryx.Wx.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QuickMark">
+      <HintPath>Vender\QuickMark.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>Vender\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ThoughtWorks.QRCode">
+      <HintPath>Vender\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="cert\apiclient_cert.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

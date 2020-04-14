@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "首页";
+    ViewData["Key"] = "知页科技,知页,科技";
+    ViewData["Desc"] = "知页科技是北京一家专门制作线上教育内容的公司";
+
+    var categoryData = ViewData["CategoryList"] as List<Category>;
+}
+
+@using Oryx.FastAdmin.Model.Contents
+@using Oryx.FastAdmin.Core3.Models
+@using Oryx.FastAdmin.Core3.Components
+
+
+@section Styles{
+    <style>
+        .card {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: row;
+            height: 160px;
+        }
+
+            .card img {
+                width: 217px;
+                object-fit: cover;
+            }
+
+        .card-body {
+            max-width: 40%;
+        }
+
+        .card-title, .card-text p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /*.card-body .card-text {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }*/
+    </style>
+}
+<div class="row">
+    <div class="col-md-8">
+        @(await Html.RenderComponentAsync<BannerList>(RenderMode.ServerPrerendered, new { BannerModels = ViewData["Banners"] }))
+        <hr />
+        @foreach (var item in categoryData.OrderBy(x=>x.Order))
+        {
+            var contentData = ViewData["ContenModels"] as Dictionary<Category, List<ContentViewModel>>;
+
+            <h4>@item.Name</h4>
+            @(await Html.RenderComponentAsync<CardList>(RenderMode.ServerPrerendered,
+            new { ContenModels = contentData.FirstOrDefault(x => x.Key.Id == item.Id).Value }))
+        }
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="width: 20rem;">
+            <img src="~/images/registerBG.jpg" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">广告位招租</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">链接</a>
+            </div>
+        </div>
+    </div>
+</div>

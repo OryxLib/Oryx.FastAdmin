@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css"
+      href="../../fonts.googleapis.com/css-family=Montserrat.css" tppabs="https://fonts.googleapis.com/css?family=Montserrat">
+
+<link rel="stylesheet" href="../doc/doc_brython.css" tppabs="https://brython.info/doc/doc_brython.css">
+
+<link rel="stylesheet" href="console.css" tppabs="https://brython.info/tests/console.css">
+
+<script src="ace/ace.js" tppabs="https://brython.info/tests/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="ace/ext-language_tools.js" tppabs="https://brython.info/tests/ace/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" src="../src/brython_builtins.js" tppabs="https://brython.info/src/brython_builtins.js"></script>
+<script type="text/javascript" src="../src/version_info.js" tppabs="https://brython.info/src/version_info.js"></script>
+<script type="text/javascript" src="../src/py2js.js" tppabs="https://brython.info/src/py2js.js"></script>
+<script type="text/javascript" src="../src/loaders.js" tppabs="https://brython.info/src/loaders.js"></script>
+<script type="text/javascript" src="../src/py_object.js" tppabs="https://brython.info/src/py_object.js"></script>
+<script type="text/javascript" src="../src/py_type.js" tppabs="https://brython.info/src/py_type.js"></script>
+<script type="text/javascript" src="../src/py_utils.js" tppabs="https://brython.info/src/py_utils.js"></script>
+<script type="text/javascript" src="../src/py_sort.js" tppabs="https://brython.info/src/py_sort.js"></script>
+<script type="text/javascript" src="../src/py_builtin_functions.js" tppabs="https://brython.info/src/py_builtin_functions.js"></script>
+<script type="text/javascript" src="../src/py_exceptions.js" tppabs="https://brython.info/src/py_exceptions.js"></script>
+<script type="text/javascript" src="../src/py_range_slice.js" tppabs="https://brython.info/src/py_range_slice.js"></script>
+<script type="text/javascript" src="../src/py_bytes.js" tppabs="https://brython.info/src/py_bytes.js"></script>
+<script type="text/javascript" src="../src/py_set.js" tppabs="https://brython.info/src/py_set.js"></script>
+<script type="text/javascript" src="../src/js_objects.js" tppabs="https://brython.info/src/js_objects.js"></script>
+<script type="text/javascript" src="../src/stdlib_paths.js" tppabs="https://brython.info/src/stdlib_paths.js"></script>
+<script type="text/javascript" src="../src/py_import.js" tppabs="https://brython.info/src/py_import.js"></script>
+<script type="text/javascript" src="../src/unicode_data.js" tppabs="https://brython.info/src/unicode_data.js"></script>
+<script type="text/javascript" src="../src/py_string.js" tppabs="https://brython.info/src/py_string.js"></script>
+<script type="text/javascript" src="../src/py_int.js" tppabs="https://brython.info/src/py_int.js"></script>
+<script type="text/javascript" src="../src/py_long_int.js" tppabs="https://brython.info/src/py_long_int.js"></script>
+<script type="text/javascript" src="../src/py_float.js" tppabs="https://brython.info/src/py_float.js"></script>
+<script type="text/javascript" src="../src/py_complex.js" tppabs="https://brython.info/src/py_complex.js"></script>
+<script type="text/javascript" src="../src/py_dict.js" tppabs="https://brython.info/src/py_dict.js"></script>
+<script type="text/javascript" src="../src/py_list.js" tppabs="https://brython.info/src/py_list.js"></script>
+<script type="text/javascript" src="../src/py_generator.js" tppabs="https://brython.info/src/py_generator.js"></script>
+<script type="text/javascript" src="../src/py_dom.js" tppabs="https://brython.info/src/py_dom.js"></script>
+
+<script type="text/javascript" src="../src/builtin_modules.js" tppabs="https://brython.info/src/builtin_modules.js"></script>
+<script type="text/javascript" src="../src/py_import_hooks.js" tppabs="https://brython.info/src/py_import_hooks.js"></script>
+<script type="text/javascript" src="../src/async.js" tppabs="https://brython.info/src/async.js"></script>
+
+<!-- Javascript code needed to run tests included in dom.py -->
+<script src="dom_js_tests.js" tppabs="https://brython.info/tests/dom_js_tests.js"></script>
+<script src="jsobj_tests.js" tppabs="https://brython.info/tests/jsobj_tests.js"></script>
+
+<script type="text/javascript" src="../src/brython_stdlib.js" tppabs="https://brython.info/src/brython_stdlib.js"></script>
+
+<script type="text/python3" id="tests">
+import time
+import sys
+import tb as traceback
+
+from browser import document as doc, bind
+from browser import timer, aio
+from browser.local_storage import storage
+
+import editor, brython_test_utils as utils
+
+utils.populate_testmod_input(doc['files'],
+    ["Core language features", "Issues", "DOM interface", "Modules"])
+
+failed = []
+t_start = None
+
+async def run(reset=False):
+    if reset:
+        doc["console"].value = ""
+    src = editor.editor.getValue()
+    if storage is not None:
+       storage["py_src"] = src
+    state, t0, t1, _ = utils.run(src)
+    dt = (t1 - t0) * 1000.0
+    if state == 0:
+        print(f'<completed in {dt:6.2f} ms (FAILED)>')
+    else:
+        print(f'<completed in {dt:6.2f} ms (OK)>')
+    sys.stdout.flush()
+
+    return state
+
+async def run_all():
+    options = doc['files'].options
+    for script_num in range(len(options)):
+        option = options[script_num]
+        try:
+            doc["console"].value = ''
+            print('Running tests in', option.innerText)
+            req = await aio.get(option.value, data={"t": time.time()})
+            src = req.data
+            doc['files'].selectedIndex = script_num
+            editor.editor.setValue(src)
+            state = await run(False)
+            if state == 0:
+                failed.append(option.text)
+                break
+            else:
+                sys.stdout.flush()
+                await aio.sleep(0.5)
+        except Exception as exc:
+            traceback.print_exc(file=sys.stderr)
+            break
+    else:
+        doc['console'].value = ''
+        print(f'completed all tests in {time.time() - t_start:.2f} s.')
+        print(f'failed : {failed}')
+    sys.stdout.flush()
+
+@bind("#test_all", "click")
+def test_all(ev):
+    global failed, t_start
+    t_start = time.time()
+    failed = []
+    aio.run(run_all())
+
+@bind("#set_debug", "change")
+def set_debug(ev):
+    if ev.target.checked:
+        __BRYTHON__.debug = 1
+    else:
+        __BRYTHON__.debug = 0
+
+__BRYTHON__.debug = int(doc['set_debug'].checked)
+
+@bind("#run", "click")
+def run_one(ev):
+    aio.run(run(reset=True))
+
+
+# bindings to functions in module editor
+doc['show_js'].bind('click', editor.show_js)
+doc['show_console'].bind('click', editor.show_console)
+doc['files'].bind('change', editor.load_script)
+</script>
+
+<script type="text/python3" id="translations">
+from browser import document as doc
+import header
+
+qs_lang,language = header.show()
+
+# other translations
+
+trans = {
+    'report_bugs':{'en':'Please report bugs in the ',
+                   'es':'Poner los bugs en el ',
+                   'fr':"Signalez les bugs dans l'"},
+    'test_page':{'en':'Tests page','es':'Página de pruebas','fr':'Page de tests'},
+    'run':{'en':'run','es':'ejecutar','fr':'exécuter'},
+    'clear':{'en':'clear','es':'borrar','fr':'effacer'}
+}
+
+
+for key in trans:
+    if key in doc:
+        doc[key].html = trans[key][language]
+</script>
+
+<!-- Needed in sys.path init tests , see test_import.py -->
+<link id="link_none1" rel="pythonpath" href="/nowhere1" hreflang="none" />
+<link id="link_none2" rel="pythonpath" href="/nowhere2" hreflang="x-none" />
+
+</head>
+
+<body onload="brython({debug:1, cache:'none', static_stdlib_import:true})">
+
+<!-- HTML needed to run tests included in dom.py -->
+<div id="dom-test-element-id"></div>
+
+<table id=banner cellpadding=0 cellspacing=0>
+<tr id=banner_row >
+<td class="logo"><a href="javascript:if(confirm(%27https://brython.info/index.html  \n\nThis file was not retrieved by Teleport Ultra, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27https://brython.info/index.html%27" tppabs="https://brython.info/index.html" class="logo">Brython</a></td>
+</tr>
+</table>
+
+<div style="text-align:center">
+<br>Brython version: <span id="version"></span>
+</div>
+</center>
+
+
+<div id="container">
+<div id="left-div">
+<div style="padding: 3px 3px 3px 3px;">
+Test:
+<select name="filename" id="files">
+</select>
+<button id="test_all">Run all tests</button>
+
+</div>
+  <div id="editor" style="width:100%;"></div>
+</div>
+
+<div id="right-div">
+<div style="padding: 3px 3px 3px 3px;">
+  <div style="float:left">
+    <button id="run">run</button>
+    debug<input type="checkbox" id="set_debug" checked>
+  </div>
+  <div style="float:right">
+    <button id="show_console">Show console</button>
+    <button id="show_js">Show Javascript</button>
+  </div>
+</div>
+
+<div style="width:100%;height:100%;">
+<textarea id="console" autocomplete="off"></textarea>
+</div>
+
+<div id="timeout_dialog" title="Set timeout for loops" style="visibility:hidden">
+    <form>
+     <fieldset>
+      <label for="loop_timeout">Timeout (sec.)</label>
+      <input type="text" name="timeout" id="timeout" value="20" class="text ui-widget-content ui-corner-all">
+     </fieldset>
+    </form>
+</div>
+
+</div>
+</div>
+
+<div id="legend">
+    Python code editor uses <a href="javascript:if(confirm(%27https://ace.c9.io/  \n\nThis file was not retrieved by Teleport Ultra, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27https://ace.c9.io/%27" tppabs="https://ace.c9.io/" target="_blank">Ace</a>.
+</div>
+
+</body>
+</html>
+

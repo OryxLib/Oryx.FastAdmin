@@ -1,0 +1,9 @@
+- gv doesn't preview postscript files with nonstandard paper sizes properly.
+  eg "screen" landscape will have the right part clipped.
+  Workaround: use the -dFIXEDMEDIA switch in the gs options
+  
+- using LaTeX's color package will disable the color setting in
+  TeX() as the latex color changes happen within the code that TeX()
+  produces. 
+  Workaround: if you need to use the color package you will have to 
+  do all the color setting from within latex (for the TeX objects)

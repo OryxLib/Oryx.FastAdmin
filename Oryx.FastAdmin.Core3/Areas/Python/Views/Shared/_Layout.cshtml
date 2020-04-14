@@ -1,0 +1,33 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title> 知页Bython 编辑器</title>
+    <meta name="keywords" content="python,在线编辑器">
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/third-party/Brython-3.8.6/brython.js"></script>
+    <script src="~/third-party/Brython-3.8.6/brython_stdlib.js"></script>
+    @RenderSection("Styles", false)
+    <style>
+        .layui-body, .layui-footer {
+            left: 0;
+        }
+    </style>
+
+</head>
+<body class="layui-layout-body" onload="brython()">
+    <div >
+        <div class="layui-body">
+            @RenderBody()
+        </div> 
+    </div>
+    <script src="~/layui/layui.all.js"></script>
+    <script> 
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

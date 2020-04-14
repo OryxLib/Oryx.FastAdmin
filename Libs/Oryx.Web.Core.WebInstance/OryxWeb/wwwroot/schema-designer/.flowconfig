@@ -1,0 +1,12 @@
+[ignore]
+.*/build/.*
+.*/dev/.*
+.*/node_modules/fbjs/.*
+./src/utils/shallowEqual.js
+
+[include]
+./src/*.js
+
+[libs]
+
+[options]

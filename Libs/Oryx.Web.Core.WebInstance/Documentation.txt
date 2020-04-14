@@ -1,0 +1,97 @@
+﻿统一 schme设置接口
+api : /db/schema post
+json:{
+	table:[
+		"{tableName}",
+		"{tableName}"
+	],
+	set:[
+		{
+			name:'col1',
+			type:'type' 
+		}
+	],
+	reference:[
+		{
+			from:{
+				table:t1,
+				col:c1
+			},
+			to:{
+				table:t2,
+				col:c2
+			}
+		}
+	]
+}
+
+统一 schema 获取接口
+api : /db/schema get
+
+统一 schema 获取接口
+api : /db/schema/tableName get
+
+统一 查询接口 
+api : /db/{table}/ get
+#当pagesize 为设置时只取最前100条
+
+统一 查询接口
+api : /db/{table}/{pagesize}/{skipcount} get
+#pagesize = 100 skipcount=0
+
+统一 查询接口
+api : /db/{table}/{pagesize}/{skipcount}?param1=2&param2=test&... get
+#参数化查询接口
+
+统一 查询接口
+api : /db/{table}/{pagesize}/{skipcount} post
+#多表
+json : {
+	join: {
+		table2:{
+			from:col,
+			to:tableSrc.col,
+			where:''
+		},
+		table2:{
+			from:col,
+			to:tableSrc.col
+			where:''
+		}
+	}
+}
+ 
+统一 Create 接口
+api : /db/insert	post
+json: {
+	table:"{tableName}",
+	set:[
+		{
+			col:'',
+			col2:''
+		}
+	]
+}
+
+
+统一 Update 接口
+api : /db/update
+json : {
+	table:"{tableName}",
+	where: "",
+	set:[
+		{
+			col:'',
+			col2:''
+		}
+	]
+}
+
+统一 Delete 接口
+api : /db/delete
+#默认为应删除删除，
+#默认删除关联表数据
+json : {
+	table:"{tableName}",
+	where:""
+}

@@ -1,0 +1,22 @@
+2019-03-27 Version: 1.1.7
+1, This is an example of release-log.
+2, Please strictly follow this format to edit in English.
+3, Format：Number + , + Space + Description
+
+2018-09-03 Version: 1.1.6
+1, Add new service API：FindServiceStatisticalData, which can support query service statistical data.
+
+2018-04-10 Version: 1.1.5
+1, publish Project API.
+2, publish Service API.
+3, publish Service order API.
+4, publish Credential API.
+5, publish CAS API.
+
+2018-03-27 Version: 1.1.4
+1, publish Project API.
+2, publish Service API.
+3, publish Service order API.
+4, publish Credential API.
+5, publish CAS API.
+

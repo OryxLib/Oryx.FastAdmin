@@ -1,0 +1,109 @@
+2019-12-11 Version 7.2.0
+- Add api `BatchAddThingTopo`, support add multiple sub-devices for a gateway.
+- Add api `QueryDeviceByStatus`, support query device list by device status.
+- Support grouping products and rules.
+- Support using RAM to authorize resouces, including products, devices, rules, groups and instances, to RAM users.
+
+2019-10-18 Version 7.1.0
+- Add X509 API, including queryDeviceCert, queryCertUrlByApplyId, createDeviceCert.
+- Add authType parameter of APIs, including createProduct, queryProduct, queryProductList, CreateProductPop, QueryProductAllInfo, QueryProductListPop, ListProductConsole, QueryAllProductListPop, QueryDeviceBatchList.
+
+2019-09-17 Version 7.0.2
+- Fixed Response Unmarshaller.
+
+2019-08-23 Version 7.0.1
+- Fixed NullReferenceException Error.
+2019-08-16 Version 7.0.0
+- Add LinkIoTEdge API.
+2019-08-14 Version 6.11.1
+Generated 2018-01-20 for `Iot`.
+
+2019-08-14 Version 6.11.0
+Generated 2018-01-20 for `Iot`.
+
+2019-07-04 Version 6.11.0
+- Supported batch querying for device detail.
+2019-06-12 Version 6.10.0
+1, Add InvokeDataAPIService interface, support invoke service of data api to get sql query result.
+2, Add GetDataAPIServiceDetail interface, support get data api's detail information.
+3, Add CreateDataAPIService interface, support create data api with sql statement.
+2019-05-09 Version: 6.9.0
+1, Add LoRa's API GetNodesAddingTask, QueryLoRaJoinPermissions, GetLoraNodesTask, CreateLoRaNodesTask
+
+2019-04-08 Version: 6.8.0
+1, Add api, BatchUpdateDeviceNickname.
+2, Add both api, QueryDeviceFileList, QueryDeviceFile and DeleteDeviceFile.
+3, Add api ListRule’s name searching feature.
+4, Modify Tag format, support for special character like '.','-'.
+
+2019-03-08 Version: 6.7.0
+1, add API QueryDeviceDesiredProperty and SetDeviceDesiredProperty.
+2, add iotId support of APIs.
+
+
+2019-02-20 Version: 6.6.2
+1, fix aliyun-net-sdk-iot service code issue.
+
+2019-02-14 Version: 6.6.1
+1, fix SDK.InvalidRegionId exception in aliyun-net-sdk-core.
+
+2019-01-15 Version: 6.6.0
+1, add API of product tags.
+2, add API QueryDeviceGroupByTags.
+3, update response data of API BatchCheckDeviceNames.
+
+2019-01-15 Version: 6.6.0
+1, add API of product tags.
+2, add API QueryDeviceGroupByTags.
+3, update response data of API BatchCheckDeviceNames.
+
+2018-12-09 Version: 6.5.0
+1, Add Open API QuerySuperDeviceGroup.
+2, Add Open API QueryDeviceProperties.
+3, Add Open API QueryDeviceListByDeviceGroup.
+
+2018-11-28 Version: 6.4.0
+1, Add APIs InvokeThingsService, SetDevicesProperty and QueryDeviceByTags .
+
+2018-11-27 Version: 6.3.2
+1, Add APIs InvokeThingsService, SetDevicesProperty and QueryDeviceByTags .
+
+2018-10-16 Version: 6.3.1
+1, remove set group tags API.
+
+2018-10-13 Version: 6.3.0
+1, Add device group related APIs.
+
+2018-10-13 Version: 6.3.0
+1, Add device group related APIs.
+
+2018-10-13 Version: 6.3.0
+1, Add device group related APIs.
+
+2018-09-28 Version: 6.2.0
+1, Add one api, QueryAppDeviceList.
+
+2018-09-27 Version: 6.1.0
+1, Add one api, QueryAppDeviceList.
+
+2018-09-06 Version: 6.0.0
+1, Add API deleteProduct.
+2, Move all API to version 20180120.
+
+2018-08-27 Version: 5.1.0
+1, Add api GetGatewayBySubDevice.
+2, Modified the time related response parameters.
+3, Add messageId in response with InvokeThingService，SetDeviceProperty and NotifyAddThingTopo.
+
+2018-08-07 Version: 5.1.0
+1, Add api GetGatewayBySubDevice.
+2, Modified the time related response parameters.
+3, Add messageId in response with InvokeThingService，SetDeviceProperty and NotifyAddThingTopo.
+
+2018-04-17 Version: 5.0.0
+1, Add plenty of product management interfaces and device management interfaces
+2, Support for thing model and data storage
+
+2017-12-07 Version: 4.0.0
+1, release .NET iot sdk
+

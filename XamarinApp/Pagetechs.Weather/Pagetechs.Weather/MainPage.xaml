@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Pagetechs.Weather.MainPage">
+
+    <StackLayout>
+
+        <Image  Source="https://i.giphy.com/qNoHxC00vUDWE.gif" />
+        <Image Source="https://img.freepik.com/free-vector/shining-circle-purple-lighting-isolated-dark-background_1441-2396.jpg" />
+        <Image Source="https://images.unsplash.com/photo-1533450718592-29d45635f0a9" />
+    </StackLayout>
+
+</ContentPage>

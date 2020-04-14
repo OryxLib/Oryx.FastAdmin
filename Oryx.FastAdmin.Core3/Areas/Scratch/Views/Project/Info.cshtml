@@ -1,0 +1,68 @@
+﻿@using Oryx.FastAdmin.Core.Model
+@{
+    var modelData = ViewData["ModelData"] as ModelData;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = modelData["Name"] + " - Scratch 项目";
+    ViewData["Key"] = "Scratch,案例,知页少儿编程,Scratch在线,免费少儿让编程,少儿编程加盟";
+    ViewData["Desc"] = "Scratch 知页少儿编程";
+}
+
+@section Styles{
+
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/layui/css/layui.mobile.css" rel="stylesheet" />
+}
+
+@if (ViewData["hasOwner"].ToString() == "True")
+{
+    <form class="layui-form" lay-filter="infoForm">
+        @Html.Partial("_FormPartial")
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="mainForm">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div>次项目不是属于您， 您无法修改信息。</div>
+    <div>您可以引用此项目重新</div>
+}
+
+@section Scripts{
+    <script>
+        layui.use(['form', 'layedit', 'laydate'], function () {
+             var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , upload = layui.upload
+                    , laydate = layui.laydate;
+                var $ = layui.$;
+
+            //监听提交
+            form.on('submit(mainForm)', function (data) {
+                $.ajax({
+                    url: "/scratch/project/postinfo",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.success) {
+                            layer.msg('提交成功');
+                            window.location.reload()
+                        } else {
+                            layer.msg(res.msg);
+                        }
+                    },
+                    error: function (res) {
+                        layer.msg('提交失败');
+                    }
+                })
+                return false;
+            });
+            form.val('infoForm', @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( ViewData["ModelData"])));
+        })
+    </script>
+}

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{b5279472-d018-47cc-afab-d71741219120}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile />
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="akshare\air\air_hebei.py" />
+    <Compile Include="akshare\air\aqi_study.py" />
+    <Compile Include="akshare\air\aqi_utils.py" />
+    <Compile Include="akshare\air\cons.py" />
+    <Compile Include="akshare\air\time_and_date.py" />
+    <Compile Include="akshare\air\__init__.py" />
+    <Compile Include="akshare\article\cons.py" />
+    <Compile Include="akshare\article\epu_index.py" />
+    <Compile Include="akshare\article\ff_factor.py" />
+    <Compile Include="akshare\article\risk_rv.py" />
+    <Compile Include="akshare\article\__init__.py" />
+    <Compile Include="akshare\bank\bank_cbirc.py" />
+    <Compile Include="akshare\bank\bank_cbirc_20191114.py" />
+    <Compile Include="akshare\bank\bank_cbirc_20191115.py" />
+    <Compile Include="akshare\bank\bank_cbirc_2020.py" />
+    <Compile Include="akshare\bank\cons.py" />
+    <Compile Include="akshare\bank\__init__.py" />
+    <Compile Include="akshare\bond\bond_bank.py" />
+    <Compile Include="akshare\bond\china_bond.py" />
+    <Compile Include="akshare\bond\cons.py" />
+    <Compile Include="akshare\bond\investing_bond.py" />
+    <Compile Include="akshare\bond\__init__.py" />
+    <Compile Include="akshare\cost\cons.py" />
+    <Compile Include="akshare\cost\cost_living.py" />
+    <Compile Include="akshare\cost\__init__.py" />
+    <Compile Include="akshare\economic\class_macro_usa.py" />
+    <Compile Include="akshare\economic\cons.py" />
+    <Compile Include="akshare\economic\macro_bank.py" />
+    <Compile Include="akshare\economic\macro_china.py" />
+    <Compile Include="akshare\economic\macro_constitute.py" />
+    <Compile Include="akshare\economic\macro_euro.py" />
+    <Compile Include="akshare\economic\macro_other.py" />
+    <Compile Include="akshare\economic\macro_usa.py" />
+    <Compile Include="akshare\economic\marco_cnbs.py" />
+    <Compile Include="akshare\economic\__init__.py" />
+    <Compile Include="akshare\energy\energy_carbon.py" />
+    <Compile Include="akshare\energy\__init__.py" />
+    <Compile Include="akshare\event\sos.py" />
+    <Compile Include="akshare\event\__init__.py" />
+    <Compile Include="akshare\file_fold\__init__.py" />
+    <Compile Include="akshare\fortune\cons.py" />
+    <Compile Include="akshare\fortune\fortune_500.py" />
+    <Compile Include="akshare\fortune\it_juzi.py" />
+    <Compile Include="akshare\fortune\__init__.py" />
+    <Compile Include="akshare\fund\cons.py" />
+    <Compile Include="akshare\fund\fund_amac.py" />
+    <Compile Include="akshare\fund\fund_zdzk.py" />
+    <Compile Include="akshare\fund\__init__.py" />
+    <Compile Include="akshare\futures\basis.py" />
+    <Compile Include="akshare\futures\cons.py" />
+    <Compile Include="akshare\futures\cot.py" />
+    <Compile Include="akshare\futures\daily_bar.py" />
+    <Compile Include="akshare\futures\futures_inventory.py" />
+    <Compile Include="akshare\futures\futures_rule.py" />
+    <Compile Include="akshare\futures\hf_futures_sina.py" />
+    <Compile Include="akshare\futures\international_futures.py" />
+    <Compile Include="akshare\futures\inventory_data.py" />
+    <Compile Include="akshare\futures\receipt.py" />
+    <Compile Include="akshare\futures\receipt_period.py" />
+    <Compile Include="akshare\futures\requests_fun.py" />
+    <Compile Include="akshare\futures\roll_yield.py" />
+    <Compile Include="akshare\futures\symbol_var.py" />
+    <Compile Include="akshare\futures\zh_futures_sina.py" />
+    <Compile Include="akshare\futures\__init__.py" />
+    <Compile Include="akshare\futures_derivative\cons.py" />
+    <Compile Include="akshare\futures_derivative\jyfm_data_func.py" />
+    <Compile Include="akshare\futures_derivative\jyfm_login_func.py" />
+    <Compile Include="akshare\futures_derivative\jyfm_tools_func.py" />
+    <Compile Include="akshare\futures_derivative\jymf_js.py" />
+    <Compile Include="akshare\futures_derivative\nh_index_price.py" />
+    <Compile Include="akshare\futures_derivative\nh_index_return.py" />
+    <Compile Include="akshare\futures_derivative\nh_index_volatility.py" />
+    <Compile Include="akshare\futures_derivative\sina_futures_index.py" />
+    <Compile Include="akshare\futures_derivative\sys_spot_futures.py" />
+    <Compile Include="akshare\futures_derivative\xgx_data.py" />
+    <Compile Include="akshare\futures_derivative\__init__.py" />
+    <Compile Include="akshare\fx\cons.py" />
+    <Compile Include="akshare\fx\currency_investing.py" />
+    <Compile Include="akshare\fx\fx_quote.py" />
+    <Compile Include="akshare\fx\__init__.py" />
+    <Compile Include="akshare\index\cons.py" />
+    <Compile Include="akshare\index\index_baidu.py" />
+    <Compile Include="akshare\index\index_cons.py" />
+    <Compile Include="akshare\index\index_google.py" />
+    <Compile Include="akshare\index\index_investing.py" />
+    <Compile Include="akshare\index\index_spot.py" />
+    <Compile Include="akshare\index\index_sw.py" />
+    <Compile Include="akshare\index\index_weibo.py" />
+    <Compile Include="akshare\index\index_yw.py" />
+    <Compile Include="akshare\index\zh_stock_index_sina.py" />
+    <Compile Include="akshare\index\__init__.py" />
+    <Compile Include="akshare\interest_rate\cons.py" />
+    <Compile Include="akshare\interest_rate\interbank_rate_em.py" />
+    <Compile Include="akshare\interest_rate\__init__.py" />
+    <Compile Include="akshare\movie\fonts\__init__.py" />
+    <Compile Include="akshare\movie\movie_maoyan.py" />
+    <Compile Include="akshare\movie\movie_maoyan_font.py" />
+    <Compile Include="akshare\movie\movie_maoyan_knn_font.py" />
+    <Compile Include="akshare\movie\__init__.py" />
+    <Compile Include="akshare\news\news_east_money.py" />
+    <Compile Include="akshare\news\__init__.py" />
+    <Compile Include="akshare\obor\check_data_length.py" />
+    <Compile Include="akshare\obor\cons.py" />
+    <Compile Include="akshare\obor\get_all_index.py" />
+    <Compile Include="akshare\obor\get_countries_from_invest_web.py" />
+    <Compile Include="akshare\obor\get_countries_from_official_web.py" />
+    <Compile Include="akshare\obor\__init__.py" />
+    <Compile Include="akshare\option\cons.py" />
+    <Compile Include="akshare\option\czce_option.py" />
+    <Compile Include="akshare\option\option_commodity.py" />
+    <Compile Include="akshare\option\option_finance.py" />
+    <Compile Include="akshare\option\option_finance_sina.py" />
+    <Compile Include="akshare\option\__init__.py" />
+    <Compile Include="akshare\qhkc\qhkc_fund.py" />
+    <Compile Include="akshare\qhkc\qhkc_index.py" />
+    <Compile Include="akshare\qhkc\qhkc_tool.py" />
+    <Compile Include="akshare\qhkc\__init__.py" />
+    <Compile Include="akshare\stock\cons.py" />
+    <Compile Include="akshare\stock\hk_stock_sina.py" />
+    <Compile Include="akshare\stock\us_stock_sina.py" />
+    <Compile Include="akshare\stock\us_zh_stock_hx.py" />
+    <Compile Include="akshare\stock\zh_stock_ah_tx.py" />
+    <Compile Include="akshare\stock\zh_stock_a_sina.py" />
+    <Compile Include="akshare\stock\zh_stock_a_tick_tx.py" />
+    <Compile Include="akshare\stock\zh_stock_kcb_sina.py" />
+    <Compile Include="akshare\stock\zh_stock_zrbg_hx.py" />
+    <Compile Include="akshare\stock\__init__.py" />
+    <Compile Include="akshare\stock_feature\cons.py" />
+    <Compile Include="akshare\stock_feature\stock_em_account.py" />
+    <Compile Include="akshare\stock_feature\stock_em_gpzy.py" />
+    <Compile Include="akshare\stock_feature\stock_em_jgdy.py" />
+    <Compile Include="akshare\stock_feature\stock_em_sy.py" />
+    <Compile Include="akshare\stock_feature\__init__.py" />
+    <Compile Include="akshare\tool\file_generator.py" />
+    <Compile Include="akshare\tool\send_email.py" />
+    <Compile Include="akshare\tool\__init__.py" />
+    <Compile Include="akshare\ws\jinshi.py" />
+    <Compile Include="akshare\ws\__init__.py" />
+    <Compile Include="akshare\__init__.py" />
+    <Compile Include="collecShareData.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaskManage.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="akshare" />
+    <Folder Include="akshare\air" />
+    <Folder Include="akshare\article" />
+    <Folder Include="akshare\bank" />
+    <Folder Include="akshare\bond" />
+    <Folder Include="akshare\cost" />
+    <Folder Include="akshare\economic" />
+    <Folder Include="akshare\energy" />
+    <Folder Include="akshare\event" />
+    <Folder Include="akshare\file_fold" />
+    <Folder Include="akshare\fortune" />
+    <Folder Include="akshare\fund" />
+    <Folder Include="akshare\futures" />
+    <Folder Include="akshare\futures_derivative" />
+    <Folder Include="akshare\fx" />
+    <Folder Include="akshare\index" />
+    <Folder Include="akshare\interest_rate" />
+    <Folder Include="akshare\movie" />
+    <Folder Include="akshare\movie\fonts" />
+    <Folder Include="akshare\news" />
+    <Folder Include="akshare\obor" />
+    <Folder Include="akshare\option" />
+    <Folder Include="akshare\qhkc" />
+    <Folder Include="akshare\stock" />
+    <Folder Include="akshare\stock_feature" />
+    <Folder Include="akshare\tool" />
+    <Folder Include="akshare\ws" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

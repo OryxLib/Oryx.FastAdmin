@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{a893d647-d380-4582-903f-ee60d53550a2}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>__init__.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="air\air_hebei.py" />
+    <Compile Include="air\aqi_study.py" />
+    <Compile Include="air\aqi_utils.py" />
+    <Compile Include="air\cons.py" />
+    <Compile Include="air\time_and_date.py" />
+    <Compile Include="air\__init__.py" />
+    <Compile Include="article\cons.py" />
+    <Compile Include="article\epu_index.py" />
+    <Compile Include="article\ff_factor.py" />
+    <Compile Include="article\risk_rv.py" />
+    <Compile Include="article\__init__.py" />
+    <Compile Include="bank\bank_cbirc.py" />
+    <Compile Include="bank\bank_cbirc_20191114.py" />
+    <Compile Include="bank\bank_cbirc_20191115.py" />
+    <Compile Include="bank\bank_cbirc_2020.py" />
+    <Compile Include="bank\cons.py" />
+    <Compile Include="bank\__init__.py" />
+    <Compile Include="bond\bond_bank.py" />
+    <Compile Include="bond\china_bond.py" />
+    <Compile Include="bond\cons.py" />
+    <Compile Include="bond\investing_bond.py" />
+    <Compile Include="bond\__init__.py" />
+    <Compile Include="cost\cons.py" />
+    <Compile Include="cost\cost_living.py" />
+    <Compile Include="cost\__init__.py" />
+    <Compile Include="economic\class_macro_usa.py" />
+    <Compile Include="economic\cons.py" />
+    <Compile Include="economic\macro_bank.py" />
+    <Compile Include="economic\macro_china.py" />
+    <Compile Include="economic\macro_constitute.py" />
+    <Compile Include="economic\macro_euro.py" />
+    <Compile Include="economic\macro_other.py" />
+    <Compile Include="economic\macro_usa.py" />
+    <Compile Include="economic\marco_cnbs.py" />
+    <Compile Include="economic\__init__.py" />
+    <Compile Include="energy\energy_carbon.py" />
+    <Compile Include="energy\__init__.py" />
+    <Compile Include="event\sos.py" />
+    <Compile Include="event\__init__.py" />
+    <Compile Include="file_fold\__init__.py" />
+    <Compile Include="fortune\cons.py" />
+    <Compile Include="fortune\fortune_500.py" />
+    <Compile Include="fortune\it_juzi.py" />
+    <Compile Include="fortune\__init__.py" />
+    <Compile Include="fund\cons.py" />
+    <Compile Include="fund\fund_amac.py" />
+    <Compile Include="fund\fund_zdzk.py" />
+    <Compile Include="fund\__init__.py" />
+    <Compile Include="futures\basis.py" />
+    <Compile Include="futures\cons.py" />
+    <Compile Include="futures\cot.py" />
+    <Compile Include="futures\daily_bar.py" />
+    <Compile Include="futures\futures_inventory.py" />
+    <Compile Include="futures\futures_rule.py" />
+    <Compile Include="futures\hf_futures_sina.py" />
+    <Compile Include="futures\international_futures.py" />
+    <Compile Include="futures\inventory_data.py" />
+    <Compile Include="futures\receipt.py" />
+    <Compile Include="futures\receipt_period.py" />
+    <Compile Include="futures\requests_fun.py" />
+    <Compile Include="futures\roll_yield.py" />
+    <Compile Include="futures\symbol_var.py" />
+    <Compile Include="futures\zh_futures_sina.py" />
+    <Compile Include="futures\__init__.py" />
+    <Compile Include="futures_derivative\cons.py" />
+    <Compile Include="futures_derivative\jyfm_data_func.py" />
+    <Compile Include="futures_derivative\jyfm_login_func.py" />
+    <Compile Include="futures_derivative\jyfm_tools_func.py" />
+    <Compile Include="futures_derivative\jymf_js.py" />
+    <Compile Include="futures_derivative\nh_index_price.py" />
+    <Compile Include="futures_derivative\nh_index_return.py" />
+    <Compile Include="futures_derivative\nh_index_volatility.py" />
+    <Compile Include="futures_derivative\sina_futures_index.py" />
+    <Compile Include="futures_derivative\sys_spot_futures.py" />
+    <Compile Include="futures_derivative\xgx_data.py" />
+    <Compile Include="futures_derivative\__init__.py" />
+    <Compile Include="fx\cons.py" />
+    <Compile Include="fx\currency_investing.py" />
+    <Compile Include="fx\fx_quote.py" />
+    <Compile Include="fx\__init__.py" />
+    <Compile Include="index\cons.py" />
+    <Compile Include="index\index_baidu.py" />
+    <Compile Include="index\index_cons.py" />
+    <Compile Include="index\index_google.py" />
+    <Compile Include="index\index_investing.py" />
+    <Compile Include="index\index_spot.py" />
+    <Compile Include="index\index_sw.py" />
+    <Compile Include="index\index_weibo.py" />
+    <Compile Include="index\index_yw.py" />
+    <Compile Include="index\zh_stock_index_sina.py" />
+    <Compile Include="index\__init__.py" />
+    <Compile Include="interest_rate\cons.py" />
+    <Compile Include="interest_rate\interbank_rate_em.py" />
+    <Compile Include="interest_rate\__init__.py" />
+    <Compile Include="movie\fonts\__init__.py" />
+    <Compile Include="movie\movie_maoyan.py" />
+    <Compile Include="movie\movie_maoyan_font.py" />
+    <Compile Include="movie\movie_maoyan_knn_font.py" />
+    <Compile Include="movie\__init__.py" />
+    <Compile Include="news\news_east_money.py" />
+    <Compile Include="news\__init__.py" />
+    <Compile Include="obor\check_data_length.py" />
+    <Compile Include="obor\cons.py" />
+    <Compile Include="obor\get_all_index.py" />
+    <Compile Include="obor\get_countries_from_invest_web.py" />
+    <Compile Include="obor\get_countries_from_official_web.py" />
+    <Compile Include="obor\__init__.py" />
+    <Compile Include="option\cons.py" />
+    <Compile Include="option\czce_option.py" />
+    <Compile Include="option\option_commodity.py" />
+    <Compile Include="option\option_finance.py" />
+    <Compile Include="option\option_finance_sina.py" />
+    <Compile Include="option\__init__.py" />
+    <Compile Include="qhkc\qhkc_fund.py" />
+    <Compile Include="qhkc\qhkc_index.py" />
+    <Compile Include="qhkc\qhkc_tool.py" />
+    <Compile Include="qhkc\__init__.py" />
+    <Compile Include="stock\cons.py" />
+    <Compile Include="stock\hk_stock_sina.py" />
+    <Compile Include="stock\us_stock_sina.py" />
+    <Compile Include="stock\us_zh_stock_hx.py" />
+    <Compile Include="stock\zh_stock_ah_tx.py" />
+    <Compile Include="stock\zh_stock_a_sina.py" />
+    <Compile Include="stock\zh_stock_a_tick_tx.py" />
+    <Compile Include="stock\zh_stock_kcb_sina.py" />
+    <Compile Include="stock\zh_stock_zrbg_hx.py" />
+    <Compile Include="stock\__init__.py" />
+    <Compile Include="stock_feature\cons.py" />
+    <Compile Include="stock_feature\stock_em_account.py" />
+    <Compile Include="stock_feature\stock_em_gpzy.py" />
+    <Compile Include="stock_feature\stock_em_jgdy.py" />
+    <Compile Include="stock_feature\stock_em_sy.py" />
+    <Compile Include="stock_feature\__init__.py" />
+    <Compile Include="tool\file_generator.py" />
+    <Compile Include="tool\send_email.py" />
+    <Compile Include="tool\__init__.py" />
+    <Compile Include="ws\jinshi.py" />
+    <Compile Include="ws\__init__.py" />
+    <Compile Include="__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="air" />
+    <Folder Include="article" />
+    <Folder Include="bank" />
+    <Folder Include="bond" />
+    <Folder Include="cost" />
+    <Folder Include="economic" />
+    <Folder Include="energy" />
+    <Folder Include="event" />
+    <Folder Include="file_fold" />
+    <Folder Include="fortune" />
+    <Folder Include="fund" />
+    <Folder Include="futures" />
+    <Folder Include="futures_derivative" />
+    <Folder Include="fx" />
+    <Folder Include="index" />
+    <Folder Include="interest_rate" />
+    <Folder Include="movie" />
+    <Folder Include="movie\fonts" />
+    <Folder Include="news" />
+    <Folder Include="obor" />
+    <Folder Include="option" />
+    <Folder Include="qhkc" />
+    <Folder Include="stock" />
+    <Folder Include="stock_feature" />
+    <Folder Include="tool" />
+    <Folder Include="ws" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

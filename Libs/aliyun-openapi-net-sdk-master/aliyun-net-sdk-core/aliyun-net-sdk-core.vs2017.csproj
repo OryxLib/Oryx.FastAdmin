@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <RootNamespace>Aliyun.Acs.Core</RootNamespace>
+    <Version>1.5.4</Version>
+    <Authors>Alibaba Cloud</Authors>
+    <PackageTags>alibaba aliyun SDK core</PackageTags>
+    <Copyright>©2009-2019 Alibaba Cloud</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/aliyun/aliyun-openapi-net-sdk/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/aliyun/aliyun-openapi-net-sdk</PackageProjectUrl>
+    <PackageIconUrl>https://www.alibabacloud.com/favicon.ico</PackageIconUrl>
+    <Description>Alibaba Cloud SDK for .NET</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <AssemblyName>aliyun-net-sdk-core</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <DefineConstants>NET45</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Conditionally obtain references for the .NET Framework 4.5 target -->
+  <!-- .NET 4.5 references, compilation flags and build options -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LogLib.Common" Version="5.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0-preview.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

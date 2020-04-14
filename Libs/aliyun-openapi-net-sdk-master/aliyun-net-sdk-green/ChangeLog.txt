@@ -1,0 +1,32 @@
+2019-12-13 Version 3.5.2
+- Improve Newtonsoft_Json reference.
+
+2019-10-09 Version 3.5.1
+- Add VideoCancelScan Api.
+
+2019-08-12 Version 3.5.0
+- Support Defect Face API.
+2019-07-05 Version 3.4.4
+- Supported library managment for simillarity scene.
+- Remove the local file uploader code which can be downloaded from yundun content security document.
+2019-03-27 Version: 3.3.3
+1, This is an example of release-log.
+2, Please strictly follow this format to edit in English.
+3, Format：Number + , + Space + Description
+
+2018-09-27 Version: 3.3.2
+1, modify getFaces Api
+
+2018-09-27 Version: 3.3.2
+1, modify getFaces Api
+
+2018-09-03 Version: 3.3.0
+1, voice identify interface
+2, client upload credentials interface
+
+2018-05-28 Version: 3.2.0
+1, Add face 1-N,1-1 scan interface.
+
+2018-04-08 Version: 3.1.0
+1, Add voice asynchronous scan interface.
+

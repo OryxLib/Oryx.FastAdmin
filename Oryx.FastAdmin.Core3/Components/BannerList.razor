@@ -1,0 +1,35 @@
+﻿<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+        @for (int bIndex = 0; bIndex < BannerModels.Count; bIndex++)
+        {
+            <li data-target="#carouselExampleCaptions" data-slide-to="@bIndex" class="@(bIndex==0?"active":"")"></li>
+        }
+    </ol>
+    <div class="carousel-inner">
+        @for (int bIndex = 0; bIndex < BannerModels.Count; bIndex++) 
+        {
+            var item = BannerModels[bIndex];
+            <div class="carousel-item @(bIndex==0?"active":"")">
+                <img src="@item.Img" class="d-block w-100" alt="@item.Name" style="height: 200px;object-fit:cover">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@item.Name</h5>
+                    <p>@item.Description</p>
+                </div>
+            </div>
+        }
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+@using Oryx.FastAdmin.Model.Contents
+@code {
+    [Parameter]
+    public List<Banners> BannerModels { get; set; }
+}

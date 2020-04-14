@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: pyscript
+Version: 0.6.1
+Summary: Postscript Graphics with Python
+Home-page: http://pyscript.sourceforge.net
+Author: Alexei Gilchrist and Paul Cochrane
+Author-email: aalexei@users.sourceforge.net, paultcochrane@users.sourceforge.net
+License: GPL
+Description: UNKNOWN
+Keywords: presentation scientific/engineering graphics drawing
+Platform: OS Independent

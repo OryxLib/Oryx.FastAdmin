@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="/layui/dist/css/layui.css">
+    <style>
+        div[carousel-item] > div {
+            background-color: #009688 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <ul class="layui-nav " style="background-color:#1E9FFF;" lay-filter="">
+                    <li class="layui-nav-item" style="margin-right:150px;"><a href="">知页科技</a></li>
+                    <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+                    <li class="layui-nav-item"><a href="">大数据</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">解决方案</a>
+                        <dl class="layui-nav-child">
+                            <!-- 二级菜单 -->
+                            <dd><a href="">移动模块</a></dd>
+                            <dd><a href="">后台模版</a></dd>
+                            <dd><a href="">电商平台</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">社区</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div class="">条目1</div>
+                        <div class="">条目2</div>
+                        <div class="">条目3</div>
+                        <div class="">条目4</div>
+                        <div class="">条目5</div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-tab">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">网站设置</li>
+                        <li>用户管理</li>
+                        <li>权限分配</li>
+                        <li>商品管理</li>
+                        <li>订单管理</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">内容1</div>
+                        <div class="layui-tab-item">内容2</div>
+                        <div class="layui-tab-item">内容3</div>
+                        <div class="layui-tab-item">内容4</div>
+                        <div class="layui-tab-item">内容5</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md9">
+
+            </div>
+            <div class="layui-col-md3">
+                你的内容 3/12
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 你的HTML代码 -->
+
+    <script src="/layui/dist/layui.js"></script>
+    <script>
+        //一般直接写在一个js文件中
+        layui.use(['layer', 'element', 'carousel'], function () {
+            var layer = layui.layer
+                , form = layui.form,
+                element = layui.element;
+
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1'
+                , width: '100%' //设置容器宽度
+                , arrow: 'always' //始终显示箭头
+                //,anim: 'updown' //切换动画方式
+            });
+
+            //            layer.msg('Hello World');
+        });
+    </script>
+</body>
+</html>

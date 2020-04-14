@@ -1,0 +1,56 @@
+#
+#    LEAN Jupyter Docker Container 20190206
+#
+
+# Use base system for cleaning up wayward processes
+FROM quantconnect/lean:foundation
+
+MAINTAINER QuantConnect <contact@quantconnect.com>
+
+# Install Tini
+RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
+    echo "1361527f39190a7338a0b434bd8c88ff7233ce7b9a4876f3315c22fce7eca1b0 *tini" | sha256sum -c - && \
+    mv tini /usr/local/bin/tini && \
+    chmod +x /usr/local/bin/tini
+
+# Install Lean/PythonToolbox
+RUN git clone https://github.com/QuantConnect/Lean.git && cd Lean/PythonToolbox && \
+    python setup.py install && cd ../.. && rm -irf Lean
+
+#Install Jupyter and other packages
+RUN conda install -c plotly plotly=4.1.0
+RUN conda install -c conda-forge jupyterlab
+
+#Install ICSharp (Jupyter C# Kernel)
+RUN wget https://cdn.quantconnect.com/icsharp/ICSharp.Kernel.20180820.zip && \
+    unzip ICSharp.Kernel.20180820.zip && rm -irf ICSharp.Kernel.20180820.zip && cd icsharp && \
+    jupyter kernelspec install kernel-spec --name=csharp && cd ..
+
+# Setting some environment variables
+ENV WORK /root/Lean/Launcher/bin/Debug/
+ENV PYTHONPATH=${WORK}:${PYTHONPATH}
+
+# Copy Lean files to convenient locations
+COPY ./Launcher/bin/Debug/* ${WORK}
+
+RUN find ${WORK} -type f -not -name '*.dll' -not -name '*.ipynb' -not -name '*.csx' -not -name 'decimal.py' -delete
+
+# Copy pythonnet binaries for jupyter
+COPY ./Launcher/bin/Debug/jupyter/* ${WORK}
+
+# Setup config file
+RUN echo "{ \"data-folder\": \"/home/Data/\", \"composer-dll-directory\": \"$WORK\", \"algorithm-language\": \"Python\", \"messaging-handler\": \"QuantConnect.Messaging.Messaging\", \"job-queue-handler\": \"QuantConnect.Queues.JobQueue\", \"api-handler\": \"QuantConnect.Api.Api\" }" > ${WORK}config.json
+
+EXPOSE 8888
+WORKDIR $WORK
+
+ENTRYPOINT [ "/usr/local/bin/tini", "--" ]
+CMD jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root
+
+# List packages
+RUN conda list
+
+# Usage:
+# docker build -t quantconnect/lean:foundation -f DockerfileLeanFoundation .
+# docker build -t quantconnect/jupyter -f DockerfileJupyter .
+# docker run -it --rm -p 8888:8888 -v (absolute to your data folder):/home/Data:ro quantconnect/jupyter

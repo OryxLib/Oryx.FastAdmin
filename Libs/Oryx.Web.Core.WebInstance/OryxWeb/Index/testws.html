@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        //var ws = new ws()
+        var ws = new WebSocket("wss://" + window.location.host + "/ws");
+        ws.onopen = function () {
+            console.log('go ws')
+        }
+        ws.onmessage = function (res) {
+            console.log(res)
+        }
+        //ws.send("test");
+    </script>
+</body>
+</html>

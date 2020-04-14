@@ -1,0 +1,41 @@
+﻿
+.layui-layout-admin .layui-header,
+.layui-layout-admin .layui-side {
+    box-shadow: 0px 5px 5px black;
+}
+
+/*pager*/
+.layui-laypage .layui-laypage-curr .layui-laypage-em,
+.layui-nav-tree .layui-nav-bar,
+.layui-btn {
+    box-shadow: 0px 1px 2px black;
+    background-color: #2878ff;
+}
+
+.layui-btn-primary {
+    background-color: #fff !important;
+}
+
+.layui-layout-admin .layui-logo {
+    color: #2878ff
+}
+
+
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+    background-color: #2878ffa8
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-nav-tree .layui-nav-child dd.layui-this a,
+.layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this > a,
+.layui-nav-tree .layui-this > a:hover {
+    background-color: #2878ff
+}
+
+
+.layui-layout-admin .layui-body {
+    padding-top: 50px;
+}

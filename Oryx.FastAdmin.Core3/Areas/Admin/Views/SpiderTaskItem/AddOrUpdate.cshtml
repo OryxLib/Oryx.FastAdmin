@@ -1,0 +1,11 @@
+﻿@{
+    var nowrap = Context.Request.Query["nowrap"];
+    if (nowrap == "true")
+    {
+        Layout = "../Shared/_Layout_noWrap.cshtml";
+    }
+}
+@(await Html.PartialAsync("_FormDataPartialView"))
+@section Scripts{
+    @(await Html.PartialAsync("_FormDataPartialView_Scripts"))
+}

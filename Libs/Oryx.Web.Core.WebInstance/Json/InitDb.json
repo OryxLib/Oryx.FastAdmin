@@ -1,0 +1,34 @@
+{
+  "table": [
+    {
+      "name": "DbTableSchema"
+    },
+    {
+      "name": "DbColumnSchema"
+    },
+    {
+      "name": "DbReferenceSchema"
+    }
+  ],
+  "col": {
+    "DbTableSchema": {
+      "Id": "Guid",
+      "Name": "String",
+      "CreateTime": "DateTime"
+    },
+    "DbColumnSchema": {
+      "Id": "Guid",
+      "Name": "String",
+      "Type": "String",
+      "Table": "String",
+      "CreateTime": "DateTime"
+    },
+    "DbReferenceSchema": {
+      "Id": "Guid",
+      "FromTable": "String",
+      "FromColumn": "String",
+      "ToTable": "String",
+      "TOColumn": "String"
+    }
+  }
+}

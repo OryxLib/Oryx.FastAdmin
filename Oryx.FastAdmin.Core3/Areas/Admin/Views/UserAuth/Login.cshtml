@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登入</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="知页科技后台">
+    <meta name="description" content="知页科技后台">
+    @*<link rel="stylesheet" href="../../res/css/global.css">*@
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fly-header layui-bg-black">
+        <div class="layui-container">
+        </div>
+    </div>
+
+    <div class="layui-container fly-marginTop">
+        <div class="fly-panel fly-panel-user" pad20>
+            <div class="layui-tab layui-tab-brief" lay-filter="user">
+                <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-form layui-form-pane">
+                            <form method="post">
+                                <div class="layui-form-item">
+                                    <label for="L_email" class="layui-form-label">用户名</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="L_email" name="UserName" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label for="L_pass" class="layui-form-label">密码</label>
+                                    <div class="layui-input-inline">
+                                        <input type="password" id="L_pass" name="Password" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <button class="layui-btn" lay-filter="mainLogin" lay-submit>提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/layui/layui.js"></script>
+    <script>
+        layui.cache.page = 'user';
+        layui.cache.user = {
+            username: '游客'
+            , uid: -1
+            , avatar: '../../res/images/avatar/00.jpg'
+            , experience: 83
+            , sex: '男'
+        };
+        layui.config({
+            version: "3.0.0"
+            , base: '../../res/mods/'
+        }).extend({
+            fly: 'index'
+        }).use('fly');
+
+        layui.use(['form'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+            var $ = layui.$;
+
+            //监听提交
+            form.on('submit(mainLogin)', function (data) {
+                //layer.alert(JSON.stringify(data.field), {
+                //    title: '最终的提交信息'
+                //})
+                $.ajax({
+                    url: "/Admin/UserAuth/Login",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data.field,
+                    success: function (res) {
+                        layer.msg('登录成功');
+                        window.location.href = "/Admin";
+                    },
+                    error: function (res) {
+                        layer.msg('登录失败');
+                    }
+                })
+                return false;
+            });
+        })
+    </script>
+
+</body>
+</html>

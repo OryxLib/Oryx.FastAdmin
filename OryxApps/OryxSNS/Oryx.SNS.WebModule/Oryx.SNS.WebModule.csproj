@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="OryxWeb\**" Exclude="**\node_modules\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory> 
+    </Content>
+    <None Remove="OryxWeb\Home\layout.html" />
+    <ProjectReference Include="..\..\..\Libs\Oryx.Web.Core\Oryx.Web.Core.csproj" />
+  </ItemGroup>
+
+</Project>

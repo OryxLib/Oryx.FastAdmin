@@ -1,0 +1,16 @@
+{
+  "table": [
+    {
+      "name": "DbTableFormMapping"
+    }
+  ],
+  "col": {
+    "DbTableFormMapping": {
+      "Id": "Guid",
+      "Table": "String",
+      "Form": "input",
+      "FormConfig": "",
+      "CreateTime": "DateTime"
+    }
+  }
+}

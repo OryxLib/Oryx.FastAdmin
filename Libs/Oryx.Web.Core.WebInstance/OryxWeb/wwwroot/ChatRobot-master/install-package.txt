@@ -1,0 +1,21 @@
+#python3.6 兼容 windows
+python3 -m pip install --upgrade pip 
+pip3 install numpy
+pip3 install tensorflow
+#pip3 install tensorflow==1.5.0
+#pip3 install --ignore-installed --upgrade tensorflow==1.5
+pip3 install Keras==2.1.6
+#pip3 install keras
+pip3 install git+https://www.github.com/keras-team/keras-contrib.git
+#git clone https://www.github.com/keras-team/keras-contrib.git
+#cd keras-contrib
+#python setup.py install
+
+pip3 install gensim
+pip3 install git+https://www.github.com/farizrahman4u/recurrentshop.git
+pip3 install git+https://github.com/farizrahman4u/seq2seq.git
+
+git clone https://www.github.com/farizrahman4u/recurrentshop.git
+cd recurrentshop
+python setup.py install
+

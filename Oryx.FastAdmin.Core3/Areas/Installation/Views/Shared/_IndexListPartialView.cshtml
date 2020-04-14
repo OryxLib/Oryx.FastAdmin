@@ -1,0 +1,13 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Oryx.FastAdmin.Core.Model
+@{
+
+    var modelTable = ViewData["ModelTable"] as ModelTable;
+}
+<div style="overflow:auto;">
+    <table class="layui-table" id="mainTable" lay-filter="mainTable">
+    </table>
+</div>
+

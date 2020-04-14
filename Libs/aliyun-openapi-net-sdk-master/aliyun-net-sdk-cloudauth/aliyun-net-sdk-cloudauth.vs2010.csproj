@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{38149b7b-79df-4b9d-902f-62319f172f00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aliyun.Acs</RootNamespace>
+    <AssemblyName>aliyun-net-sdk-cloudauth</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+	<Compile Include="Cloudauth\Model\V20190307\CompareFacesRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CompareFacesResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateAuthKeyRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateAuthKeyResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateRPSDKRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateRPSDKResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateVerifySDKRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateVerifySDKResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateVerifySettingRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\CreateVerifySettingResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeDeviceInfoRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeDeviceInfoResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeFaceUsageRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeFaceUsageResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeOssUploadTokenRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeOssUploadTokenResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeRPSDKRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeRPSDKResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeUploadInfoRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeUploadInfoResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeUserStatusRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeUserStatusResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyRecordsRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyRecordsResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyResultRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyResultResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifySDKRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifySDKResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifySettingRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifySettingResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyTokenRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyTokenResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyUsageRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DescribeVerifyUsageResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DetectFaceAttributesRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\DetectFaceAttributesResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\ModifyDeviceInfoRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\ModifyDeviceInfoResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\UpdateVerifySettingRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\UpdateVerifySettingResponse.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\VerifyMaterialRequest.cs" />
+	<Compile Include="Cloudauth\Model\V20190307\VerifyMaterialResponse.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\CompareFacesResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\CreateAuthKeyResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\CreateRPSDKResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\CreateVerifySDKResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\CreateVerifySettingResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeDeviceInfoResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeFaceUsageResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeOssUploadTokenResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeRPSDKResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeUploadInfoResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeUserStatusResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeVerifyRecordsResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeVerifyResultResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeVerifySDKResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeVerifySettingResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeVerifyTokenResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DescribeVerifyUsageResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\DetectFaceAttributesResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\ModifyDeviceInfoResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\UpdateVerifySettingResponseUnmarshaller.cs" />
+	<Compile Include="Cloudauth\Transform\V20190307\VerifyMaterialResponseUnmarshaller.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\aliyun-net-sdk-core\aliyun-net-sdk-core.vs2010.csproj">
+      <Project>{bb84cecb-295d-4772-a669-3726e511ccfa}</Project>
+      <Name>aliyun-net-sdk-core.vs2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,138 @@
+CHANGES
+=======
+
+* Modify conf
+* Add LOGO
+* Modify nlu.db
+* Modify nlu.db
+* Add 场景引导提示
+* Update README
+* 添加详细的场景对话示例，支持多用户并发
+* Modify dict, semantic and README
+* Update README
+* Update README and Docs
+* 添加示例知识库的 Excel 版本 chat.xls 和 Neo4j 版本 nlu.db，更新了文档和 README
+* Update Docs
+* Update README
+* Update Docs
+* 修正同级场景跳转以及完善知识库删除接口
+* 退出场景时返回的场景标签为当前场景标签
+* Modify semantic.jaccard
+* 添加支持平级场景
+* 修改 XML 格式及重置知识库功能
+* Modify 自动生成场景节点ID
+* Modify 删除子场景树接口和修改 chat.semantic 词典路径以支持 Linux
+* Debug behavior
+* Add download img
+* Update KB manager
+* Add kmapi
+* Add kmserver
+* Debug publish
+* 修复发布
+* v1.0.7
+* 添加基于语义标签树的句子相似度算法
+* Modify README
+* rename
+* Modify setup.py
+* Add url
+* Add coverage
+* Add url
+* Add Py version and PyPI version
+* Add Py version and PyPI version
+* 修改导入功能与句尾标点符号过滤
+* Debug type of tid and ftid
+* Debug
+* 调整语义匹配算法及阈值
+* 简化知识库格式
+* 优化子场景匹配
+* Debug
+* 修复部分 ftid 丢失情况
+* 修复部分 bug
+* Add SQL support
+* Modify get\_age
+* 升级模糊匹配
+* Modify self.conf
+* Modify tests
+* Modify qa
+* v1.0.6
+* Debug get\_age
+* Debug
+* Modify weather api
+* 追加日志
+* 添加机器人年龄功能
+* 更新场景模式回答方式
+* Update docs
+* 修正多个无法回答的问题回答了已有问题答案的情况
+* 去除某些中性敏感词
+* 添加新词
+* 变更天气API
+* 已有测试用例全部通过
+* 修正部分测试问题
+* chat-1.0.5.dev66
+* 更新测试结果保存方式
+* 修正句尾有语气词‘呀’时匹配度降低的问题
+* 重新添加日志
+* 修改关键句问答模式函数
+* 测试修正更新
+* 修正关键语义触发匹配的情况
+* 修正更新问题
+* 添加问题中只要包含关键语义就匹配的情况
+* 修正‘跟我来’和‘过来’误识别的情况。-2017-7-10
+* Add tts 语音合成
+* 修正小民小民无法唤醒的问题
+* 修正姓氏问题
+* 修正问答问题及测试标准
+* 词库修正
+* 修正知识库配置问题，确认相应的userid是正确的
+* 将导航由模糊匹配改为全匹配模式 2017-6-2
+* 更新知识库配置
+* ChangeLog
+* 修复测试问题
+* 全部测试用例自动测试，添加敏感词库
+* 全部测试用例自动测试，添加敏感词库
+* 修正测试问题 2017/5/26
+* 添加敏感词过滤
+* 修正测试问题
+* Update
+* 添加用户管理注册及知识库管理
+* 修正测试问题
+* 添加获取地址异常处理及部分上下文
+* 修改匹配相似度参数
+* 修复测试遇到的问题
+* Update dict
+* Update get\_navigation\_location
+* v1.0.5
+* Update qa
+* Updata weather
+* Add user defined function
+* Add api
+* Add scene
+* 添加用户自定义
+* Update to version 1.0.4
+* version 1.0.4
+* version 1.0.4
+* Docs version 1.0.3
+* Update docs to version 1.0.3
+* Update docs to version 1.0.3
+* 完善文档
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Update README
+* Pylint check source code
+* version 1.0.3
+* Adjustment structure
+* Update docs
+* Add requirements.txt
+* version 1.0.3
+* Initial commit

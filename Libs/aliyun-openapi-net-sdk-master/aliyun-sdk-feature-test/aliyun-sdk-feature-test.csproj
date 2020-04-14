@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>aliyun-sdk-feature-test</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="**/obj/**" />
+    <None Remove="**/obj/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+    <PackageReference Include="Microsoft.NETCore.TestHost" Version="2.0.8" />
+    <PackageReference Include="Moq" Version="4.11.0" />
+    <PackageReference Include="Codecov" Version="1.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\aliyun-net-sdk-core\aliyun-net-sdk-core.vs2017.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="aliyun-net-sdk-ccc" Version="1.0.9" />
+    <PackageReference Include="aliyun-net-sdk-cdn" Version="3.0.8" />
+    <PackageReference Include="aliyun-net-sdk-ecs" Version="4.16.10" />
+    <PackageReference Include="aliyun-net-sdk-ram" Version="3.0.1" />
+    <PackageReference Include="aliyun-net-sdk-rds" Version="2.3.9" />
+    <PackageReference Include="aliyun-net-sdk-ros" Version="2.2.8" />
+    <PackageReference Include="aliyun-net-sdk-slb" Version="3.3.0" />
+    <PackageReference Include="aliyun-net-sdk-vpc" Version="3.0.4" />
+  </ItemGroup>
+
+</Project>

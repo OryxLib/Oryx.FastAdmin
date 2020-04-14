@@ -1,0 +1,108 @@
+﻿@using Oryx.FastAdmin.Core.Model
+@{
+
+    var modelTable = ViewData["ModelTable"] as ModelTable;
+
+    var dataFiled = "";
+    foreach (var tableInfo in modelTable.TableInfoList)
+    {
+        var propName = char.ToLower(tableInfo.PropName[0]) + tableInfo.PropName.Substring(1);
+        dataFiled += "{ field: '" + propName + "', title: '" + tableInfo.Name + "', sort: true },";
+    }
+    var nowrap = Context.Request.Query["nowrap"];
+    var url = ViewContext.HttpContext.Request.Path.Add("/AddOrUpdate");
+    // if (nowrap == "true")
+    //{
+    //    url += "?nowrap=true";
+    //}
+
+    var delurl = ViewContext.HttpContext.Request.Path.Add("/Delete");
+}
+<script type="text/template" id="toolbar">
+    <div class="layui-btn-container">
+        <a href="@Html.Raw(url+(nowrap=="true"?"?nowrap=true":""))" class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-1"></i>添加</a>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+<script>
+
+    layui.use('table', function () {
+             var table = layui.table;
+
+             table.render({
+                 elem: '#mainTable',
+                 toolbar: '#toolbar',
+                 //defaultToolbar: ['filter', 'print', 'exports', {
+                 //   title: '提示' //标题
+                 //   ,layEvent: 'LAYTABLE_TIPS' //事件名，用于 toolbar 事件中使用
+                 //   ,icon: 'layui-icon-tips' //图标类名
+                 // }] ,
+                 url:window.location.href.replace(/\/\?[\S\s]+/g,'') + '/List',
+                 cols: [[
+                      {type:'checkbox'},
+                         @Html.Raw(dataFiled )
+                     {
+                         filed: 'options', title: '操作', templet:
+                             '<div><a href="@url?Id={{d.id}}" class="layui-table-link">编辑</a>\
+                              <a href="javascript:del(\'{{d.id}}\')" class="layui-table-link">删除</a></div>'
+
+                     }
+                     ]]
+                , page: true
+             });
+           //头工具栏事件
+          table.on('toolbar(mainTable)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+              switch (obj.event) {
+              case 'getCheckData':
+                var data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+              break;
+              case 'getCheckLength':
+                var data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+              break;
+              case 'isAll':
+                layer.msg(checkStatus.isAll ? '全选': '未全选');
+              break;
+
+              //自定义头工具栏右侧图标 - 提示
+              case 'LAYTABLE_TIPS':
+                layer.alert('这是工具栏右侧自定义的一个图标按钮');
+              break;
+            };
+          });
+    });
+
+
+    function del(id) {
+        layui.layer.confirm('是否删除？', {
+                    btn: ['确定', '取消'] //可以无限个按钮
+                }, function (index, layero) {
+                    layui.$.ajax({
+                        url: '@delurl?Id=' + id,
+                        type: 'post',
+                        dataType: "json",
+                        success: function (res) {
+                            if (res.success) {
+                                layer.msg('删除成功');
+                                window.location.reload();
+                            } else {
+                                layer.msg('删除失败')
+                            }
+                        },
+                        error: function (err) {
+                            layer.msg('删除失败 服务器错误')
+                            console.log(err)
+                        }
+                    })
+                    console.log('确定')
+                }, function (index) {
+                    console.log('取消')
+                });
+            }
+</script>
+
+

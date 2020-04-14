@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+    <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" media="screen">-->
+    <!--<link rel="stylesheet" type="text/css" href="http://mervick.github.io/lib/google-code-prettify/skins/tomorrow.css" media="screen">-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script src="./oryx.editor.js"></script>
+    <script src="oryx.Editor/emojionearea.js"></script>
+    <link href="../third-party/meterial-pro/material/css/style.css" rel="stylesheet" />
+    <link href="oryx.Editor/emojionearea.css" rel="stylesheet" />
+</head>
+<body>
+
+    <textarea id="textArea" style="display:none;"> </textarea>
+    <div id='editor'></div>
+    <script>
+        var ele = document.getElementById('editor')
+        orxySocialEditor(ele)
+    </script>
+
+
+    <script type="text/javascript">
+        var el;
+        $('.btn-emoji').click(function () {
+            el[0].emojioneArea.showPicker()
+        })
+
+        $(document).ready(function () {
+
+            el = $("#textArea").emojioneArea({
+                template: "<editor/><filters/><tabs/>", // plugin template
+
+                dir: "ltr", // direction http://www.w3schools.com/tags/att_global_dir.asp
+                spellcheck: false, // spellcheck http://www.w3schools.com/tags/att_global_spellcheck.asp
+                autocomplete: "off", // autocomplete http://www.w3schools.com/tags/att_input_autocomplete.asp
+                autocorrect: "off", // autocorrect https://davidwalsh.name/disable-autocorrect
+                autocapitalize: "off", // autocapitalize http://www.w3schools.com/tags/att_input_autocomplete.asp
+
+                placeholder: null, // placeholder
+                container: ".card-body", // by default, emojionearea container created directly under source,
+                // in this option you can specify custom {jQuery|selector} container
+
+                hideSource: true, // hide source element after binding
+                autoHideFilters: false, // auto hide filters panel
+
+                useSprite: true, // use sprite instead of images, is awesome, but not works in old browsers
+                shortnames: false, // if true - will converts emojis to short names,
+                // by default converts emojis to unicode characters
+
+                filters: {
+                    // customize filters & emoji buttons
+                    // see in source file
+                },
+                pickerPosition: 'bottom',
+                events: {
+                    // events handlers
+                    // see events below
+                }
+            });
+            //el.showPicker();
+        });
+    </script>
+</body>
+</html>

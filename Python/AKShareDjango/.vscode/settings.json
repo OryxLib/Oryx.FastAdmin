@@ -1,0 +1,8 @@
+{
+    "html.format.indentHandlebars": true,
+    "html.format.indentInnerHtml": true,
+    "files.associations": {
+        "**/templates/*.html": "django-html",
+        "**/templates/*": "django-txt"
+    }
+}

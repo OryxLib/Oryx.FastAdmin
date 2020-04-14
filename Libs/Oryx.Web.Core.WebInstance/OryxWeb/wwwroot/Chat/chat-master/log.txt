@@ -1,0 +1,160 @@
+2019-04-16 16:33:21
+你好
+question: 你好
+content: 小民想你喽
+behavior: 0
+url: 
+context: 基础问答
+parameter: 
+picurl: 
+
+2019-04-16 16:33:26
+是吗
+question: 是吗
+content: 小民正在学习哦
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-04-16 16:33:30
+你学会了吗
+question: 你学会了吗
+content: 您刚才说的是什么，可以再重复一遍吗
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-04-16 16:33:34
+你学会了吗
+question: 你学会了吗
+content: 不好意思请问您可以再说一次吗
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-04-16 16:33:38
+好吧..
+question: 好吧..
+content: 不好意思请问您可以再说一次吗
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-04-16 16:33:42
+你是谁啊
+question: 你是谁啊
+content: 不告诉你
+behavior: 0
+url: 
+context: 基础问答
+parameter: 
+picurl: 
+
+2019-04-16 16:41:37
+蛀牙
+question: 蛀牙
+content: 小民正在学习哦
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-04-16 16:45:05
+上一步
+question: 上一步
+content: 咱们聊点别的吧
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-04-17 12:44:28
+聊什么呢
+question: 聊什么呢
+content: 我是公司名称的小民
+behavior: 0
+url: 
+context: 基础问答
+parameter: 
+picurl: 
+
+2019-04-17 12:44:33
+ 我想吃东西
+question:  我想吃东西
+content: 小民正在学习哦
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-05-25 17:01:18
+你好
+question: 你好
+content: 小民想你喽
+behavior: 0
+url: 
+context: 基础问答
+parameter: 
+picurl: 
+
+2019-05-25 17:01:23
+你在干嘛
+question: 你在干嘛
+content: 不如我们换个话题吧
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-05-25 17:03:24
+你会唱歌吗
+question: 你会唱歌吗
+content: 你想听什么歌呀
+behavior: 0
+url: 
+context: 基础问答
+parameter: 
+picurl: 
+
+2019-05-25 17:06:52
+几岁啦
+question: 几岁啦
+content: 我现在2年9个月30天了
+behavior: 0
+url: 
+context: 基础问答
+parameter: 
+picurl: 
+
+2019-05-25 17:06:59
+宝别
+question: 宝别
+content: 额，这个问题嘛。。。
+behavior: 0
+url: 
+context: 
+parameter: 
+picurl: 
+
+2019-05-25 17:07:01
+宝贝
+question: 宝贝
+content: 不告诉你
+behavior: 0
+url: 
+context: 基础问答
+parameter: 
+picurl: 
+

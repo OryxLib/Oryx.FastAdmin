@@ -1,0 +1,28 @@
+{
+  "table": [
+    { "name": "Content" },
+    { "name": "Category" }
+  ],
+  "col": {
+    "Content": {
+      "Id": "Guid",
+      "Name": "String",
+      "Category": "String",
+      "Content": "String",
+      "CreateTime": "DateTime"
+    },
+    "Category": {
+      "Id": "Guid",
+      "Name": "String",
+      "CreateTime": "DateTime"
+    }
+  },
+  "reference": [
+    {
+      "FromTable": "Content",
+      "FromeColumn": "Category",
+      "ToTable": "Category",
+      "ToColumn": "Name"
+    }
+  ]
+}

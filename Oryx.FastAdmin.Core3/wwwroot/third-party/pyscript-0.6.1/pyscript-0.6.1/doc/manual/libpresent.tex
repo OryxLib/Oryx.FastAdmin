@@ -1,0 +1,108 @@
+% Copyright (C) 2002-2006  Alexei Gilchrist and Paul Cochrane
+% 
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+% $Id: libpresent.tex,v 1.4 2006/06/06 11:33:11 paultcochrane Exp $
+
+\chapter{Presentation Library}
+
+\begin{python}
+pyscript.lib.present
+\end{python}
+
+It's straightforward to create whole posters in \pyscript. 
+Talks can also be simply created. 
+
+\section{Common Objects}
+
+These are useful objects for both posters and talks.
+
+%--------------------------------------------------------------------------
+\subsection{Box()}
+\begin{python}
+class Box(Group, Rectangle):
+    pad = .2
+
+    width = None
+    height = None
+\end{python}
+
+This places a box around an object. \Verb|pad| gives the amount of padding
+around the object. \Verb|width| and \Verb|height| can be set also and these
+will override the calculated values. 
+
+%--------------------------------------------------------------------------
+\subsection{TeXArea()}
+\begin{python}
+class  TeXArea(Group):
+    width = 9.4
+    iscale = 1
+    align = "w"
+\end{python}
+    
+This will typeset some \LaTeX{} within a fixed width minipage environment.
+the width of the minipage is set with the \Verb|width| attribute which must
+be supplied. The initial scale of the text can be set with \Verb|iscale| as
+per the \Verb|TeX| object. The \Verb|align| attribute is used when the
+\LaTeX{} doesn't fill the minipage --- an invisible rectangle is added with
+the minipage aligned according to this attribute.
+
+%--------------------------------------------------------------------------
+\section{Posters}
+
+\begin{python}
+class Poster(Page, VAlign):
+    size = "A0"
+    orientation = "portrait"
+
+    bg = Color('DarkSlateBlue')
+
+    space = 1
+
+    topspace = 2
+	
+    def background(self)
+\end{python}
+
+
+%--------------------------------------------------------------------------
+\section{Talks}
+
+
+\begin{python}
+class Pause(object)
+class Talk(Pages):
+    def append(self, *slides_raw):
+class EmptySlide(Page):
+
+    title = None
+    orientation = "Landscape"
+    size = "screen"
+
+    def flatten(self, thegroup=None, objects=[]):
+    def append(self, *items, **options):
+    def append_n(self, *items):
+    def append_s(self, *items):
+    def append_e(self, *items):
+    def append_w(self, *items):
+    def append_c(self, *items):
+
+    def make_back(self):
+    def make_title(self):
+
+	def clear(self):
+    def make(self, page=1, total=1):
+\end{python}
+

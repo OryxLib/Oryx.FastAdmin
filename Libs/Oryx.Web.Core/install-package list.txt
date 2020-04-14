@@ -1,0 +1,12 @@
+﻿install-package Microsoft.AspNetCore.Http.Abstractions -Version 2.2.0
+install-package Microsoft.Extensions.DependencyInjection.Abstractions -Version 2.2.0
+install-package Microsoft.Extensions.DependencyInjection -Version 2.2.0
+install-package Microsoft.AspNetCore.Routing.Abstractions -Version 2.2.0
+install-package Microsoft.AspNetCore.Routing -Version 2.2.0
+install-package Microsoft.AspNetCore.StaticFiles -Version 2.2.0
+install-package Microsoft.Extensions.FileProviders.Physical -Version 2.2.0
+install-package Microsoft.AspNetCore.WebSockets -Version 2.2.0
+
+install-package NewtonSoft.Json -Version 12.0.1
+
+Install-Package Scriban -Version 2.0.0

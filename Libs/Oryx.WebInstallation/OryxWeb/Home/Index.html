@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../Assets/layui/css/layui.css" rel="stylesheet" />
+    <link href="../Assets/layui/extend/steps/style.css" rel="stylesheet" />
+    <style>
+        .layui-body,
+        .layui-layout-admin .layui-footer {
+            left: 0;
+        }
+
+        .layui-body {
+            padding: 102px;
+        }
+
+        .layui-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-item-header {
+            width: 100%;
+            height: 100px;
+            color: red;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .step-header {
+            width: 100%;
+            margin: 0 auto;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-left: 106px;
+        }
+
+        .step-content {
+            width: 100%;
+        }
+
+        .layui-btn-group {
+            text-align: center;
+        }
+
+        .layui-layout-admin .layui-logo {
+            position: static;
+            left: inherit;
+            top: inherit;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+    {{renderbody}}
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header" style="background-color:white;">
+            <div class="layui-logo">知页管理系统后台 在线安装 </div>
+        </div>
+
+        <div class="layui-body">
+            <div id="step_demo" class="step-body">
+                <form class="layui-form" action="">
+                    <div class="step-header">
+                        <ul>
+                            <li>
+                                <span class="step-name">数据库</span>
+                            </li>
+                            <li>
+                                <span class="step-name">上传资料</span>
+                            </li>
+                            <li>
+                                <span class="step-name">签证单已发放</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-list">
+                            <div class="step-item-header"> 数据库设置</div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">地址</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="Address" value="localhost" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">端口</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="Port" value="3360" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">数据库名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="DbName" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">数据库用户名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="DbUserName" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">数据库密码</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="DbUserPassword" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-list">
+                            <div class="step-item-header"> 设置管理员</div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用户名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="UserName" required lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="UserPassword" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-list">
+                            <div class="step-item-header">设置完成</div>
+                            <div class="layui-form-item" style="text-align:center;">
+                                恭喜!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-btn-group">
+                        <button type="button" class="layui-btn layui-btn-primary" id="preBtn">上一步</button>
+                        <button type="button" class="layui-btn layui-btn-normal" id="nextBtn">下一步</button>
+                        <button type="button" class="layui-btn layui-btn-normal  layui-hide" id="endBtn">完成</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © 知页科技
+        </div>
+    </div>
+
+    <script src="../Assets/layui/layui.js"></script>
+    <script src="../Assets/layui/extend/steps/steps.js"></script>
+    <script>
+        layui.config({
+            version: 12
+            , debug: true
+            , base: 'Assets/layui/extend/'
+        }).extend({
+            steps: "steps/steps"
+        });
+
+        /*
+     steps组件
+     */
+        layui.use(['jquery', 'steps'], function () {
+
+            var $ = layui.$;
+
+            var $step = $("#step_demo").step();
+
+            var stepList = $('.step-list').length;
+            var stepIndex = 0;
+            $("#preBtn").click(function (event) {
+                $step.preStep();//上一步
+                if (stepIndex > 1) {
+                    stepIndex -= 1;
+                }
+                changeStep()
+                saveStep()
+            });
+            $("#nextBtn").click(function (event) {
+                $step.nextStep();//下一步
+                if (stepIndex <= stepList) {
+                    stepIndex += 1;
+                }
+                changeStep()
+                saveStep()
+            });
+            $("#goBtn").click(function (event) {
+                $step.goStep(3);//到指定步
+            });
+            function saveStep() {
+                switch (stepIndex) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+
+            function changeStep() {
+                switch (stepIndex) {
+                    case stepList:
+                        $('#nextBtn').hide()
+                        $('#endBtn').show()
+                        break;
+                    default:
+                        $('#nextBtn').show()
+                        $('#endBtn').hide()
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

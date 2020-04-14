@@ -1,0 +1,215 @@
+% Copyright (C) 2002-2006  Alexei Gilchrist and Paul Cochrane
+% 
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+% $Id: pyscript_defs.tex,v 1.11 2006/06/06 11:33:11 paultcochrane Exp $
+
+\usepackage{graphicx,color}
+\usepackage{amsmath}
+\usepackage{makeidx}
+\usepackage{alltt}
+%\usepackage{verbatim}
+%\usepackage{shortvrb}
+%\usepackage{verbatimfiles}
+\usepackage{rotating}
+\usepackage{html}
+\usepackage{xspace}
+\usepackage{colortbl}
+
+\usepackage{hyperref}
+
+% --------------------------------------------------------------
+% Make the sectioning a bit more fancy
+% --------------------------------------------------------------
+
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb}
+
+\titleformat{\chapter}[display]
+{\normalfont\LARGE\filcenter\sffamily}
+{}{1pc}
+{\titlerule[1pt]%
+\vspace{1pt}%
+\titlerule
+\vspace{2ex}\thechapter: }
+[\vspace{2ex}\titlerule]
+
+%\titleformat{\section}
+%{\titlerule
+%\vspace{.8ex}%
+%\normalfont\itshape}
+%{\thesection.}{.5em}{}
+
+%\titleformat{\section}[frame]
+%{\normalfont}
+%{\filright
+%\footnotesize
+%\enspace\thesection\enspace}
+%{8pt}{\Large\bfseries\filcenter}
+
+\titleformat{\section}[frame]
+{\normalfont}
+{}{1ex}{\Large\thesection.\bfseries\filcenter}
+
+\titleformat{\subsection}
+{\normalfont\itshape\bfseries}
+{\thesubsection.}{.5em}{}
+
+% --------------------------------------------------------------
+% Some formating stuff
+% --------------------------------------------------------------
+
+% I think it looks nicer if new paragraphs aren't indented
+% as we have lots of whitespace anyway. just increase the 
+% inter-paragraph space
+
+\setlength{\parindent}{0pt} 
+\addtolength{\parskip}{.5\baselineskip}
+
+\newcommand{\pyscript}{\textsl{\texttt{PyScript}}\xspace}
+
+% --------------------------------------------------------------
+% sundry shite
+% --------------------------------------------------------------
+
+\newcommand {\tbf}[1] {\textbf{#1}}
+\newcommand {\tit}[1] {\textit{#1}}
+\newcommand {\tmd}[1] {\textmd{#1}}
+\newcommand {\trm}[1] {\textrm{#1}}
+\newcommand {\tsc}[1] {\textsc{#1}}
+\newcommand {\tsf}[1] {\textsf{#1}}
+\newcommand {\tsl}[1] {\textsl{#1}}
+\newcommand {\ttt}[1] {\texttt{#1}}
+\newcommand {\tup}[1] {\textup{#1}}
+
+\newcommand {\mbf}[1] {\mathbf{#1}}
+\newcommand {\mmd}[1] {\mathmd{#1}}
+\newcommand {\mrm}[1] {\mathrm{#1}}
+\newcommand {\msc}[1] {\mathsc{#1}}
+\newcommand {\msf}[1] {\mathsf{#1}}
+\newcommand {\msl}[1] {\mathsl{#1}}
+\newcommand {\mtt}[1] {\mathtt{#1}}
+\newcommand {\mup}[1] {\mathup{#1}}
+
+% spell things correctly  (like shite?)
+\newenvironment{centre}{\begin{center}}{\end{center}}
+\newenvironment{itemise}{\begin{itemize}}{\end{itemize}}
+
+% define commands for describing functions, arguments and stuff
+\newenvironment{funcDesc}{\vspace*{2mm}\begin{description}}{\end{description}\vspace*{2mm}}
+\newenvironment{funcOpts}{\begin{description}}{\end{description}}
+\newenvironment{funcExCode}{The code:\begin{alltt}\MakeShortVerb{\|}}{\DeleteShortVerb{\|}\end{alltt}}
+\newenvironment{funcExOut}{Gives the output:\\}{}
+
+\newcommand {\funcName}[1] {\ttt{#1}} % function name
+\newcommand {\funcArg}[1] {\tit{#1}} % function argument
+\newcommand {\reqArg}[1] {\tit{#1}} % required function argument
+\newcommand {\optArg}[1] {\tit{#1}} % optional function argument
+\newcommand {\defVal}[1] {\ttt{#1}} % default value of argument
+\newcommand {\class} {\tbf{class\xspace}}
+\newcommand {\obj}[1] {\ttt{#1}}
+\newcommand {\lib}[1] {\ttt{#1}}
+% option: first argument is option name, second argument is default
+% value if any
+\newcommand {\option}[1] {\item[\optArg{#1}: ]}  
+
+\newcommand {\progName}[1] {\ttt{#1}} % external program name
+\newcommand {\fileName}[1] {\tbf{\tit{#1}}} % file name
+
+\newcommand {\figwidth} {60mm}
+\newcommand {\fig}[1] {Figure~\ref{#1}}
+\newcommand {\Sec}[1] {Section~\ref{#1}}
+
+\usepackage{natbib}
+
+\usepackage[nottoc]{tocbibind}  
+                                % allows the table of contents, bibliography
+                                % and index to be added to the table of
+                                % contents if desired, the option used
+                                % here specifies that the table of
+                                % contents is not to be added.
+                                % tocbibind needs to be after natbib
+                                % otherwise bits of it get trampled.
+
+% --------------------------------------------------------------
+% Code format within \Verb
+% --------------------------------------------------------------
+
+\definecolor{pycolor}{rgb}{0,0.4,0}
+
+\DefineVerbatimEnvironment{python}{Verbatim}
+{frame=leftline,framerule=.5mm,rulecolor=\color{pycolor},
+formatcom=\color{pycolor}\small,fontshape=sl}
+
+%\DefineShortVerb[formatcom=\color{dgreen}\small,fontshape=sl]{\|}
+
+\RecustomVerbatimCommand{\Verb}{Verb}{formatcom=\color{pycolor}\small,fontshape=sl}
+
+\newcommand {\vrb}[1] {\Verb|#1|}
+% --------------------------------------------------------------
+% example environment
+% --------------------------------------------------------------
+
+
+%\newenvironment{example}{\begin{description}}{\end{description}}
+%\newenvironment{example}{\begin{center}\begin{tabular}{|>{\columncolor[gray]{.9}}c|}\hline\\\begin{minipage}{.75\textwidth}}%
+%{\end{minipage}\\\hline\end{tabular}\end{center}}
+
+%\newenvironment{example}{\setlength{unitlength}{.8\textwidth}%
+%\begin{center}%
+%\begin{picture}(0,0)(-1,0)%
+%\put(0,0){\line(1,0){.4\textwidth}\line(0,-1){1ex}}%
+%\put(0,0){\line(-1,0){.4\textwidth}\line(0,-1){1ex}}%
+%\end{picture}\\\begin{minipage}{.75\textwidth}}%
+%{\end{minipage}\\x\end{center}}
+
+\newenvironment{example}{%
+\begin{center}%
+%\makebox{\rule{.4\textwidth}{1pt}Hello\rule{.4\textwidth}{1pt}}\\[5mm]
+\makebox[.8\textwidth]{\rule[-.92ex]{1pt}{1ex}\hrulefill\ \raisebox{-.85ex}{Example}\ \hrulefill\rule[-.92ex]{1pt}{1ex}}\\[5mm]
+\begin{minipage}{.75\textwidth}}%
+{\end{minipage}\\[5mm]
+\makebox[.8\textwidth]{\rule{1pt}{1ex}\hrulefill\rule{1pt}{1ex}}\end{center}}
+
+%\newenvironment{example}{%
+%\begin{center}%
+%\makebox[.8\textwidth]{\rule[-1ex]{1pt}{1ex}\hrulefill\ \raisebox{-1ex}{Example}\ \hrulefill\rule[-1ex]{1pt}{1ex}}\\[5mm]
+%\begin{minipage}{.75\textwidth}}%
+%{\end{minipage}\\[5mm]
+%\makebox[.8\textwidth]{\rule{1pt}{1ex}\hrulefill\rule{1pt}{1ex}}\end{center}}
+
+
+% --------------------------------------------------------------
+% Page layout
+% --------------------------------------------------------------
+% Page layout ... set for A4
+
+\setlength{\topmargin}{-1.0 cm}
+\setlength{\oddsidemargin}{0 cm}
+\setlength{\evensidemargin}{0 cm}
+\setlength{\textwidth}{18.5 cm}
+\addtolength{\textwidth}{-\marginparsep}
+\addtolength{\textwidth}{-\marginparwidth}
+\setlength{\textheight}{26.5 cm}
+\addtolength{\textheight}{-\footskip}
+
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+\rfoot{}
+\cfoot{}

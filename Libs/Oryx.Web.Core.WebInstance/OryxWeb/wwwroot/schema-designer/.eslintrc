@@ -1,0 +1,65 @@
+{
+    "extends": [
+        "airbnb",
+        "plugin:flowtype/recommended"
+    ],
+    "parser": "babel-eslint",
+    "plugins": [
+        "react",
+        "flowtype"
+    ],
+    "rules": {
+        "arrow-body-style": ["error", "as-needed"],
+        "arrow-parens": ["error", "always"],
+        "comma-dangle": ["error", "never"],
+        "indent": ["error", 4, {
+            "VariableDeclarator": {
+                "var": 2,
+                "let": 2,
+                "const": 2
+            },
+            "SwitchCase": 1
+        }],
+        "jsx-quotes": ["error", "prefer-single"],
+        "max-len": ["error", 120],
+        "object-curly-newline": ["error", { "consistent": true }],
+        "template-curly-spacing": ["error", "always"],
+        "jsx-a11y/label-has-for": ["error", {
+            "required": {
+              "every": ["id"]
+            }
+        }],
+        "jsx-a11y/no-autofocus": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+
+        "react/jsx-curly-spacing": ["error", "always"],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+        "react/jsx-key": "error",
+        "react/sort-comp": "off",
+        "react/self-closing-comp": ["error", { "component": true, "html": false }],
+
+        "flowtype/delimiter-dangle": ["error", "never"],
+        "flowtype/no-dupe-keys": "error",
+        "flowtype/no-primitive-constructor-types": "error",
+        "flowtype/no-weak-types": ["error", { "any": false }],
+        "flowtype/object-type-delimiter": ["error", "comma"],
+        "flowtype/require-parameter-type": ["error", { "excludeArrowFunctions": true }],
+        "flowtype/require-return-type": "off",
+        "flowtype/semi": ["error", "always"]
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    }
+}

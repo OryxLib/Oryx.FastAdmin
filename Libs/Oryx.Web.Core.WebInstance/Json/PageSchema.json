@@ -1,0 +1,32 @@
+{
+  "table": [
+    { "name": "Page" },
+    { "name": "Route" }
+  ],
+  "col": {
+    "Page": {
+      "Id": "Guid",
+      "Name": "String",
+      "Html": "String",
+      "Css": "String",
+      "Asset": "String",
+      "Components": "String",
+      "Script": "String",
+      "Group": "String"
+    },
+    "Route": {
+      "Id": "Guid",
+      "Name": "String",
+      "Path": "String",
+      "Group": "String"
+    }
+  },
+  "reference": [
+    {
+      "FromeTable": "Route",
+      "FromCol": "Id",
+      "ToTable": "Page",
+      "ToCol": "Id"
+    }
+  ]
+}

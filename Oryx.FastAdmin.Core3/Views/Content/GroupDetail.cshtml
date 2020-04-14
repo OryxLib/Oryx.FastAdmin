@@ -1,0 +1,39 @@
+﻿@using Oryx.FastAdmin.Model.Contents
+@using Oryx.FastAdmin.Core3.Models
+@using Oryx.FastAdmin.Core3.Components
+
+@{
+    var groupContentEntry = ViewData["GroupContentEntry"] as GroupContentEntry;
+    var contentList = ViewData["ContenModels"] as List<ContentViewModel>;
+    ViewData["Title"] = groupContentEntry.Name;
+    ViewData["Key"] = groupContentEntry.Keywords;
+    ViewData["Desc"] = groupContentEntry.Description;
+}
+@section Styles{
+    <style>
+        .card-body img {
+            /*width: 100%;*/
+        }
+    </style>
+}
+
+<h1>@groupContentEntry.Name</h1>
+<span>@groupContentEntry.Author</span>
+<span>@groupContentEntry.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")</span>
+
+<hr />
+
+<div style="display:flex;">
+    @foreach (var contentItem in contentList)
+    {
+        <div class="card" style="margin:20px;">
+            <div class="card-body">
+                <h5 class="card-title">@contentItem.Name</h5>
+                <p class="card-text">@contentItem.Description</p>
+                <div><img src="@contentItem.Image" width="150" /></div>
+                <a href="/Content/Detail?Id=@contentItem.Id" class="btn btn-primary">查看</a>
+            </div>
+        </div>
+    }
+
+</div>

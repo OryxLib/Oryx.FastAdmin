@@ -1,0 +1,17 @@
+﻿
+@{
+    var nowrap = Context.Request.Query["nowrap"];
+    if (nowrap == "true")
+    {
+        Layout = "../Shared/_Layout_noWrap.cshtml";
+    }
+    //else
+    //{
+    //    Layout = "_Layout.cshtml";
+    //}
+
+}
+@(await Html.PartialAsync("_IndexListPartialView"))
+@section Scripts{
+    @(await Html.PartialAsync("_IndexListPartialView_Scripts"))
+}

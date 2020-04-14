@@ -1,0 +1,33 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title> 知页管理系统后台</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+    <style>
+        .layui-layout-admin .layui-body {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-body">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/layui/layui.all.js"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

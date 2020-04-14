@@ -1,0 +1,268 @@
+/**
+ * HEADER SECTION
+ */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 300;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.title {
+    font-size: 2em;
+}
+
+.title strong {
+    color: #ecf0f1;
+    font-family: 'Lobster', cursive;
+}
+
+.title sub {
+    font-size: 0.5em;
+}
+
+.title sub a {
+    color: #ecf0f1;
+}
+
+.title sub a:hover {
+    color: white;
+}
+
+.db-name {
+    color: #ecf0f1;
+    font-size: 1.6em;
+}
+
+.db-name sup button {
+    background-color: #2c3e50;
+    border: 0;
+    color: #ecf0f1;
+    font-size: 0.7em;
+    outline: none;
+}
+
+.db-name sup button:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.menu {
+    font-size: 1.1em;
+}
+
+.menu ul {
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.menu li a,
+.menu li button {
+    background-color: #2c3e50;
+    border: 1px solid #2c3e50;
+    border-radius: 50%;
+    color: #ecf0f1;
+    font-size: 1.2em;
+    height: 35px;
+    outline: none;
+    text-decoration: none;
+    top: 0;
+    transition: 0.3s;
+    width: 35px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+
+.menu li a {
+    display: block;
+    line-height: 35px;
+    margin: 2.5px 0 2.5px 0;
+    text-align: center;
+}
+
+.menu li button {
+    vertical-align: middle;
+}
+
+.menu li a:hover,
+.menu li button:not([disabled]):hover {
+    background-color: white;
+    border: 1px solid white;
+    color: #2c3e50;
+    transition: 0.3s;
+}
+
+.title, .menu, .db-name {
+    line-height: 40px;
+}
+
+#file-upload {
+    display: none;
+}
+
+/**
+ * TABLE SECTION
+ */
+.table-wrapper {
+    margin-top: 45px;
+    position: relative;
+}
+
+.db-table {
+    background-color: white;
+    box-shadow: 1px 1px 5px #666;
+    max-width: 250px;
+    min-width: 200px;
+    z-index: 100;
+    -webkit-box-shadow: 1px 1px 5px #666;
+    -moz-box-shadow: 1px 1px 5px #666;
+}
+
+.table-header {
+    background-color: #34495e;
+    color: white;
+    cursor: move;
+    padding: 6px 8px;
+}
+
+.table-header-red {
+    background: #c0392b;
+}
+
+.table-header-green {
+    background: #16a085;
+}
+
+.table-header-blue {
+    background: #2980b9;
+}
+
+.table-header-dark-blue {
+    background: #2c3e50;
+}
+
+.table-header-purple {
+    background: #8e44ad;
+}
+
+.table-header h4 {
+    margin: 0;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table-header span {
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.table-header span:last-child {
+    margin-right: 0;
+}
+
+.db-columns {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.db-columns li {
+    border-bottom: 1px solid gray;
+    padding: 6px 8px;
+}
+
+.db-columns li:last-child {
+    border-bottom: 0;
+}
+
+.db-columns pull-left {
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.db-columns .pull-left small {
+    font-style: italic;
+    margin: 0 0 0 2px;
+}
+
+.db-columns .pull-right span {
+    color: #34495e;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.db-columns .pull-right span:last-child {
+    margin-right: 0;
+}
+
+.db-columns sup {
+    font-style: italic;
+    margin-left: 1px;
+}
+
+button[disabled] {
+    cursor: not-allowed;
+}
+
+/* tooltip */
+.tooltip-inner {
+    background-color: #34495e;
+    color: white;
+}
+
+.tooltip-arrow {
+    border-bottom-color: #34495e !important;
+}
+
+/* jsPlumb */
+.draggable {
+    position: absolute;
+}
+
+.jtk-dragged {
+    cursor: move;
+    z-index: 200 !important;
+}
+
+.no-select {
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* media query */
+@media (max-width: 991px) {
+    .title {
+        font-size: 1.6em;
+    }
+
+    .db-name {
+        font-size: 1.4em;
+    }
+
+    .menu li a,
+    .menu li button {
+        font-size: 0.9em;
+        height: 25px;
+        width: 25px;
+    }
+}

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86A55D46-B5F5-44B4-8B60-2AED1E2EDD99}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PgSqlTest</RootNamespace>
+    <AssemblyName>PgSqlTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Demo\Demo0_SqlSugarClient.cs" />
+    <Compile Include="Demo\Demo1_Queryable.cs" />
+    <Compile Include="Demo\Demo2_Updateable.cs" />
+    <Compile Include="Demo\Demo3_Insertable.cs" />
+    <Compile Include="Demo\Demo4_Deleteable.cs" />
+    <Compile Include="Demo\Demo5_SqlQueryable.cs" />
+    <Compile Include="Demo\Demo6_Queue.cs" />
+    <Compile Include="Demo\Demo7_Ado.cs" />
+    <Compile Include="Demo\Demo8_Saveable.cs" />
+    <Compile Include="Demo\Demo9_EntityMain.cs" />
+    <Compile Include="Demo\DemoA_DbMain.cs" />
+    <Compile Include="Demo\DemoB_Aop.cs" />
+    <Compile Include="Demo\Democ_GobalFilter.cs" />
+    <Compile Include="Demo\DemoD_DbFirst.cs" />
+    <Compile Include="Demo\DemoE_CodeFirst.cs" />
+    <Compile Include="Demo\DemoF_Utilities.cs" />
+    <Compile Include="Demo\DemoG_SimpleClient.cs" />
+    <Compile Include="Models\AttributeTable.cs" />
+    <Compile Include="Models\CarType.cs" />
+    <Compile Include="Models\Custom.cs" />
+    <Compile Include="Models\EntityMapper.cs" />
+    <Compile Include="Models\Mapper.cs" />
+    <Compile Include="Models\MyCustomAttributeTable.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\TestTree.cs" />
+    <Compile Include="Models\Tree.cs" />
+    <Compile Include="Models\ViewOrder.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="UnitTest\USave.cs" />
+    <Compile Include="_OldTest\Demos\1_Query.cs" />
+    <Compile Include="_OldTest\Demos\2_Update.cs" />
+    <Compile Include="_OldTest\Demos\3_Insert.cs" />
+    <Compile Include="_OldTest\Demos\4_Delete.cs" />
+    <Compile Include="_OldTest\Demos\5_CodeFirst.cs" />
+    <Compile Include="_OldTest\Demos\5_DbFirst.cs" />
+    <Compile Include="_OldTest\Demos\6_ComplexModel.cs" />
+    <Compile Include="_OldTest\Demos\7_Filter.cs" />
+    <Compile Include="_OldTest\Demos\8_JoinSql.cs" />
+    <Compile Include="_OldTest\Demos\9_Aop.cs" />
+    <Compile Include="_OldTest\Demos\A_MasterSlave.cs" />
+    <Compile Include="_OldTest\Demos\B_SharedConnection.cs" />
+    <Compile Include="_OldTest\Demos\CS_TeacherStudent.cs" />
+    <Compile Include="_OldTest\Demos\C_ExtSqlFun.cs" />
+    <Compile Include="_OldTest\Demos\D_QueryableView.cs" />
+    <Compile Include="_OldTest\Demos\E_Attribute.cs" />
+    <Compile Include="_OldTest\Demos\F_VersionValidation.cs" />
+    <Compile Include="_OldTest\Demos\G_Mapper.cs" />
+    <Compile Include="_OldTest\Demos\H_ExtEntity.cs" />
+    <Compile Include="_OldTest\Demos\H_Queue.cs" />
+    <Compile Include="_OldTest\Demos\PerformanceTest.cs" />
+    <Compile Include="_OldTest\Demos\Z_DemoBase.cs" />
+    <Compile Include="_OldTest\Models\DataTestInfo.cs" />
+    <Compile Include="_OldTest\Models\DataTestInfo2.cs" />
+    <Compile Include="_OldTest\Models\Enum.cs" />
+    <Compile Include="_OldTest\Models\School.cs" />
+    <Compile Include="_OldTest\Models\Student.cs" />
+    <Compile Include="_OldTest\Models\ViewModelStudent.cs" />
+    <Compile Include="_OldTest\Program.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest\Main.cs" />
+    <Compile Include="UnitTest\UAdo.cs" />
+    <Compile Include="UnitTest\UCodeFirst.cs" />
+    <Compile Include="UnitTest\UJson.cs" />
+    <Compile Include="UnitTest\Updateable.cs" />
+    <Compile Include="UnitTest\UQueryable.cs" />
+    <Compile Include="UnitTest\UQueryableAsync.cs" />
+    <Compile Include="UnitTest\UThread.cs" />
+    <Compile Include="UnitTest\UThread2.cs" />
+    <Compile Include="UnitTest\UThread3.cs" />
+    <Compile Include="UnitTest\UValidate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlSugar\SqlSugar.csproj">
+      <Project>{489bb790-226c-4fad-8d1e-51d72a7ff8e5}</Project>
+      <Name>SqlSugar</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
