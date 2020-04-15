@@ -20,8 +20,8 @@ namespace Oryx.Utilities
         }
         public static string GenerateToken(string fileName)
         {
-            string AK = "vRlRmKlkqx9qY9CTWTinD-OJowSeYw5-Vg1nktUA";
-            string SK = "4gGxVhemV8DENWtUAJqs1L_xTq5QlazSnnkXfwgP";
+            string AK = "";
+            string SK = "";
 
             //string AK = "vRlRmKlkqx9qY9CTWTinD-OJowSeYw5-Vg1nktUA";
             //string SK = "4gGxVhemV8DENWtUAJqs1L_xTq5QlazSnnkXfwgP";
