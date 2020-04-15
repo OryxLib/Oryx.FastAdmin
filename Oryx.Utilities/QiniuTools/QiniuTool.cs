@@ -23,9 +23,6 @@ namespace Oryx.Utilities
             string AK = "";
             string SK = "";
 
-            //string AK = "vRlRmKlkqx9qY9CTWTinD-OJowSeYw5-Vg1nktUA";
-            //string SK = "4gGxVhemV8DENWtUAJqs1L_xTq5QlazSnnkXfwgP";
-
             // ZoneID zoneId = ZoneID.CN_East; 
             // [CN_East:华东] [CN_South:华南] [CN_North:华北] [US_North:北美]
             // USE_HTTPS = (true|false) 是否使用HTTPS
