@@ -10,7 +10,7 @@
     <PackageReference Include="Hangfire" Version="1.6.21" />
     <PackageReference Include="Jiguang.JPush" Version="1.2.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.0" />
-    <PackageReference Include="NewtonSoft.Json" Version="11.0.2" />
+    <PackageReference Include="NewtonSoft.Json" Version="13.0.1" />
     <PackageReference Include="Qiniu.Shared" Version="7.2.15" />
     <PackageReference Include="QRCoder" Version="1.3.5" />
     <PackageReference Include="Scriban" Version="2.1.1" />
